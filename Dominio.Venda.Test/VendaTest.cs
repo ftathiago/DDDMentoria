@@ -1,5 +1,6 @@
 using System;
 using Xunit;
+using Dominio.Venda;
 
 namespace Dominio.Venda.Test
 {
