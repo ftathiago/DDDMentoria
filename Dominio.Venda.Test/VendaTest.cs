@@ -3,12 +3,12 @@ using Xunit;
 
 namespace Dominio.Venda.Test
 {
-    public class UnitTest1
+    public class VendaTest
     {
         [Fact]
-        public void Test1()
+        public void CriarVenda()
         {
-
+            Venda venda = new Venda();
         }
     }
 }
