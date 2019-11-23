@@ -1,7 +1,7 @@
 using System;
 using Xunit;
 
-namespace Dominio.Test
+namespace Dominio.Venda.Test
 {
     public class UnitTest1
     {
