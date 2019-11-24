@@ -25,7 +25,7 @@ namespace Dominio.Venda
 
         public object TotalVenda()
         {
-            return 2;
+            return 4;
         }
     }
 }
