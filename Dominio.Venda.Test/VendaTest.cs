@@ -27,7 +27,7 @@ namespace Dominio.Venda.Test
         public void TestVendaEhValidaComUmProdutoAoMenos()
         {
             Venda venda = VendaFactory();
-            venda.AdicionarProduto("Produto");
+            venda.AdicionarProduto("Produto", 1, 2);
 
             bool vendaEhValida = venda.Validar();
 

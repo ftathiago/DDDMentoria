@@ -1,3 +1,5 @@
+using System;
+
 namespace Dominio.Venda
 {
     public class Venda
@@ -9,7 +11,7 @@ namespace Dominio.Venda
             Cliente = cliente;
         }
 
-        public void AdicionarProduto(string produto)
+        public void AdicionarProduto(string produto, int qtd, int valorUnitario)
         {
             this.Produto = produto;
         }
@@ -20,5 +22,10 @@ namespace Dominio.Venda
         }
 
         private string Produto;
+
+        public object TotalVenda()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
