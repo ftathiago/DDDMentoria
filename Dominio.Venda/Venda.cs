@@ -25,7 +25,7 @@ namespace Dominio.Venda
             return Produto.Count > 0;
         }
 
-        public object TotalVenda()
+        public int TotalVenda()
         {
             var totalVenda = Produto.Sum(p => p.QuantidadeComprada * p.ValorUnitario);
             return totalVenda;
