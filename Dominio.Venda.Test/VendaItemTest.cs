@@ -42,6 +42,22 @@ namespace Dominio.Venda.Test
             Assert.Equal(valorEsperado, valorExposto);
         }
 
+        [Fact]
+        public void TestVendaItemExpoeValorPromocional()
+        {
+            decimal valorEsperado = 10.5M;
+            ProdutoVendido produtoVendido = ProdutoVendidoFactory(
+                descricao: "Produto",
+                quantidadeComprada: 1,
+                valorUnitario: 0,
+                valorUnitarioPromocional: valorEsperado);
+            VendaItem vendaItem = new VendaItem(produtoVendido);
+
+            decimal valorEsposto = vendaItem.ValorUnitarioPromocional;
+
+            Assert.Equal(valorEsperado, valorEsposto);
+        }
+
         private ProdutoVendido ProdutoVendidoFactory(string descricao, int quantidadeComprada, decimal valorUnitario, decimal quantidadePromocional = -1, decimal valorUnitarioPromocional = -1)
         {
             return new ProdutoVendido
