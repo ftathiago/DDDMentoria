@@ -7,6 +7,7 @@ namespace Dominio.Venda
         public VendaItem(ProdutoVendido produtoVendido)
         {
             Descricao = produtoVendido.Descricao;
+            ValorUnitario = produtoVendido.ValorUnitario;
         }
     }
 }
