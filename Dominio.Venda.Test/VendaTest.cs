@@ -15,7 +15,7 @@ namespace Dominio.Venda.Test
         [Fact]
         public void CriarVenda()
         {
-            Venda venda = new Venda();
+            Venda venda = new Venda("Cliente");
         }
     }
 }
