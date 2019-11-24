@@ -46,6 +46,20 @@ namespace Dominio.Venda.Test
         }
 
         [Fact]
+        public void TestVendaNaoEhValidaComTotalMenorIgualZero()
+        {
+            Venda venda = VendaFactory();
+            ProdutoVendido produtoVendido = ProdutoVendidoFactory("Produto", 0, 1);
+            venda.AdicionarProduto(produtoVendido);
+
+            bool vendaEhValida = venda.Validar();
+            int totalVendido = venda.TotalVenda();
+
+            Assert.False(vendaEhValida);
+            Assert.Equal(0, totalVendido);
+        }
+
+        [Fact]
         public void TestVendaCalculaTotalProdutos()
         {
             ProdutoVendido produtoVendido1 = ProdutoVendidoFactory("Produto1", 1, 2);
