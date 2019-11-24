@@ -20,5 +20,15 @@ namespace Dominio.Venda.Test
             var cliente = venda.Cliente;
             Assert.Equal(cliente, "Cliente");
         }
+
+        public void TestVendaEhValida()
+        {
+            Venda venda = new Venda("Cliente");
+            venda.AdicionarProduto("Produto");
+
+            bool vendaEhValida = venda.Validar();
+
+            Assert.True(vendaEhValida);
+        }
     }
 }
