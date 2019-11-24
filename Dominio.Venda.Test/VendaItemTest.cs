@@ -24,9 +24,22 @@ namespace Dominio.Venda.Test
             var vendaItemDescricao = vendaItem.Descricao;
             vendaItemDescricao = "Descrição alterada";
 
-            vendaItem.Descricao = vendaItemDescricao;
-
             Assert.Equal(descricaoEsperada, vendaItem.Descricao);
+        }
+
+        [Fact]
+        public void TestVendaItemExpoeValorUnitarioNormal()
+        {
+            decimal valorEsperado = 10.5M;
+            ProdutoVendido produtoVendido = ProdutoVendidoFactory(
+                Descricao: "Produto",
+                QuantidadeComprada: 1,
+                ValorUnitario: valorEsperado);
+            VendaItem vendaItem = new VendaItem(produtoVendido);
+
+            decimal valorExposto = vendaItem.ValorUnitario;
+
+            Assert.Equal(valorEsperado, valorExposto);
         }
 
         private ProdutoVendido ProdutoVendidoFactory(string Descricao, int QuantidadeComprada, int ValorUnitario, decimal quantidadePromocional = -1, decimal valorUnitarioPromocional = -1)
