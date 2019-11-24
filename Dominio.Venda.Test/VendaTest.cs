@@ -73,18 +73,39 @@ namespace Dominio.Venda.Test
             Assert.Equal(4, totalVenda);
         }
 
+        [Fact]
+        public void TestVendaCalculaTotalPromocionalDoProduto()
+        {
+            decimal totalEsperado = 5M;
+            ProdutoVendido produtoVendido = ProdutoVendidoFactory(
+                    Descricao: "Produto Promocional",
+                    QuantidadeComprada: 10,
+                    ValorUnitario: 1,
+                    quantidadePromocional: 9.9M,
+                    valorUnitarioPromocional: 0.5M);
+            Venda venda = VendaFactory();
+            venda.AdicionarProduto(produtoVendido);
+
+            var totalVenda = venda.TotalVenda();
+
+            Assert.Equal(totalEsperado, totalVenda);
+        }
+
+
         private Venda VendaFactory()
         {
             return new Venda("Cliente");
         }
 
-        private ProdutoVendido ProdutoVendidoFactory(string Descricao, int QuantidadeComprada, int ValorUnitario)
+        private ProdutoVendido ProdutoVendidoFactory(string Descricao, int QuantidadeComprada, int ValorUnitario, decimal quantidadePromocional = -1, decimal valorUnitarioPromocional = -1)
         {
             return new ProdutoVendido
             {
                 Descricao = Descricao,
                 QuantidadeComprada = QuantidadeComprada,
-                ValorUnitario = ValorUnitario
+                ValorUnitario = ValorUnitario,
+                QuantidadePromocional = quantidadePromocional,
+                ValorUnitarioPromocional = valorUnitarioPromocional
             };
         }
     }
