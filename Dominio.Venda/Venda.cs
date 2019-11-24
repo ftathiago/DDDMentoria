@@ -7,5 +7,15 @@ namespace Dominio.Venda
         {
             Cliente = cliente;
         }
+
+        public void AdicionarProduto(string Produto)
+        {
+
+        }
+
+        public bool Validar()
+        {
+            return false;
+        }
     }
 }

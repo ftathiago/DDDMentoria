@@ -21,6 +21,7 @@ namespace Dominio.Venda.Test
             Assert.Equal(cliente, "Cliente");
         }
 
+        [Fact]
         public void TestVendaEhValida()
         {
             Venda venda = new Venda("Cliente");
