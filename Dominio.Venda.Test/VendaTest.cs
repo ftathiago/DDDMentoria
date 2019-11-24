@@ -43,7 +43,15 @@ namespace Dominio.Venda.Test
 
             Assert.False(vendaEhValida);
         }
+        [Fact]
+        public void TestVendaCalculaTotalProdutos()
+        {
+            Venda venda = VendaFactory();
+            venda.AdicionarProduto("Produto", 1, 2);
+            var totalVenda = venda.TotalVenda();
 
+            Assert.Equal(2, totalVenda);
+        }
         private Venda VendaFactory()
         {
             return new Venda("Cliente");
