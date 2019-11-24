@@ -5,7 +5,7 @@ namespace Dominio.Venda
         public string Descricao { get; set; }
         public VendaItem(ProdutoVendido produtoVendido)
         {
-
+            Descricao = produtoVendido.Descricao;
         }
     }
 }

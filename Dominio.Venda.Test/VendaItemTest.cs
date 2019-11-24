@@ -24,6 +24,8 @@ namespace Dominio.Venda.Test
             var vendaItemDescricao = vendaItem.Descricao;
             vendaItemDescricao = "Descrição alterada";
 
+            vendaItem.Descricao = vendaItemDescricao;
+
             Assert.Equal(descricaoEsperada, vendaItem.Descricao);
         }
 
