@@ -13,7 +13,7 @@ namespace Dominio.Venda.Test
         A compra pode ter vários métodos de pagamento
         */
         [Fact]
-        public void CriarVenda()
+        public void TestCriarVenda()
         {
             Venda venda = new Venda("Cliente");
             var cliente = venda.Cliente;
