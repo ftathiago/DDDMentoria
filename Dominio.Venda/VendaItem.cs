@@ -4,6 +4,7 @@ namespace Dominio.Venda
     {
         public string Descricao { get; private set; }
         public decimal ValorUnitario { get; private set; }
+        public decimal ValorUnitarioPromocional { get; private set; }
         public VendaItem(ProdutoVendido produtoVendido)
         {
             Descricao = produtoVendido.Descricao;
