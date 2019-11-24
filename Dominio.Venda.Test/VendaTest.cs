@@ -43,16 +43,32 @@ namespace Dominio.Venda.Test
 
             Assert.False(vendaEhValida);
         }
+
         [Fact]
         public void TestVendaCalculaTotalProdutos()
         {
+            ProdutoVendido produtoVendido1 = new ProdutoVendido
+            {
+                Descricao = "Produto1",
+                QuantidadeComprada = 1,
+                ValorUnitario = 2
+            };
+
+            ProdutoVendido produtoVendido2 = new ProdutoVendido
+            {
+                Descricao = "Produto2",
+                QuantidadeComprada = 2,
+                ValorUnitario = 1
+            };
             Venda venda = VendaFactory();
-            venda.AdicionarProduto("Produto", 1, 2);
-            venda.AdicionarProduto("Produto2", 2, 1);
+            venda.AdicionarProduto(produtoVendido1);
+            venda.AdicionarProduto(produtoVendido2);
+
             var totalVenda = venda.TotalVenda();
 
             Assert.Equal(4, totalVenda);
         }
+
         private Venda VendaFactory()
         {
             return new Venda("Cliente");
