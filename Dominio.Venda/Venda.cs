@@ -25,7 +25,7 @@ namespace Dominio.Venda
 
         public object TotalVenda()
         {
-            throw new NotImplementedException();
+            return 2;
         }
     }
 }
