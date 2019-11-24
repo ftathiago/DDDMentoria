@@ -22,7 +22,7 @@ namespace Dominio.Venda.Test
         }
 
         [Fact]
-        public void TestVendaEhValida()
+        public void TestVendaEhValidaComUmProdutoAoMenos()
         {
             Venda venda = new Venda("Cliente");
             venda.AdicionarProduto("Produto");
@@ -30,6 +30,16 @@ namespace Dominio.Venda.Test
             bool vendaEhValida = venda.Validar();
 
             Assert.True(vendaEhValida);
+        }
+
+        [Fact]
+        public void TestVendaNaoEhValidaSemProdutos()
+        {
+            Venda venda = new Venda("Cliente");
+
+            bool vendaEhValida = venda.Validar();
+
+            Assert.False(vendaEhValida);
         }
     }
 }
