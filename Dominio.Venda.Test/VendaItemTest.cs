@@ -14,6 +14,20 @@ namespace Dominio.Venda.Test
             Assert.NotNull(vendaItem);
         }
 
+        [Fact]
+        public void TestVendaItemTemDescricaoImutavel()
+        {
+            string descricaoEsperada = "Produto";
+            ProdutoVendido produtoVendido = ProdutoVendidoFactory(descricaoEsperada 1, 10);
+            VendaItem vendaItem = new VendaItem(produtoVendido);
+
+            var vendaItemDescricao = vendaItem.Descricao;
+            vendaItemDescricao = "Descrição alterada";
+
+            Assert.Equal(descricaoEsperada, vendaItemDescricao);
+
+        }
+
         private ProdutoVendido ProdutoVendidoFactory(string Descricao, int QuantidadeComprada, int ValorUnitario, decimal quantidadePromocional = -1, decimal valorUnitarioPromocional = -1)
         {
             return new ProdutoVendido
