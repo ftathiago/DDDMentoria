@@ -48,9 +48,10 @@ namespace Dominio.Venda.Test
         {
             Venda venda = VendaFactory();
             venda.AdicionarProduto("Produto", 1, 2);
+            venda.AdicionarProduto("Produto2", 2, 1);
             var totalVenda = venda.TotalVenda();
 
-            Assert.Equal(2, totalVenda);
+            Assert.Equal(4, totalVenda);
         }
         private Venda VendaFactory()
         {
