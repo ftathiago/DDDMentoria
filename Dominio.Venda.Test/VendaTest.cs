@@ -16,6 +16,8 @@ namespace Dominio.Venda.Test
         public void CriarVenda()
         {
             Venda venda = new Venda("Cliente");
+            var cliente = venda.Cliente;
+            Assert.Equal(cliente, "Cliente");
         }
     }
 }
