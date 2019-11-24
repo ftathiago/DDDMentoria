@@ -9,14 +9,16 @@ namespace Dominio.Venda
             Cliente = cliente;
         }
 
-        public void AdicionarProduto(string Produto)
+        public void AdicionarProduto(string produto)
         {
-
+            this.Produto = produto;
         }
 
         public bool Validar()
         {
-            return true;
+            return !string.IsNullOrEmpty(Produto);
         }
+
+        private string Produto;
     }
 }
