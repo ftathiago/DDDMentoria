@@ -11,17 +11,17 @@ namespace Dominio.Venda
             Cliente = cliente;
         }
 
-        public void AdicionarProduto(string produto, int qtd, int valorUnitario)
+        public void AdicionarProduto(ProdutoVendido produto)
         {
             this.Produto = produto;
         }
 
         public bool Validar()
         {
-            return !string.IsNullOrEmpty(Produto);
+            return Produto != null;
         }
 
-        private string Produto;
+        private ProdutoVendido Produto;
 
         public object TotalVenda()
         {
