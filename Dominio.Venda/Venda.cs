@@ -36,7 +36,7 @@ namespace Dominio.Venda
             */
             var totalVenda = Produto.Sum(p =>
             {
-                if (p.QuantidadeComprada >= p.QuantidadePromocional)
+                if (p.QuantidadePromocional > -1 && p.QuantidadeComprada >= p.QuantidadePromocional)
                     return p.QuantidadeComprada * p.ValorUnitarioPromocional;
                 return p.QuantidadeComprada * p.ValorUnitario;
             });
