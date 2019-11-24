@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Dominio.Venda
 {
@@ -26,7 +27,8 @@ namespace Dominio.Venda
 
         public object TotalVenda()
         {
-            return 4;
+            var totalVenda = Produto.Sum(p => p.QuantidadeComprada * p.ValorUnitario);
+            return totalVenda;
         }
     }
 }
