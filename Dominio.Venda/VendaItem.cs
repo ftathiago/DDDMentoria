@@ -9,7 +9,7 @@ namespace Dominio.Venda
         {
             Descricao = produtoVendido.Descricao;
             ValorUnitario = produtoVendido.ValorUnitario;
-            ValorUnitarioPromocional = 10.5M;
+            ValorUnitarioPromocional = produtoVendido.ValorUnitarioPromocional;
         }
     }
 }
