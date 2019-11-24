@@ -53,7 +53,7 @@ namespace Dominio.Venda.Test
             venda.AdicionarProduto(produtoVendido);
 
             bool vendaEhValida = venda.Validar();
-            int totalVendido = venda.TotalVenda();
+            decimal totalVendido = venda.TotalVenda();
 
             Assert.False(vendaEhValida);
             Assert.Equal(0, totalVendido);

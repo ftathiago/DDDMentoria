@@ -25,7 +25,7 @@ namespace Dominio.Venda
             return Produto.Count > 0 && TotalVenda() > 0;
         }
 
-        public int TotalVenda()
+        public decimal TotalVenda()
         {
             /*
                 Percebo um problema aqui. Toda vez que eu invocar esse metódo o array será varrido.
@@ -34,7 +34,12 @@ namespace Dominio.Venda
                 Mas não sei se o DDD ou a experiência me levaram a isso. Ou ainda, se estou pensando muito à frente
                 Fugindo dos baby steps.
             */
-            var totalVenda = Produto.Sum(p => p.QuantidadeComprada * p.ValorUnitario);
+            var totalVenda = Produto.Sum(p =>
+            {
+                if (p.QuantidadeComprada >= p.QuantidadePromocional)
+                    return p.QuantidadeComprada * p.ValorUnitarioPromocional;
+                return p.QuantidadeComprada * p.ValorUnitario;
+            });
             return totalVenda;
         }
     }
