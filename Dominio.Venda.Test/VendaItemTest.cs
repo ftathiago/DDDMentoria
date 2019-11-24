@@ -32,9 +32,9 @@ namespace Dominio.Venda.Test
         {
             decimal valorEsperado = 10.5M;
             ProdutoVendido produtoVendido = ProdutoVendidoFactory(
-                Descricao: "Produto",
-                QuantidadeComprada: 1,
-                ValorUnitario: valorEsperado);
+                descricao: "Produto",
+                quantidadeComprada: 1,
+                valorUnitario: valorEsperado);
             VendaItem vendaItem = new VendaItem(produtoVendido);
 
             decimal valorExposto = vendaItem.ValorUnitario;
@@ -42,13 +42,13 @@ namespace Dominio.Venda.Test
             Assert.Equal(valorEsperado, valorExposto);
         }
 
-        private ProdutoVendido ProdutoVendidoFactory(string Descricao, int QuantidadeComprada, decimal ValorUnitario, decimal quantidadePromocional = -1, decimal valorUnitarioPromocional = -1)
+        private ProdutoVendido ProdutoVendidoFactory(string descricao, int quantidadeComprada, decimal valorUnitario, decimal quantidadePromocional = -1, decimal valorUnitarioPromocional = -1)
         {
             return new ProdutoVendido
             {
-                Descricao = Descricao,
-                QuantidadeComprada = QuantidadeComprada,
-                ValorUnitario = ValorUnitario,
+                Descricao = descricao,
+                QuantidadeComprada = quantidadeComprada,
+                ValorUnitario = valorUnitario,
                 QuantidadePromocional = quantidadePromocional,
                 ValorUnitarioPromocional = valorUnitarioPromocional
             };
