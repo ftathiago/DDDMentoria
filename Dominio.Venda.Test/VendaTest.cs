@@ -27,12 +27,7 @@ namespace Dominio.Venda.Test
         public void TestVendaEhValidaComUmProdutoAoMenos()
         {
             Venda venda = VendaFactory();
-            var produto = new ProdutoVendido
-            {
-                Descricao = "Produto1",
-                QuantidadeComprada = 1,
-                ValorUnitario = 1
-            };
+            var produto = ProdutoVendidoFactory("Produto1", 1, 1);
             venda.AdicionarProduto(produto);
 
             bool vendaEhValida = venda.Validar();
@@ -53,19 +48,8 @@ namespace Dominio.Venda.Test
         [Fact]
         public void TestVendaCalculaTotalProdutos()
         {
-            ProdutoVendido produtoVendido1 = new ProdutoVendido
-            {
-                Descricao = "Produto1",
-                QuantidadeComprada = 1,
-                ValorUnitario = 2
-            };
-
-            ProdutoVendido produtoVendido2 = new ProdutoVendido
-            {
-                Descricao = "Produto2",
-                QuantidadeComprada = 2,
-                ValorUnitario = 1
-            };
+            ProdutoVendido produtoVendido1 = ProdutoVendidoFactory("Produto1", 1, 2);
+            ProdutoVendido produtoVendido2 = ProdutoVendidoFactory("Produto2", 2, 1);
             Venda venda = VendaFactory();
             venda.AdicionarProduto(produtoVendido1);
             venda.AdicionarProduto(produtoVendido2);
@@ -78,6 +62,16 @@ namespace Dominio.Venda.Test
         private Venda VendaFactory()
         {
             return new Venda("Cliente");
+        }
+
+        private ProdutoVendido ProdutoVendidoFactory(string Descricao, int QuantidadeComprada, int ValorUnitario)
+        {
+            return new ProdutoVendido
+            {
+                Descricao = Descricao,
+                QuantidadeComprada = QuantidadeComprada,
+                ValorUnitario = ValorUnitario
+            };
         }
     }
 }
