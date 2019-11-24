@@ -21,7 +21,7 @@ namespace Dominio.Venda
 
         public bool Validar()
         {
-            return Produto != null;
+            return Produto.Count > 0;
         }
 
         public object TotalVenda()
