@@ -58,6 +58,21 @@ namespace Dominio.Venda.Test
             Assert.Equal(valorEsperado, valorEsposto);
         }
 
+        [Fact]
+        public void TestVendaItemCalculaTotalItem()
+        {
+            decimal valorEsperado = 5M;
+            ProdutoVendido produtoVendido = ProdutoVendidoFactory(
+                descricao: "Produto",
+                quantidadeComprada: 0.5M,
+                valorUnitario: 10M);
+            VendaItem vendaItem = new VendaItem(produtoVendido);
+
+            decimal totalItem = vendaItem.TotalItem();
+
+            Assert.Equal(valorEsperado, totalItem);
+        }
+
         private ProdutoVendido ProdutoVendidoFactory(string descricao, int quantidadeComprada, decimal valorUnitario, decimal quantidadePromocional = -1, decimal valorUnitarioPromocional = -1)
         {
             return new ProdutoVendido
