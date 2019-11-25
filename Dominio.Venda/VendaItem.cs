@@ -21,7 +21,7 @@ namespace Dominio.Venda
         {
             if (quantidadePromocional < 0 || quantidade < quantidadePromocional)
                 return ValorUnitario * quantidade;
-            return 2.5M;
+            return quantidade * ValorUnitarioPromocional;
         }
     }
 }
