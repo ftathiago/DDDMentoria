@@ -7,17 +7,21 @@ namespace Dominio.Venda
         public decimal ValorUnitarioPromocional { get; private set; }
 
         private decimal quantidade;
+        private decimal quantidadePromocional;
         public VendaItem(ProdutoVendido produtoVendido)
         {
             Descricao = produtoVendido.Descricao;
             ValorUnitario = produtoVendido.ValorUnitario;
             ValorUnitarioPromocional = produtoVendido.ValorUnitarioPromocional;
             quantidade = produtoVendido.QuantidadeComprada;
+            quantidadePromocional = produtoVendido.QuantidadePromocional;
         }
 
         public decimal TotalItem()
         {
-            return ValorUnitario * quantidade;
+            if (quantidadePromocional < 0 || quantidade < quantidadePromocional)
+                return ValorUnitario * quantidade;
+            return 2.5M;
         }
     }
 }
