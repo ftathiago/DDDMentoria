@@ -11,5 +11,10 @@ namespace Dominio.Venda
             ValorUnitario = produtoVendido.ValorUnitario;
             ValorUnitarioPromocional = produtoVendido.ValorUnitarioPromocional;
         }
+
+        public decimal TotalItem()
+        {
+            return 0;
+        }
     }
 }

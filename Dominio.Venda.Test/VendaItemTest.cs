@@ -73,7 +73,7 @@ namespace Dominio.Venda.Test
             Assert.Equal(valorEsperado, totalItem);
         }
 
-        private ProdutoVendido ProdutoVendidoFactory(string descricao, int quantidadeComprada, decimal valorUnitario, decimal quantidadePromocional = -1, decimal valorUnitarioPromocional = -1)
+        private ProdutoVendido ProdutoVendidoFactory(string descricao, decimal quantidadeComprada, decimal valorUnitario, decimal quantidadePromocional = -1, decimal valorUnitarioPromocional = -1)
         {
             return new ProdutoVendido
             {
