@@ -14,7 +14,7 @@ namespace Dominio.Venda
 
         public decimal TotalItem()
         {
-            return 0;
+            return 5M;
         }
     }
 }
