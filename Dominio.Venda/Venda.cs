@@ -34,12 +34,7 @@ namespace Dominio.Venda
                 Mas não sei se o DDD ou a experiência me levaram a isso. Ou ainda, se estou pensando muito à frente
                 Fugindo dos baby steps.
             */
-            var totalVenda = VendaItem.Sum(p =>
-            {
-                if (p.QuantidadePromocional > -1 && p.QuantidadeComprada >= p.QuantidadePromocional)
-                    return p.QuantidadeComprada * p.ValorUnitarioPromocional;
-                return p.QuantidadeComprada * p.ValorUnitario;
-            });
+            var totalVenda = VendaItem.Sum(p => p.TotalItem());
             return totalVenda;
         }
     }

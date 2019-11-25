@@ -26,8 +26,8 @@ namespace Dominio.Venda.Test
         public void TestVendaEhValidaComUmProdutoAoMenos()
         {
             Venda venda = VendaFactory();
-            var produto = ProdutoVendidoFactory("Produto1", 1, 1);
-            venda.AdicionarProduto(produto);
+            var produto = VendaItemFactory("Produto1", 1, 1);
+            venda.AdicionarVendaItem(produto);
 
             bool vendaEhValida = venda.Validar();
 
@@ -48,8 +48,8 @@ namespace Dominio.Venda.Test
         public void TestVendaNaoEhValidaComTotalMenorIgualZero()
         {
             Venda venda = VendaFactory();
-            ProdutoVendido produtoVendido = ProdutoVendidoFactory("Produto", 0, 1);
-            venda.AdicionarProduto(produtoVendido);
+            var vendaItem = VendaItemFactory("Produto", 0, 1);
+            venda.AdicionarVendaItem(vendaItem);
 
             bool vendaEhValida = venda.Validar();
             decimal totalVendido = venda.TotalVenda();
@@ -61,11 +61,11 @@ namespace Dominio.Venda.Test
         [Fact]
         public void TestVendaCalculaTotalProdutos()
         {
-            ProdutoVendido produtoVendido1 = ProdutoVendidoFactory("Produto1", 1, 2);
-            ProdutoVendido produtoVendido2 = ProdutoVendidoFactory("Produto2", 2, 1);
+            var vendaItem1 = VendaItemFactory("Produto1", 1, 2);
+            var vendaItem2 = VendaItemFactory("Produto2", 2, 1);
             Venda venda = VendaFactory();
-            venda.AdicionarProduto(produtoVendido1);
-            venda.AdicionarProduto(produtoVendido2);
+            venda.AdicionarVendaItem(vendaItem1);
+            venda.AdicionarVendaItem(vendaItem2);
 
             var totalVenda = venda.TotalVenda();
 
@@ -76,14 +76,14 @@ namespace Dominio.Venda.Test
         public void TestVendaCalculaTotalPromocionalDoProduto()
         {
             decimal totalEsperado = 5M;
-            ProdutoVendido produtoVendido = ProdutoVendidoFactory(
+            var vendaItem = VendaItemFactory(
                     Descricao: "Produto Promocional",
                     QuantidadeComprada: 10,
                     ValorUnitario: 1,
                     quantidadePromocional: 9.9M,
                     valorUnitarioPromocional: 0.5M);
             Venda venda = VendaFactory();
-            venda.AdicionarProduto(produtoVendido);
+            venda.AdicionarVendaItem(vendaItem);
 
             var totalVenda = venda.TotalVenda();
 
@@ -96,9 +96,9 @@ namespace Dominio.Venda.Test
             return new Venda("Cliente");
         }
 
-        private ProdutoVendido ProdutoVendidoFactory(string Descricao, int QuantidadeComprada, int ValorUnitario, decimal quantidadePromocional = -1, decimal valorUnitarioPromocional = -1)
+        private VendaItem VendaItemFactory(string Descricao, int QuantidadeComprada, int ValorUnitario, decimal quantidadePromocional = -1, decimal valorUnitarioPromocional = -1)
         {
-            return new ProdutoVendido
+            var produtoVendido = new ProdutoVendido
             {
                 Descricao = Descricao,
                 QuantidadeComprada = QuantidadeComprada,
@@ -106,6 +106,7 @@ namespace Dominio.Venda.Test
                 QuantidadePromocional = quantidadePromocional,
                 ValorUnitarioPromocional = valorUnitarioPromocional
             };
+            return new VendaItem(produtoVendido);
         }
     }
 }
