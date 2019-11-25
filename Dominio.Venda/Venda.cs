@@ -7,22 +7,22 @@ namespace Dominio.Venda
     public class Venda
     {
         public string Cliente;
-        private readonly ICollection<ProdutoVendido> Produto;
+        private readonly ICollection<VendaItem> VendaItem;
 
         public Venda(string cliente)
         {
             Cliente = cliente;
-            Produto = new List<ProdutoVendido>();
+            VendaItem = new List<VendaItem>();
         }
 
-        public void AdicionarProduto(ProdutoVendido produtoVendido)
+        public void AdicionarVendaItem(VendaItem vendaItem)
         {
-            Produto.Add(produtoVendido);
+            VendaItem.Add(vendaItem);
         }
 
         public bool Validar()
         {
-            return Produto.Count > 0 && TotalVenda() > 0;
+            return VendaItem.Count > 0 && TotalVenda() > 0;
         }
 
         public decimal TotalVenda()
@@ -34,7 +34,7 @@ namespace Dominio.Venda
                 Mas não sei se o DDD ou a experiência me levaram a isso. Ou ainda, se estou pensando muito à frente
                 Fugindo dos baby steps.
             */
-            var totalVenda = Produto.Sum(p =>
+            var totalVenda = VendaItem.Sum(p =>
             {
                 if (p.QuantidadePromocional > -1 && p.QuantidadeComprada >= p.QuantidadePromocional)
                     return p.QuantidadeComprada * p.ValorUnitarioPromocional;
