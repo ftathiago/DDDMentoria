@@ -31,11 +31,11 @@ namespace Dominio.Venda.Test
     [Fact]
     public void TestCriarVendaComFormaDePagamento()
     {
-      var formaDePagamento = formaDePagamento.Dinheiro;
+      FormaDePagamento formaDePagamento = FormaDePagamento.Dinheiro;
 
       Venda venda = new Venda("Cliente", formaDePagamento);
 
-      Assert.Equal(formaDePagamento, Venda.FormaDePagamento);
+      Assert.Equal(formaDePagamento, venda.FormaDePagamento);
     }
 
     [Fact]
@@ -109,7 +109,7 @@ namespace Dominio.Venda.Test
 
     private Venda VendaFactory()
     {
-      return new Venda("Cliente");
+      return new Venda("Cliente", FormaDePagamento.Dinheiro);
     }
 
     private VendaItem VendaItemFactory(string Descricao, int QuantidadeComprada, int ValorUnitario, decimal quantidadePromocional = -1, decimal valorUnitarioPromocional = -1)
