@@ -20,10 +20,11 @@ namespace Dominio.Venda.Test
     A venda só pode ser concluida após o pagamento ser aprovado
     A venda pode ter vários métodos de pagamento
     */
-    [Fact]
-    public void TestCriarVendaComFormaDePagamento()
+    [Theory]
+    [InlineData(FormaDePagamento.NaoInformado)]
+    [InlineData(FormaDePagamento.Dinheiro)]
+    public void TestCriarVendaComFormaDePagamento(FormaDePagamento formaDePagamento)
     {
-      FormaDePagamento formaDePagamento = FormaDePagamento.Dinheiro;
       string cliente = "Cliente";
 
       Venda venda = new Venda("Cliente", formaDePagamento);
@@ -99,7 +100,6 @@ namespace Dominio.Venda.Test
 
       Assert.Equal(totalEsperado, totalVenda);
     }
-
 
     private Venda VendaFactory(FormaDePagamento formaDePagamento = FormaDePagamento.NaoInformado)
     {
