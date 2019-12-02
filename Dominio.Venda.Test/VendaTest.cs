@@ -21,21 +21,15 @@ namespace Dominio.Venda.Test
     A venda pode ter vários métodos de pagamento
     */
     [Fact]
-    public void TestCriarVenda()
-    {
-      Venda venda = VendaFactory();
-      var cliente = venda.Cliente;
-      Assert.Equal("Cliente", cliente);
-    }
-
-    [Fact]
     public void TestCriarVendaComFormaDePagamento()
     {
       FormaDePagamento formaDePagamento = FormaDePagamento.Dinheiro;
+      string cliente = "Cliente";
 
       Venda venda = new Venda("Cliente", formaDePagamento);
 
       Assert.Equal(formaDePagamento, venda.FormaDePagamento);
+      Assert.Equal("Cliente", cliente);
     }
 
     [Fact]
@@ -107,9 +101,9 @@ namespace Dominio.Venda.Test
     }
 
 
-    private Venda VendaFactory()
+    private Venda VendaFactory(FormaDePagamento formaDePagamento = FormaDePagamento.NaoInformado)
     {
-      return new Venda("Cliente", FormaDePagamento.Dinheiro);
+      return new Venda("Cliente", formaDePagamento);
     }
 
     private VendaItem VendaItemFactory(string Descricao, int QuantidadeComprada, int ValorUnitario, decimal quantidadePromocional = -1, decimal valorUnitarioPromocional = -1)
