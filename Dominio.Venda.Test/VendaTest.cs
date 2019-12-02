@@ -29,6 +29,16 @@ namespace Dominio.Venda.Test
     }
 
     [Fact]
+    public void TestCriarVendaComFormaDePagamento()
+    {
+      var formaDePagamento = formaDePagamento.Dinheiro;
+
+      Venda venda = new Venda("Cliente", formaDePagamento);
+
+      Assert.Equal(formaDePagamento, Venda.FormaDePagamento);
+    }
+
+    [Fact]
     public void TestVendaEhValidaComUmProdutoAoMenos()
     {
       Venda venda = VendaFactory();
