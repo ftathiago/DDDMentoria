@@ -15,6 +15,7 @@ namespace Dominio.Venda
     {
       Cliente = cliente;
       VendaItem = new List<VendaItem>();
+      FormaDePagamento = formaDePagamento;
     }
 
     public void AdicionarVendaItem(VendaItem vendaItem)
