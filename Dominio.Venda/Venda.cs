@@ -37,7 +37,11 @@ namespace Dominio.Venda
                 Mas não sei se o DDD ou a experiência me levaram a isso. Ou ainda, se estou pensando muito à frente
                 Fugindo dos baby steps.
             */
-            var totalVenda = VendaItem.Sum(p => p.TotalItem());
+            var totalVenda = VendaItem.Sum(p =>
+            {
+                p.DefinirFormaDePagamento(FormaDePagamento);
+                return p.TotalItem();
+            });
             return totalVenda;
         }
     }
