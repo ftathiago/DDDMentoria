@@ -75,20 +75,6 @@ namespace Dominio.Venda.Test
             Assert.Equal(0, totalVendido);
         }
 
-        [Fact]
-        public void TestVendaCalculaTotalProdutos()
-        {
-            var vendaItem1 = VendaItemFactory("Produto1", 1, 2);
-            var vendaItem2 = VendaItemFactory("Produto2", 2, 1);
-            Venda venda = VendaFactory();
-            venda.AdicionarVendaItem(vendaItem1);
-            venda.AdicionarVendaItem(vendaItem2);
-
-            var totalVenda = venda.TotalVenda();
-
-            Assert.Equal(4, totalVenda);
-        }
-
         [Theory]
         [InlineData(FormaDePagamento.Dinheiro)]
         [InlineData(FormaDePagamento.ValeAlimentacao)]
