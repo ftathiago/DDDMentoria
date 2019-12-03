@@ -42,7 +42,7 @@ namespace Dominio.Venda.Test
         [Fact]
         public void TestVendaEhValidaComUmProdutoAoMenos()
         {
-            Venda venda = VendaFactory();
+            Venda venda = VendaFactory(FormaDePagamento.Dinheiro);
             var produto = VendaItemFactory("Produto1", 1, 1);
             venda.AdicionarVendaItem(produto);
 
@@ -91,8 +91,8 @@ namespace Dominio.Venda.Test
 
         [Theory]
         [InlineData(FormaDePagamento.Dinheiro)]
-        // [InlineData(FormaDePagamento.ValeAlimentacao)]
-        // [InlineData(FormaDePagamento.Debito)]
+        [InlineData(FormaDePagamento.ValeAlimentacao)]
+        [InlineData(FormaDePagamento.Debito)]
         public void TestVendaCalculaTotalPromocionalDoProduto(FormaDePagamento formaDePagamento)
         {
             decimal totalEsperado = 5M;

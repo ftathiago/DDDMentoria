@@ -29,7 +29,11 @@ namespace Dominio.Venda
         public bool TestarDeveUsarValorPromocional()
         {
             var quantidadeEhPromocional = (quantidadePromocional > 0 && quantidade >= quantidadePromocional);
-            return quantidadeEhPromocional && (this.FormaDePagamento == FormaDePagamento.Dinheiro);
+            var formasDePagamentoPromocionais = (
+                this.FormaDePagamento == FormaDePagamento.Dinheiro
+                || this.FormaDePagamento == FormaDePagamento.ValeAlimentacao
+                );
+            return quantidadeEhPromocional && formasDePagamentoPromocionais;
         }
 
         private decimal TotalItemPromocional()
@@ -39,7 +43,7 @@ namespace Dominio.Venda
 
         private decimal TotalItemNormal()
         {
-            return 0M;
+            return quantidade * ValorUnitario;
         }
 
         public void DefinirFormaDePagamento(FormaDePagamento formaDePagamento)
