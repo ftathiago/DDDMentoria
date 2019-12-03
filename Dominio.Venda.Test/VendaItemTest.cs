@@ -52,9 +52,9 @@ namespace Dominio.Venda.Test
             var produtoVendido = ProdutoVendidoFactory("Descrição", 10, 1);
             var vendaItem = new VendaItem(produtoVendido);
 
-            vendaItem.DefinirFormaPagamento(formaDePagamento);
+            vendaItem.DefinirFormaDePagamento(formaDePagamento);
 
-            Assert.Equals(formaDePagamento, vendaItem.FormaDePagamento);
+            Assert.Equal(formaDePagamento, vendaItem.FormaDePagamento);
         }
 
         [Fact]

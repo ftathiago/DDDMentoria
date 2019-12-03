@@ -8,6 +8,8 @@ namespace Dominio.Venda
 
         private decimal quantidade;
         private decimal quantidadePromocional;
+
+        public FormaDePagamento FormaDePagamento { get; private set; }
         public VendaItem(ProdutoVendido produtoVendido)
         {
             Descricao = produtoVendido.Descricao;
@@ -22,6 +24,11 @@ namespace Dominio.Venda
             if (quantidadePromocional < 0 || quantidade < quantidadePromocional)
                 return ValorUnitario * quantidade;
             return quantidade * ValorUnitarioPromocional;
+        }
+
+        public void DefinirFormaDePagamento(FormaDePagamento formaDePagamento)
+        {
+
         }
     }
 }
