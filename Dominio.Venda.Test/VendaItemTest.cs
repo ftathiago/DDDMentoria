@@ -15,19 +15,6 @@ namespace Dominio.Venda.Test
         }
 
         [Fact]
-        public void TestVendaItemTemDescricaoImutavel()
-        {
-            string descricaoEsperada = "Produto";
-            ProdutoVendido produtoVendido = ProdutoVendidoFactory(descricaoEsperada, 1, 10);
-            VendaItem vendaItem = new VendaItem(produtoVendido);
-
-            var vendaItemDescricao = vendaItem.Descricao;
-            vendaItemDescricao = "Descrição alterada";
-
-            Assert.Equal(descricaoEsperada, vendaItem.Descricao);
-        }
-
-        [Fact]
         public void TestVendaItemExpoeValorUnitarioNormal()
         {
             decimal valorEsperado = 10.5M;
