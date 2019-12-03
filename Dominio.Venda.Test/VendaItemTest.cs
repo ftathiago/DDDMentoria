@@ -76,6 +76,8 @@ namespace Dominio.Venda.Test
 
         [Theory]
         [InlineData(FormaDePagamento.Dinheiro)]
+        [InlineData(FormaDePagamento.ValeAlimentacao)]
+        [InlineData(FormaDePagamento.Debito)]
         public void TestVendaItemCalculaTotalPromocional(FormaDePagamento formaDePagamento)
         {
             decimal valorEsperado = 2.5M;
