@@ -46,6 +46,18 @@ namespace Dominio.Venda.Test
         }
 
         [Fact]
+        public void TestDefinirTipoPagamento()
+        {
+            var formaDePagamento = FormaDePagamento.Dinheiro;
+            var produtoVendido = ProdutoVendidoFactory("Descrição", 10, 1);
+            var vendaItem = new VendaItem(produtoVendido);
+
+            vendaItem.DefinirFormaPagamento(formaDePagamento);
+
+            Assert.Equals(formaDePagamento, vendaItem.FormaDePagamento);
+        }
+
+        [Fact]
         public void TestVendaItemCalculaTotalItem()
         {
             decimal valorEsperado = 5M;
