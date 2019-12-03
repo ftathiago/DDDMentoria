@@ -15,19 +15,6 @@ namespace Dominio.Venda.Test
         }
 
         [Fact]
-        public void TestVendaItemTemDescricaoImutavel()
-        {
-            string descricaoEsperada = "Produto";
-            ProdutoVendido produtoVendido = ProdutoVendidoFactory(descricaoEsperada, 1, 10);
-            VendaItem vendaItem = new VendaItem(produtoVendido);
-
-            var vendaItemDescricao = vendaItem.Descricao;
-            vendaItemDescricao = "Descrição alterada";
-
-            Assert.Equal(descricaoEsperada, vendaItem.Descricao);
-        }
-
-        [Fact]
         public void TestVendaItemExpoeValorUnitarioNormal()
         {
             decimal valorEsperado = 10.5M;
@@ -59,7 +46,20 @@ namespace Dominio.Venda.Test
         }
 
         [Fact]
-        public void TestVendaItemCalculaTotalItem()
+        public void TestDefinirFormaDePagamento()
+        {
+            var formaDePagamento = FormaDePagamento.Dinheiro;
+            var produtoVendido = ProdutoVendidoFactory("Descrição", 10, 1);
+            var vendaItem = new VendaItem(produtoVendido);
+
+            vendaItem.DefinirFormaDePagamento(formaDePagamento);
+
+            Assert.Equal(formaDePagamento, vendaItem.FormaDePagamento);
+        }
+
+        [Theory]
+        [InlineData(FormaDePagamento.Cheque)]
+        public void TestVendaItemCalculaTotalItemNorma(FormaDePagamento formaDePagamento)
         {
             decimal valorEsperado = 5M;
             ProdutoVendido produtoVendido = ProdutoVendidoFactory(
@@ -67,6 +67,7 @@ namespace Dominio.Venda.Test
                 quantidadeComprada: 0.5M,
                 valorUnitario: 10M);
             VendaItem vendaItem = new VendaItem(produtoVendido);
+            vendaItem.DefinirFormaDePagamento(formaDePagamento);
 
             decimal totalItem = vendaItem.TotalItem();
 

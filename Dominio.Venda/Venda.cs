@@ -20,7 +20,9 @@ namespace Dominio.Venda
 
         public void AdicionarVendaItem(VendaItem vendaItem)
         {
+            vendaItem.DefinirFormaDePagamento(FormaDePagamento);
             VendaItem.Add(vendaItem);
+
         }
 
         public bool Validar()

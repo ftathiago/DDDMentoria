@@ -9,6 +9,7 @@ namespace Dominio.Venda
 
         private decimal quantidade;
         private decimal quantidadePromocional;
+
         public VendaItem(ProdutoVendido produtoVendido)
         {
             Descricao = produtoVendido.Descricao;
@@ -38,7 +39,7 @@ namespace Dominio.Venda
 
         private decimal TotalItemNormal()
         {
-            return ValorUnitario * quantidade;
+            return 0M;
         }
 
         public void DefinirFormaDePagamento(FormaDePagamento formaDePagamento)
