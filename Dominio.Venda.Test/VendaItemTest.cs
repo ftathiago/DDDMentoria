@@ -58,9 +58,8 @@ namespace Dominio.Venda.Test
         }
 
         [Theory]
-        [InlineData(FormaDePagamento.Credito)]
         [InlineData(FormaDePagamento.Cheque)]
-        public void TestVendaItemCalculaTotalItemNorma()
+        public void TestVendaItemCalculaTotalItemNorma(FormaDePagamento formaDePagamento)
         {
             decimal valorEsperado = 5M;
             ProdutoVendido produtoVendido = ProdutoVendidoFactory(
@@ -68,6 +67,7 @@ namespace Dominio.Venda.Test
                 quantidadeComprada: 0.5M,
                 valorUnitario: 10M);
             VendaItem vendaItem = new VendaItem(produtoVendido);
+            vendaItem.DefinirFormaDePagamento(formaDePagamento);
 
             decimal totalItem = vendaItem.TotalItem();
 

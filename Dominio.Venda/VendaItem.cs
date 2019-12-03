@@ -5,11 +5,11 @@ namespace Dominio.Venda
         public string Descricao { get; private set; }
         public decimal ValorUnitario { get; private set; }
         public decimal ValorUnitarioPromocional { get; private set; }
+        public FormaDePagamento FormaDePagamento { get; private set; }
 
         private decimal quantidade;
         private decimal quantidadePromocional;
 
-        public FormaDePagamento FormaDePagamento { get; private set; }
         public VendaItem(ProdutoVendido produtoVendido)
         {
             Descricao = produtoVendido.Descricao;
@@ -22,8 +22,24 @@ namespace Dominio.Venda
         public decimal TotalItem()
         {
             if (quantidadePromocional < 0 || quantidade < quantidadePromocional)
-                return ValorUnitario * quantidade;
+                return TotalItemNormal();
+
+            return TotalItemPromocional();
+        }
+
+        public bool TestarDeveUsarValorPromocional()
+        {
+            return false;
+        }
+
+        private decimal TotalItemPromocional()
+        {
             return quantidade * ValorUnitarioPromocional;
+        }
+
+        private decimal TotalItemNormal()
+        {
+            return 0M;
         }
 
         public void DefinirFormaDePagamento(FormaDePagamento formaDePagamento)
