@@ -29,6 +29,10 @@ namespace Dominio.Venda.Test
         [Theory]
         [InlineData(FormaDePagamento.None)]
         [InlineData(FormaDePagamento.Dinheiro)]
+        [InlineData(FormaDePagamento.ValeAlimentacao)]
+        [InlineData(FormaDePagamento.Debito)]
+        [InlineData(FormaDePagamento.Credito)]
+        [InlineData(FormaDePagamento.Cheque)]
         public void TestCriarVendaComFormaDePagamento(FormaDePagamento formaDePagamento)
         {
             string cliente = "Cliente";
