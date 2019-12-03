@@ -28,7 +28,7 @@ namespace Dominio.Venda
 
         public void DefinirFormaDePagamento(FormaDePagamento formaDePagamento)
         {
-
+            FormaDePagamento = formaDePagamento;
         }
     }
 }
