@@ -27,7 +27,7 @@ namespace Dominio.Venda
 
         public bool Validar()
         {
-            return (FormaDePagamento != FormaDePagamento.NaoInformado)
+            return (FormaDePagamento != FormaDePagamento.None)
                 && (VendaItem.Count > 0)
                 && (TotalVenda() > 0);
         }

@@ -2,7 +2,7 @@ namespace Dominio.Venda
 {
     public enum FormaDePagamento
     {
-        NaoInformado,
+        None,
         Dinheiro,
         ValeAlimentacao,
         Debito,

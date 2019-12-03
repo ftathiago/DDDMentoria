@@ -27,7 +27,7 @@ namespace Dominio.Venda.Test
         A venda pode ter vários métodos de pagamento
         */
         [Theory]
-        [InlineData(FormaDePagamento.NaoInformado)]
+        [InlineData(FormaDePagamento.None)]
         [InlineData(FormaDePagamento.Dinheiro)]
         public void TestCriarVendaComFormaDePagamento(FormaDePagamento formaDePagamento)
         {
@@ -113,7 +113,7 @@ namespace Dominio.Venda.Test
         [Theory]
         [InlineData(FormaDePagamento.Cheque)]
         [InlineData(FormaDePagamento.Credito)]
-        [InlineData(FormaDePagamento.NaoInformado)]
+        [InlineData(FormaDePagamento.None)]
         public void TestNaoCalcularValorPromocionalParaFormaDePagamento(FormaDePagamento formaDePagamento)
         {
             decimal totalEsperado = 10M;
@@ -131,7 +131,7 @@ namespace Dominio.Venda.Test
             Assert.Equal(totalEsperado, totalVenda);
         }
 
-        private Venda VendaFactory(FormaDePagamento formaDePagamento = FormaDePagamento.NaoInformado)
+        private Venda VendaFactory(FormaDePagamento formaDePagamento = FormaDePagamento.None)
         {
             return new Venda("Cliente", formaDePagamento);
         }
