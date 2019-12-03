@@ -20,15 +20,15 @@ namespace Dominio.Venda
 
         public decimal TotalItem()
         {
-            if (quantidadePromocional < 0 || quantidade < quantidadePromocional)
-                return TotalItemNormal();
-
-            return TotalItemPromocional();
+            if (TestarDeveUsarValorPromocional())
+                return TotalItemPromocional();
+            return TotalItemNormal();
         }
 
         public bool TestarDeveUsarValorPromocional()
         {
-            return false;
+            var quantidadeEhPromocional = (quantidadePromocional > 0 && quantidade >= quantidadePromocional);
+            return quantidadeEhPromocional && (this.FormaDePagamento == FormaDePagamento.Dinheiro);
         }
 
         private decimal TotalItemPromocional()

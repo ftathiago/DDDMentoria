@@ -83,8 +83,11 @@ namespace Dominio.Venda.Test
             Assert.Equal(4, totalVenda);
         }
 
-        [Fact]
-        public void TestVendaCalculaTotalPromocionalDoProduto()
+        [Theory]
+        [InlineData(FormaDePagamento.Dinheiro)]
+        // [InlineData(FormaDePagamento.ValeAlimentacao)]
+        // [InlineData(FormaDePagamento.Debito)]
+        public void TestVendaCalculaTotalPromocionalDoProduto(FormaDePagamento formaDePagamento)
         {
             decimal totalEsperado = 5M;
             var vendaItem = VendaItemFactory(
@@ -93,7 +96,7 @@ namespace Dominio.Venda.Test
                     ValorUnitario: 1,
                     quantidadePromocional: 9.9M,
                     valorUnitarioPromocional: 0.5M);
-            Venda venda = VendaFactory();
+            Venda venda = VendaFactory(formaDePagamento);
             venda.AdicionarVendaItem(vendaItem);
 
             var totalVenda = venda.TotalVenda();
@@ -102,7 +105,9 @@ namespace Dominio.Venda.Test
         }
 
         [Theory]
-        [InlineData(FormaDePagamento.Dinheiro)]
+        [InlineData(FormaDePagamento.Cheque)]
+        [InlineData(FormaDePagamento.Credito)]
+        [InlineData(FormaDePagamento.NaoInformado)]
         public void TestNaoCalcularValorPromocionalParaFormaDePagamento(FormaDePagamento formaDePagamento)
         {
             decimal totalEsperado = 10M;

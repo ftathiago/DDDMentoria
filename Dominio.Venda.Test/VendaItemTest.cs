@@ -73,8 +73,9 @@ namespace Dominio.Venda.Test
             Assert.Equal(valorEsperado, totalItem);
         }
 
-        [Fact]
-        public void TestVendaItemCalculaTotalPromocional()
+        [Theory]
+        [InlineData(FormaDePagamento.Dinheiro)]
+        public void TestVendaItemCalculaTotalPromocional(FormaDePagamento formaDePagamento)
         {
             decimal valorEsperado = 2.5M;
             ProdutoVendido produtoVendido = ProdutoVendidoFactory(
@@ -84,6 +85,7 @@ namespace Dominio.Venda.Test
                 valorUnitario: 10M,
                 valorUnitarioPromocional: 5M);
             VendaItem vendaItem = new VendaItem(produtoVendido);
+            vendaItem.DefinirFormaDePagamento(formaDePagamento);
 
             decimal totalItem = vendaItem.TotalItem();
 
