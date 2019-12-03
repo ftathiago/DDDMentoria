@@ -46,7 +46,7 @@ namespace Dominio.Venda.Test
         }
 
         [Fact]
-        public void TestDefinirTipoPagamento()
+        public void TestDefinirFormaDePagamento()
         {
             var formaDePagamento = FormaDePagamento.Dinheiro;
             var produtoVendido = ProdutoVendidoFactory("Descrição", 10, 1);
@@ -58,7 +58,7 @@ namespace Dominio.Venda.Test
         }
 
         [Fact]
-        public void TestVendaItemCalculaTotalItem()
+        public void TestVendaItemCalculaTotalItemNorma()
         {
             decimal valorEsperado = 5M;
             ProdutoVendido produtoVendido = ProdutoVendidoFactory(
