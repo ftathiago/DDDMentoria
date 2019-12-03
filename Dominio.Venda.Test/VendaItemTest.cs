@@ -57,7 +57,9 @@ namespace Dominio.Venda.Test
             Assert.Equal(formaDePagamento, vendaItem.FormaDePagamento);
         }
 
-        [Fact]
+        [Theory]
+        [InlineData(FormaDePagamento.Credito)]
+        [InlineData(FormaDePagamento.Cheque)]
         public void TestVendaItemCalculaTotalItemNorma()
         {
             decimal valorEsperado = 5M;
