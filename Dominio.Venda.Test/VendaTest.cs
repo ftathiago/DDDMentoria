@@ -10,6 +10,12 @@ namespace Dominio.Venda.Test
         A venda, para ser válida, 
             precisa possuir ao menos um produto
             O valor total precisa ser maior que zero (qtd * vlrUnitario || vlrPromocional)
+        As formas de pagamento possíveis são:
+            - Dinheiro
+            - Vale Alimentação
+            - Débito
+            - Crédito
+            - Cheque
         Cada produto possui uma "Quantidade de promoção" que caso sejam vendidos produtos suficientes, será aplicado o valor promocional
             Cada produto possui uma "Quantidade de promoção" que caso sejam vendidos produtos suficientes, será aplicado o valor promocional
             O valor promocional somente será aplicado para pagamentos:
