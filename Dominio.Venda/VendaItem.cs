@@ -32,7 +32,7 @@ namespace Dominio.Venda
             var formasDePagamentoPromocionais = (
                 this.FormaDePagamento == FormaDePagamento.Dinheiro
                 || this.FormaDePagamento == FormaDePagamento.ValeAlimentacao
-                );
+                || this.FormaDePagamento == FormaDePagamento.Debito);
             return quantidadeEhPromocional && formasDePagamentoPromocionais;
         }
 
