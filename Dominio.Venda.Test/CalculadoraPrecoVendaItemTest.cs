@@ -2,7 +2,7 @@ using Xunit;
 
 namespace Dominio.Venda.Test
 {
-    public class CalculadoraPrecoVendaItem
+    public class CalculadoraPrecoVendaItemTest
     {
         [Fact]
         public void TestCriarCalculadora()
