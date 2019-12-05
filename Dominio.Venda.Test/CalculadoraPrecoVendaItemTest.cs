@@ -12,9 +12,30 @@ namespace Dominio.Venda.Test
                 valorUnitario: 1.5M,
                 quantidadePromocional: 1.5M,
                 valorPromocional: 1.5M,
-                FormaDePagamento: FormaDePagamento.None);
+                formaDePagamento: FormaDePagamento.None);
 
             Assert.NotNull(calculadoraPrecoVendaItem);
+        }
+
+        [Fact]
+        public void TestQuantidadeGaranteCalculoNormal()
+        {
+            FormaDePagamento formaDePagamento = FormaDePagamento.Dinheiro;
+            decimal quantidadeVendidaMenorQuePromocional = 5.5M;
+            decimal valorUnitario = 10;
+            decimal quantidadePromocionalMaiorQueComprado = 5.51M;
+            decimal valorPromocional = 20M;
+            decimal valorEsperado = 15M;
+            var calculadoraPrecoVendaItem = new CalculadoraPrecoVendaItem(
+                 quantidadeVendida: quantidadeVendidaMenorQuePromocional,
+                 valorUnitario: valorUnitario,
+                 quantidadePromocional: quantidadePromocionalMaiorQueComprado,
+                 valorPromocional: valorPromocional,
+                 formaDePagamento: formaDePagamento);
+
+            var valorCalculado = calculadoraPrecoVendaItem.Calcular();
+
+            Assert.Equal(valorEsperado, valorCalculado);
         }
     }
 }
