@@ -11,7 +11,8 @@ namespace Dominio.Venda.Test
                 quantidadeVendida: 1.5M,
                 valorUnitario: 1.5M,
                 quantidadePromocional: 1.5M,
-                valorPromocional: 1.5M);
+                valorPromocional: 1.5M,
+                FormaDePagamento: FormaDePagamento.None);
 
             Assert.NotNull(calculadoraPrecoVendaItem);
         }
