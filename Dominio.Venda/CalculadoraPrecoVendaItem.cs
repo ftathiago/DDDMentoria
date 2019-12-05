@@ -6,6 +6,7 @@ namespace Dominio.Venda
         private readonly decimal valorUnitario;
         private readonly decimal quantidadePromocional;
         private readonly FormaDePagamento formaDePagamento;
+        private readonly decimal valorPromocional;
         public CalculadoraPrecoVendaItem(decimal quantidadeVendida, decimal valorUnitario,
             decimal quantidadePromocional, decimal valorPromocional,
             FormaDePagamento formaDePagamento)
@@ -14,22 +15,32 @@ namespace Dominio.Venda
             this.valorUnitario = valorUnitario;
             this.quantidadePromocional = quantidadePromocional;
             this.formaDePagamento = formaDePagamento;
+            this.valorPromocional = valorPromocional;
         }
 
         public decimal Calcular()
         {
+            if (DeveUsarPrecoVendaNormal())
+                return CalculoPrecoNormal();
+            return CalcularPrecoPromocional();
+        }
 
-            return CalculoPrecoNormal();
+        private bool DeveUsarPrecoVendaNormal()
+        {
+            var formaDePagamentoNormal = (formaDePagamento == FormaDePagamento.Cheque || formaDePagamento == FormaDePagamento.Credito);
+            var quantidadeVendidaNormal = quantidadeVendida < quantidadePromocional;
+
+            return quantidadeVendidaNormal || formaDePagamentoNormal;
         }
 
         private decimal CalculoPrecoNormal()
         {
-            var formaDePagamentoNormal = (formaDePagamento == FormaDePagamento.Cheque || formaDePagamento == FormaDePagamento.Credito);
-            var quantidadeAbaixoDoPromocional = quantidadeVendida >= quantidadePromocional;
-            var calculoNormal = quantidadeVendida * valorUnitario;
-            if ((!quantidadeAbaixoDoPromocional) || formaDePagamentoNormal)
-                return calculoNormal;
-            return 0;
+            return quantidadeVendida * valorUnitario;
+        }
+
+        private decimal CalcularPrecoPromocional()
+        {
+            return quantidadeVendida * valorPromocional;
         }
     }
 }
