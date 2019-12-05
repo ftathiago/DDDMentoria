@@ -2,6 +2,10 @@ using Xunit;
 
 namespace Dominio.Venda.Test
 {
+    /*
+        Para não haver overhead de criação/destruição de objetos, a instância de 
+        calculadora deverá ser reaproveitável
+    */
     public class CalculadoraPrecoVendaItemTest
     {
         [Fact]
@@ -82,7 +86,5 @@ namespace Dominio.Venda.Test
 
             Assert.Equal(valorEsperado, valorCalculado);
         }
-
-
     }
 }
