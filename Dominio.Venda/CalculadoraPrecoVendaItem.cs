@@ -18,12 +18,18 @@ namespace Dominio.Venda
 
         public decimal Calcular()
         {
-            var calculoNormal = quantidadeVendida * valorUnitario;
-            if (formaDePagamento == FormaDePagamento.Cheque || formaDePagamento == FormaDePagamento.Credito)
-                return calculoNormal;
 
-            if (quantidadePromocional <= quantidadeVendida)
-                return 0;
+            return CalculoPrecoNormal();
+        }
+
+        private decimal CalculoPrecoNormal()
+        {
+            var formaDePagamentoNormal = (formaDePagamento == FormaDePagamento.Cheque || formaDePagamento == FormaDePagamento.Credito);
+            var quantidadeAbaixoDoPromocional = quantidadeVendida >= quantidadePromocional;
+            var calculoNormal = quantidadeVendida * valorUnitario;
+            if ((!quantidadeAbaixoDoPromocional) || formaDePagamentoNormal)
+                return calculoNormal;
+            return 0;
         }
     }
 }

@@ -43,15 +43,15 @@ namespace Dominio.Venda.Test
         [InlineData(FormaDePagamento.Credito)]
         public void TestFormaDePagamentoGaranteCalculoNormal(FormaDePagamento formaDePagamento)
         {
-            decimal quantidadeVendidaMenorQuePromocional = 5.52M;
+            decimal quantidadeVendidaMaiorQuePromocional = 5.52M;
             decimal valorUnitario = 10;
-            decimal quantidadePromocionalMaiorQueComprado = 5.51M;
+            decimal quantidadePromocionalMenorQueComprado = 5.51M;
             decimal valorPromocional = 20M;
             decimal valorEsperado = 55.2M;
             var calculadoraPrecoVendaItem = new CalculadoraPrecoVendaItem(
-                 quantidadeVendida: quantidadeVendidaMenorQuePromocional,
+                 quantidadeVendida: quantidadeVendidaMaiorQuePromocional,
                  valorUnitario: valorUnitario,
-                 quantidadePromocional: quantidadePromocionalMaiorQueComprado,
+                 quantidadePromocional: quantidadePromocionalMenorQueComprado,
                  valorPromocional: valorPromocional,
                  formaDePagamento: formaDePagamento);
 
@@ -59,5 +59,7 @@ namespace Dominio.Venda.Test
 
             Assert.Equal(valorEsperado, valorCalculado);
         }
+
+
     }
 }
