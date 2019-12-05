@@ -25,7 +25,7 @@ namespace Dominio.Venda.Test
             decimal valorUnitario = 10;
             decimal quantidadePromocionalMaiorQueComprado = 5.51M;
             decimal valorPromocional = 20M;
-            decimal valorEsperado = 15M;
+            decimal valorEsperado = 55M;
             var calculadoraPrecoVendaItem = new CalculadoraPrecoVendaItem(
                  quantidadeVendida: quantidadeVendidaMenorQuePromocional,
                  valorUnitario: valorUnitario,

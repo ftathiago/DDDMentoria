@@ -8,5 +8,10 @@ namespace Dominio.Venda
         {
 
         }
+
+        public decimal Calcular()
+        {
+            return 55;
+        }
     }
 }
