@@ -2,20 +2,18 @@ namespace Dominio.Venda
 {
     public class CalculadoraPrecoVendaItem
     {
-        private readonly decimal quantidadeVendida;
-        private readonly decimal valorUnitario;
-        private readonly decimal quantidadePromocional;
         private readonly FormaDePagamento formaDePagamento;
-        private readonly decimal valorPromocional;
-        public CalculadoraPrecoVendaItem(decimal quantidadeVendida, decimal valorUnitario,
-            decimal quantidadePromocional, decimal valorPromocional,
-            FormaDePagamento formaDePagamento)
+        public decimal QuantidadeVendida { get; set; }
+        public decimal ValorUnitario { get; set; }
+        public decimal QuantidadePromocional { get; set; }
+        public decimal ValorPromocional { get; set; }
+        public CalculadoraPrecoVendaItem(FormaDePagamento formaDePagamento)
         {
-            this.quantidadeVendida = quantidadeVendida;
-            this.valorUnitario = valorUnitario;
-            this.quantidadePromocional = quantidadePromocional;
             this.formaDePagamento = formaDePagamento;
-            this.valorPromocional = valorPromocional;
+            ValorPromocional = 0;
+            QuantidadeVendida = 0;
+            ValorUnitario = 0;
+            QuantidadePromocional = 0;
         }
 
         public decimal Calcular()
@@ -28,19 +26,19 @@ namespace Dominio.Venda
         private bool DeveUsarPrecoVendaNormal()
         {
             var formaDePagamentoNormal = (formaDePagamento == FormaDePagamento.Cheque || formaDePagamento == FormaDePagamento.Credito);
-            var quantidadeVendidaNormal = quantidadeVendida < quantidadePromocional;
+            var vendaNormalPelaQuantidade = QuantidadeVendida < QuantidadePromocional;
 
-            return quantidadeVendidaNormal || formaDePagamentoNormal;
+            return vendaNormalPelaQuantidade || formaDePagamentoNormal;
         }
 
         private decimal CalculoPrecoNormal()
         {
-            return quantidadeVendida * valorUnitario;
+            return QuantidadeVendida * ValorUnitario;
         }
 
         private decimal CalcularPrecoPromocional()
         {
-            return quantidadeVendida * valorPromocional;
+            return QuantidadeVendida * ValorPromocional;
         }
     }
 }
