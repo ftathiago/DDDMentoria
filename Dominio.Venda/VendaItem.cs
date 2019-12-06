@@ -5,18 +5,18 @@ namespace Dominio.Venda
         public string Descricao { get; private set; }
         public decimal ValorUnitario { get; private set; }
         public decimal ValorUnitarioPromocional { get; private set; }
-        public FormaDePagamento FormaDePagamento { get; private set; }
 
-        private decimal quantidade;
-        private decimal quantidadePromocional;
+        public decimal Quantidade { get; private set; }
+        public decimal QuantidadePromocional { get; private set; }
+        public FormaDePagamento FormaDePagamento { get; private set; }
 
         public VendaItem(ProdutoVendido produtoVendido)
         {
             Descricao = produtoVendido.Descricao;
             ValorUnitario = produtoVendido.ValorUnitario;
             ValorUnitarioPromocional = produtoVendido.ValorUnitarioPromocional;
-            quantidade = produtoVendido.QuantidadeComprada;
-            quantidadePromocional = produtoVendido.QuantidadePromocional;
+            Quantidade = produtoVendido.QuantidadeComprada;
+            QuantidadePromocional = produtoVendido.QuantidadePromocional;
         }
 
         public decimal TotalItem()
@@ -28,7 +28,7 @@ namespace Dominio.Venda
 
         public bool TestarDeveUsarValorPromocional()
         {
-            var quantidadeEhPromocional = (quantidadePromocional > 0 && quantidade >= quantidadePromocional);
+            var quantidadeEhPromocional = (QuantidadePromocional > 0 && Quantidade >= QuantidadePromocional);
             var formasDePagamentoPromocionais = (
                 this.FormaDePagamento == FormaDePagamento.Dinheiro
                 || this.FormaDePagamento == FormaDePagamento.ValeAlimentacao
@@ -38,12 +38,12 @@ namespace Dominio.Venda
 
         private decimal TotalItemPromocional()
         {
-            return quantidade * ValorUnitarioPromocional;
+            return Quantidade * ValorUnitarioPromocional;
         }
 
         private decimal TotalItemNormal()
         {
-            return quantidade * ValorUnitario;
+            return Quantidade * ValorUnitario;
         }
 
         public void DefinirFormaDePagamento(FormaDePagamento formaDePagamento)

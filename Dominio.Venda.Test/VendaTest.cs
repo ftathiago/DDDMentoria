@@ -103,7 +103,6 @@ namespace Dominio.Venda.Test
         [Theory]
         [InlineData(FormaDePagamento.Cheque)]
         [InlineData(FormaDePagamento.Credito)]
-        [InlineData(FormaDePagamento.None)]
         public void TestNaoCalcularValorPromocionalParaFormaDePagamento(FormaDePagamento formaDePagamento)
         {
             decimal totalEsperado = 10M;
