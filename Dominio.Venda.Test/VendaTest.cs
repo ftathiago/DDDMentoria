@@ -79,6 +79,17 @@ namespace Dominio.Venda.Test
             Assert.Equal(0, totalVendido);
         }
 
+        [Fact]
+        public void TestVendaNaoEhValidaComFormaDePagamentoIndefinida()
+        {
+            Venda venda = VendaFactory(FormaDePagamento.None);
+            var vendaItem = VendaItemFactory("Descricao", 1, 1);
+            venda.AdicionarVendaItem(vendaItem);
+
+            var vendaEhValida = venda.Validar();
+
+            Assert.False(vendaEhValida);
+        }
 
         private Venda VendaFactory(FormaDePagamento formaDePagamento = FormaDePagamento.None)
         {
