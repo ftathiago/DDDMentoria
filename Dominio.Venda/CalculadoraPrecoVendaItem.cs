@@ -2,14 +2,14 @@ namespace Dominio.Venda
 {
     public class CalculadoraPrecoVendaItem
     {
-        private readonly FormaDePagamento formaDePagamento;
+        private FormaDePagamento FormaDePagamento { get; set; }
         public decimal QuantidadeVendida { get; set; }
         public decimal ValorUnitario { get; set; }
         public decimal QuantidadePromocional { get; set; }
         public decimal ValorPromocional { get; set; }
-        public CalculadoraPrecoVendaItem(FormaDePagamento formaDePagamento)
+        public CalculadoraPrecoVendaItem()
         {
-            this.formaDePagamento = formaDePagamento;
+            FormaDePagamento = FormaDePagamento.None;
             ValorPromocional = 0;
             QuantidadeVendida = 0;
             ValorUnitario = 0;
@@ -33,9 +33,9 @@ namespace Dominio.Venda
 
         private bool FormaDePagamentoDefiniCalculoNormal()
         {
-            if (formaDePagamento == FormaDePagamento.Cheque)
+            if (FormaDePagamento == FormaDePagamento.Cheque)
                 return true;
-            if (formaDePagamento == FormaDePagamento.Credito)
+            if (FormaDePagamento == FormaDePagamento.Credito)
                 return true;
             return false;
         }
