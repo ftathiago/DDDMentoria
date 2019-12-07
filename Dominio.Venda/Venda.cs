@@ -7,15 +7,15 @@ namespace Dominio.Venda
     public class Venda
     {
         public string Cliente;
-        private readonly ICollection<VendaItem> VendaItem;
-
         public FormaDePagamento FormaDePagamento { get; private set; }
-
-        public Venda(string cliente, FormaDePagamento formaDePagamento)
+        private readonly ICollection<VendaItem> VendaItem;
+        private readonly CalculadoraPrecoVendaItem calculadoraPrecoVenda;
+        public Venda(string cliente, FormaDePagamento formaDePagamento, CalculadoraPrecoVendaItem calculadoraPrecoVendaItem)
         {
             Cliente = cliente;
             VendaItem = new List<VendaItem>();
             FormaDePagamento = formaDePagamento;
+            calculadoraPrecoVenda = calculadoraPrecoVendaItem;
         }
 
         public void AdicionarVendaItem(VendaItem vendaItem)
@@ -38,14 +38,13 @@ namespace Dominio.Venda
 
         public decimal TotalVenda()
         {
-            var calculadora = new CalculadoraPrecoVendaItem(FormaDePagamento);
             var totalVenda = VendaItem.Sum(p =>
             {
-                calculadora.QuantidadeVendida = p.Quantidade;
-                calculadora.QuantidadePromocional = p.QuantidadePromocional;
-                calculadora.ValorPromocional = p.ValorUnitarioPromocional;
-                calculadora.ValorUnitario = p.ValorUnitario;
-                return calculadora.Calcular();
+                calculadoraPrecoVenda.QuantidadeVendida = p.Quantidade;
+                calculadoraPrecoVenda.QuantidadePromocional = p.QuantidadePromocional;
+                calculadoraPrecoVenda.ValorPromocional = p.ValorUnitarioPromocional;
+                calculadoraPrecoVenda.ValorUnitario = p.ValorUnitario;
+                return calculadoraPrecoVenda.Calcular();
             });
             return totalVenda;
         }
