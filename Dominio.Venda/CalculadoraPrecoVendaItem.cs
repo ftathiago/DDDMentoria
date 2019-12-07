@@ -25,10 +25,26 @@ namespace Dominio.Venda
 
         private bool DeveUsarPrecoVendaNormal()
         {
-            var formaDePagamentoNormal = (formaDePagamento == FormaDePagamento.Cheque || formaDePagamento == FormaDePagamento.Credito);
-            var vendaNormalPelaQuantidade = (QuantidadeVendida < QuantidadePromocional) || QuantidadePromocional <= 0;
+            var formaDePagamentoNormal = FormaDePagamentoDefiniCalculoNormal();
+            var vendaNormalPelaQuantidade = QuantidadeDefineCalculoNormal();
 
             return vendaNormalPelaQuantidade || formaDePagamentoNormal;
+        }
+
+        private bool FormaDePagamentoDefiniCalculoNormal()
+        {
+            if (formaDePagamento == FormaDePagamento.Cheque)
+                return true;
+            if (formaDePagamento == FormaDePagamento.Credito)
+                return true;
+            return false;
+        }
+
+        private bool QuantidadeDefineCalculoNormal()
+        {
+            if (QuantidadePromocional <= 0)
+                return true;
+            return (QuantidadeVendida < QuantidadePromocional);
         }
 
         private decimal CalculoPrecoNormal()
