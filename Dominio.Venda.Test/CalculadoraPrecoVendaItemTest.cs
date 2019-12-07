@@ -39,15 +39,18 @@ namespace Dominio.Venda.Test
         }
 
         [Theory]
-        [InlineData(FormaDePagamento.Cheque)]
-        [InlineData(FormaDePagamento.Credito)]
-        public void TestFormaDePagamentoGaranteCalculoNormal(FormaDePagamento formaDePagamento)
+        [InlineData(FormaDePagamento.Cheque, 55.2)]
+        [InlineData(FormaDePagamento.Credito, 55.2)]
+        [InlineData(FormaDePagamento.Dinheiro, 110.40)]
+        [InlineData(FormaDePagamento.ValeAlimentacao, 110.40)]
+        [InlineData(FormaDePagamento.Debito, 110.40)]
+        public void TestFormaDePagamentoGaranteCalculoNormal(FormaDePagamento formaDePagamento,
+            decimal valorEsperado)
         {
             decimal quantidadeVendidaMaiorQuePromocional = 5.52M;
             decimal valorUnitario = 10;
             decimal quantidadePromocionalMenorQueComprado = 5.51M;
             decimal valorPromocional = 20M;
-            decimal valorEsperado = 55.2M;
             var calculadoraPrecoVendaItem = new CalculadoraPrecoVendaItem(formaDePagamento);
             calculadoraPrecoVendaItem.QuantidadeVendida = quantidadeVendidaMaiorQuePromocional;
             calculadoraPrecoVendaItem.ValorUnitario = valorUnitario;
@@ -60,16 +63,18 @@ namespace Dominio.Venda.Test
         }
 
         [Theory]
-        [InlineData(FormaDePagamento.Dinheiro)]
-        [InlineData(FormaDePagamento.ValeAlimentacao)]
-        [InlineData(FormaDePagamento.Debito)]
-        public void TestCalculaPrecoPromocional(FormaDePagamento formaDePagamento)
+        [InlineData(FormaDePagamento.Dinheiro, 55.2)]
+        [InlineData(FormaDePagamento.ValeAlimentacao, 55.2)]
+        [InlineData(FormaDePagamento.Debito, 55.2)]
+        [InlineData(FormaDePagamento.Credito, 110.4)]
+        [InlineData(FormaDePagamento.Cheque, 110.4)]
+        public void TestCalculaPrecoPromocional(FormaDePagamento formaDePagamento,
+            decimal valorEsperado)
         {
             decimal quantidadeVendidaMaiorQuePromocional = 5.52M;
             decimal valorUnitario = 20;
             decimal quantidadePromocionalMenorQueComprado = 5.51M;
             decimal valorPromocional = 10;
-            decimal valorEsperado = 55.2M;
             var calculadoraPrecoVendaItem = new CalculadoraPrecoVendaItem(formaDePagamento);
 
             calculadoraPrecoVendaItem.QuantidadeVendida = quantidadeVendidaMaiorQuePromocional;

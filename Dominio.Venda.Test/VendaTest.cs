@@ -79,46 +79,6 @@ namespace Dominio.Venda.Test
             Assert.Equal(0, totalVendido);
         }
 
-        [Theory]
-        [InlineData(FormaDePagamento.Dinheiro)]
-        [InlineData(FormaDePagamento.ValeAlimentacao)]
-        [InlineData(FormaDePagamento.Debito)]
-        public void TestVendaCalculaTotalPromocionalDoProduto(FormaDePagamento formaDePagamento)
-        {
-            decimal totalEsperado = 5M;
-            var vendaItem = VendaItemFactory(
-                    Descricao: "Produto Promocional",
-                    QuantidadeComprada: 10,
-                    ValorUnitario: 1,
-                    quantidadePromocional: 9.9M,
-                    valorUnitarioPromocional: 0.5M);
-            Venda venda = VendaFactory(formaDePagamento);
-            venda.AdicionarVendaItem(vendaItem);
-
-            var totalVenda = venda.TotalVenda();
-
-            Assert.Equal(totalEsperado, totalVenda);
-        }
-
-        [Theory]
-        [InlineData(FormaDePagamento.Cheque)]
-        [InlineData(FormaDePagamento.Credito)]
-        public void TestNaoCalcularValorPromocionalParaFormaDePagamento(FormaDePagamento formaDePagamento)
-        {
-            decimal totalEsperado = 10M;
-            var vendaItem = VendaItemFactory(
-                    Descricao: "Produto Promocional",
-                    QuantidadeComprada: 10,
-                    ValorUnitario: 1,
-                    quantidadePromocional: 9.9M,
-                    valorUnitarioPromocional: 0.5M);
-            Venda venda = VendaFactory(formaDePagamento);
-            venda.AdicionarVendaItem(vendaItem);
-
-            var totalVenda = venda.TotalVenda();
-
-            Assert.Equal(totalEsperado, totalVenda);
-        }
 
         private Venda VendaFactory(FormaDePagamento formaDePagamento = FormaDePagamento.None)
         {
