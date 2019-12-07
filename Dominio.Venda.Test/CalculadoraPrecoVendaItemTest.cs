@@ -80,5 +80,26 @@ namespace Dominio.Venda.Test
 
             Assert.Equal(valorEsperado, valorCalculado);
         }
+
+        [Fact]
+        public void TestQuantidadePromocionalMenorZeroSempreCalculoNormal()
+        {
+            decimal quantidadeVendidaMaiorQuePromocional = 5.52M;
+            decimal valorUnitario = 10.5M;
+            decimal quantidadePromocionalMenorZero = -0.01M;
+            decimal valorPromocional = -1;
+            decimal valorEsperado = 57.96M;
+            var formaDePagamento = FormaDePagamento.Dinheiro;
+            var calculadoraPrecoVendaItem = new CalculadoraPrecoVendaItem(formaDePagamento)
+            {
+                QuantidadeVendida = quantidadeVendidaMaiorQuePromocional,
+                ValorUnitario = valorUnitario,
+                QuantidadePromocional = quantidadePromocionalMenorZero,
+                ValorPromocional = valorPromocional
+            };
+            var valorCalculado = calculadoraPrecoVendaItem.Calcular();
+
+            Assert.Equal(valorEsperado, valorCalculado);
+        }
     }
 }
