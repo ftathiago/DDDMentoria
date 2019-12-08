@@ -1,6 +1,6 @@
 namespace Dominio.Venda
 {
-    public class CalculadoraPrecoVendaItem
+    public class CalculadoraPrecoVendaItem : ICalculadoraPrecoVendaItem
     {
         public FormaDePagamento FormaDePagamento { get; set; }
         public decimal QuantidadeVendida { get; set; }
