@@ -106,7 +106,7 @@ namespace Dominio.Venda.Test
                 QuantidadePromocional = quantidadePromocional,
                 ValorUnitarioPromocional = valorUnitarioPromocional
             };
-            return new VendaItem(produtoVendido);
+            return new VendaItem(produtoVendido, new CalculadoraPrecoVendaItem());
         }
     }
 }

@@ -9,7 +9,7 @@ namespace Dominio.Venda
         public decimal Quantidade { get; private set; }
         public decimal QuantidadePromocional { get; private set; }
 
-        public VendaItem(ProdutoVendido produtoVendido)
+        public VendaItem(ProdutoVendido produtoVendido, ICalculadoraPrecoVendaItem calculadoraPrecoVendaItem)
         {
             Descricao = produtoVendido.Descricao;
             ValorUnitario = produtoVendido.ValorUnitario;

@@ -22,7 +22,7 @@ namespace Dominio.Venda.Test
                 descricao: "Produto",
                 quantidadeComprada: 1,
                 valorUnitario: valorEsperado);
-            VendaItem vendaItem = new VendaItem(produtoVendido);
+            VendaItem vendaItem = new VendaItem(produtoVendido, new CalculadoraPrecoVendaItem());
 
             decimal valorExposto = vendaItem.ValorUnitario;
 
@@ -38,7 +38,7 @@ namespace Dominio.Venda.Test
                 quantidadeComprada: 1,
                 valorUnitario: 0,
                 valorUnitarioPromocional: valorEsperado);
-            VendaItem vendaItem = new VendaItem(produtoVendido);
+            VendaItem vendaItem = new VendaItem(produtoVendido, new CalculadoraPrecoVendaItem());
 
             decimal valorEsposto = vendaItem.ValorUnitarioPromocional;
 
