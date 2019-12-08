@@ -37,7 +37,7 @@ namespace Dominio.Venda.Test
         {
             string cliente = "Cliente";
 
-            Venda venda = new Venda("Cliente", formaDePagamento, new CalculadoraPrecoVendaItem(formaDePagamento));
+            Venda venda = new Venda("Cliente", formaDePagamento, new CalculadoraPrecoVendaItem());
 
             Assert.Equal(formaDePagamento, venda.FormaDePagamento);
             Assert.Equal("Cliente", cliente);
@@ -93,7 +93,7 @@ namespace Dominio.Venda.Test
 
         private Venda VendaFactory(FormaDePagamento formaDePagamento = FormaDePagamento.None)
         {
-            return new Venda("Cliente", formaDePagamento, new CalculadoraPrecoVendaItem(formaDePagamento));
+            return new Venda("Cliente", formaDePagamento, new CalculadoraPrecoVendaItem());
         }
 
         private VendaItem VendaItemFactory(string Descricao, int QuantidadeComprada, int ValorUnitario, decimal quantidadePromocional = -1, decimal valorUnitarioPromocional = -1)

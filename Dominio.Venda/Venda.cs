@@ -22,7 +22,6 @@ namespace Dominio.Venda
         {
             vendaItem.DefinirFormaDePagamento(FormaDePagamento);
             VendaItem.Add(vendaItem);
-
         }
 
         public bool Validar()

@@ -2,7 +2,7 @@ namespace Dominio.Venda
 {
     public class CalculadoraPrecoVendaItem
     {
-        private FormaDePagamento FormaDePagamento { get; set; }
+        public FormaDePagamento FormaDePagamento { get; set; }
         public decimal QuantidadeVendida { get; set; }
         public decimal ValorUnitario { get; set; }
         public decimal QuantidadePromocional { get; set; }
