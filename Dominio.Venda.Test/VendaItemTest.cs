@@ -9,7 +9,7 @@ namespace Dominio.Venda.Test
         {
             ProdutoVendido produtoVendido = ProdutoVendidoFactory("Produto", 1, 10);
 
-            VendaItem vendaItem = new VendaItem(produtoVendido);
+            VendaItem vendaItem = new VendaItem(produtoVendido, new CalculadoraPrecoVendaItem());
 
             Assert.NotNull(vendaItem);
         }
