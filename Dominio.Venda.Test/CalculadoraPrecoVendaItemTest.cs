@@ -1,4 +1,5 @@
 using Xunit;
+using System;
 
 namespace Dominio.Venda.Test
 {
@@ -96,6 +97,15 @@ namespace Dominio.Venda.Test
                 quantidadePromocionalMenorZero, valorPromocional);
 
             Assert.Equal(valorEsperado, valorCalculado);
+        }
+
+        [Fact]
+        public void TestCalculadoraEmiteExcecaoAoUsarFormaDePagamentoInvalida()
+        {
+            var calculadoraPrecoVendaItem = new CalculadoraPrecoVendaItem();
+
+            Assert.Throws<ArgumentException>(() => calculadoraPrecoVendaItem.Calcular(
+                FormaDePagamento.None, 0, 0, 0, 0));
         }
     }
 }
