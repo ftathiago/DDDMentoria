@@ -7,5 +7,9 @@ namespace Dominio.Venda
         public decimal ValorUnitario { get; set; }
         public decimal QuantidadePromocional { get; set; }
         public decimal ValorUnitarioPromocional { get; set; }
+        public ProdutoVendido()
+        {
+            Descricao = string.Empty;
+        }
     }
 }
