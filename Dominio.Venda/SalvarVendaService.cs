@@ -6,5 +6,10 @@ namespace Dominio.Venda
         {
 
         }
+
+        public bool Executar()
+        {
+            return true;
+        }
     }
 }
