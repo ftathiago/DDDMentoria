@@ -1,3 +1,4 @@
+using System;
 namespace Dominio.Venda
 {
     public class CalculadoraPrecoVendaItem : ICalculadoraPrecoVendaItem
@@ -15,10 +16,22 @@ namespace Dominio.Venda
         private bool DeveUsarPrecoVendaNormal(FormaDePagamento formaDePagamento,
             decimal quantidade, decimal quantidadePromocional)
         {
+            if (!FormaDePagamentoEhValida(formaDePagamento))
+                throw new ArgumentException("Forma de pagamento inválida!");
+
             var formaDePagamentoNormal = FormaDePagamentoDefineCalculoNormal(formaDePagamento);
             var vendaNormalPelaQuantidade = QuantidadeDefineCalculoNormal(quantidade, quantidadePromocional);
 
             return vendaNormalPelaQuantidade || formaDePagamentoNormal;
+        }
+
+        private bool FormaDePagamentoEhValida(FormaDePagamento formaDePagamento)
+        {
+            return formaDePagamento == FormaDePagamento.Dinheiro ||
+                formaDePagamento == FormaDePagamento.ValeAlimentacao ||
+                formaDePagamento == FormaDePagamento.Debito ||
+                formaDePagamento == FormaDePagamento.Credito ||
+                formaDePagamento == FormaDePagamento.Cheque;
         }
 
         private bool FormaDePagamentoDefineCalculoNormal(FormaDePagamento formaDePagamento)

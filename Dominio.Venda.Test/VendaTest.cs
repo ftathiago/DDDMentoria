@@ -68,7 +68,7 @@ namespace Dominio.Venda.Test
         [Fact]
         public void TestVendaNaoEhValidaComTotalMenorIgualZero()
         {
-            Venda venda = VendaFactory();
+            Venda venda = VendaFactory(FormaDePagamento.Dinheiro);
             var vendaItem = VendaItemFactory("Produto", 0, 1);
             venda.AdicionarVendaItem(vendaItem);
 
