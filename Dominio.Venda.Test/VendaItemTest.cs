@@ -1,4 +1,5 @@
 using Xunit;
+using Moq;
 
 namespace Dominio.Venda.Test
 {
@@ -44,6 +45,29 @@ namespace Dominio.Venda.Test
 
             Assert.Equal(valorEsperado, valorEsposto);
         }
+
+        [Fact]
+        public void TestVendaItemCalculaValorTotalUsandoCalculadora()
+        {
+            decimal valorEsperado = 10.5M;
+            var mock = new Mock<ICalculadoraPrecoVendaItem>();
+            mock.Setup(library => library.Calcular(It.IsAny<FormaDePagamento>(), It.IsAny<decimal>(), It.IsAny<decimal>(),
+                It.IsAny<decimal>(), It.IsAny<decimal>()))
+                .Returns(valorEsperado);
+            ICalculadoraPrecoVendaItem calculadora = mock.Object;
+            ProdutoVendido produtoVendido = ProdutoVendidoFactory(
+                descricao: "Produto",
+                quantidadeComprada: 1,
+                valorUnitario: 0,
+                valorUnitarioPromocional: valorEsperado);
+            VendaItem vendaItem = new VendaItem(produtoVendido, calculadora);
+
+            decimal valorEsposto = vendaItem.ValorTotal(FormaDePagamento.Dinheiro);
+
+            Assert.Equal(valorEsperado, valorEsposto);
+        }
+
+
 
         private ProdutoVendido ProdutoVendidoFactory(string descricao, decimal quantidadeComprada, decimal valorUnitario, decimal quantidadePromocional = -1, decimal valorUnitarioPromocional = -1)
         {
