@@ -9,13 +9,11 @@ namespace Dominio.Venda
         public string Cliente;
         public FormaDePagamento FormaDePagamento { get; private set; }
         private readonly ICollection<VendaItem> VendaItem;
-        private readonly CalculadoraPrecoVendaItem calculadoraPrecoVenda;
-        public Venda(string cliente, FormaDePagamento formaDePagamento, CalculadoraPrecoVendaItem calculadoraPrecoVendaItem)
+        public Venda(string cliente, FormaDePagamento formaDePagamento)
         {
             Cliente = cliente;
             VendaItem = new List<VendaItem>();
             FormaDePagamento = formaDePagamento;
-            calculadoraPrecoVenda = calculadoraPrecoVendaItem;
         }
 
         public void AdicionarVendaItem(VendaItem vendaItem)
