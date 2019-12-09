@@ -9,6 +9,8 @@ namespace Dominio.Venda
         public decimal Quantidade { get; private set; }
         public decimal QuantidadePromocional { get; private set; }
 
+        private ICalculadoraPrecoVendaItem calculadoraPrecoVendaItem;
+
         public VendaItem(ProdutoVendido produtoVendido, ICalculadoraPrecoVendaItem calculadoraPrecoVendaItem)
         {
             Descricao = produtoVendido.Descricao;
@@ -16,6 +18,13 @@ namespace Dominio.Venda
             ValorUnitarioPromocional = produtoVendido.ValorUnitarioPromocional;
             Quantidade = produtoVendido.QuantidadeComprada;
             QuantidadePromocional = produtoVendido.QuantidadePromocional;
+            this.calculadoraPrecoVendaItem = calculadoraPrecoVendaItem;
+        }
+
+        public decimal ValorTotal(FormaDePagamento formaDePagamento)
+        {
+            return calculadoraPrecoVendaItem.Calcular(formaDePagamento, Quantidade, ValorUnitario,
+               QuantidadePromocional, ValorUnitarioPromocional);
         }
     }
 }

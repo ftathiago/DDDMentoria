@@ -29,12 +29,9 @@ namespace Dominio.Venda.Test
             decimal valorEsperado = 55M;
             var calculadoraPrecoVendaItem = new CalculadoraPrecoVendaItem();
 
-            calculadoraPrecoVendaItem.QuantidadeVendida = quantidadeVendidaMenorQuePromocional;
-            calculadoraPrecoVendaItem.ValorUnitario = valorUnitario;
-            calculadoraPrecoVendaItem.QuantidadePromocional = quantidadePromocionalMaiorQueComprado;
-            calculadoraPrecoVendaItem.ValorPromocional = valorPromocional;
-            calculadoraPrecoVendaItem.FormaDePagamento = formaDePagamento;
-            var valorCalculado = calculadoraPrecoVendaItem.Calcular();
+            var valorCalculado = calculadoraPrecoVendaItem.Calcular(
+                formaDePagamento, quantidadeVendidaMenorQuePromocional, valorUnitario,
+                quantidadePromocionalMaiorQueComprado, valorPromocional);
 
             Assert.Equal(valorEsperado, valorCalculado);
         }
@@ -53,13 +50,10 @@ namespace Dominio.Venda.Test
             decimal quantidadePromocionalMenorQueComprado = 5.51M;
             decimal valorPromocional = 20M;
             var calculadoraPrecoVendaItem = new CalculadoraPrecoVendaItem();
-            calculadoraPrecoVendaItem.QuantidadeVendida = quantidadeVendidaMaiorQuePromocional;
-            calculadoraPrecoVendaItem.ValorUnitario = valorUnitario;
-            calculadoraPrecoVendaItem.QuantidadePromocional = quantidadePromocionalMenorQueComprado;
-            calculadoraPrecoVendaItem.ValorPromocional = valorPromocional;
-            calculadoraPrecoVendaItem.FormaDePagamento = formaDePagamento;
 
-            var valorCalculado = calculadoraPrecoVendaItem.Calcular();
+            var valorCalculado = calculadoraPrecoVendaItem.Calcular(
+                formaDePagamento, quantidadeVendidaMaiorQuePromocional, valorUnitario,
+                quantidadePromocionalMenorQueComprado, valorPromocional);
 
             Assert.Equal(valorEsperado, valorCalculado);
         }
@@ -79,13 +73,9 @@ namespace Dominio.Venda.Test
             decimal valorPromocional = 10;
             var calculadoraPrecoVendaItem = new CalculadoraPrecoVendaItem();
 
-            calculadoraPrecoVendaItem.QuantidadeVendida = quantidadeVendidaMaiorQuePromocional;
-            calculadoraPrecoVendaItem.ValorUnitario = valorUnitario;
-            calculadoraPrecoVendaItem.QuantidadePromocional = quantidadePromocionalMenorQueComprado;
-            calculadoraPrecoVendaItem.ValorPromocional = valorPromocional;
-            calculadoraPrecoVendaItem.FormaDePagamento = formaDePagamento;
-
-            var valorCalculado = calculadoraPrecoVendaItem.Calcular();
+            var valorCalculado = calculadoraPrecoVendaItem.Calcular(
+                formaDePagamento, quantidadeVendidaMaiorQuePromocional, valorUnitario,
+                quantidadePromocionalMenorQueComprado, valorPromocional);
 
             Assert.Equal(valorEsperado, valorCalculado);
         }
@@ -98,16 +88,12 @@ namespace Dominio.Venda.Test
             decimal quantidadePromocionalMenorZero = -0.01M;
             decimal valorPromocional = -1;
             decimal valorEsperado = 57.96M;
-            var calculadoraPrecoVendaItem = new CalculadoraPrecoVendaItem()
-            {
-                QuantidadeVendida = quantidadeVendidaMaiorQuePromocional,
-                ValorUnitario = valorUnitario,
-                QuantidadePromocional = quantidadePromocionalMenorZero,
-                ValorPromocional = valorPromocional,
-                FormaDePagamento = FormaDePagamento.Dinheiro
-            };
+            var formaDePagamento = FormaDePagamento.Dinheiro;
+            var calculadoraPrecoVendaItem = new CalculadoraPrecoVendaItem();
 
-            var valorCalculado = calculadoraPrecoVendaItem.Calcular();
+            var valorCalculado = calculadoraPrecoVendaItem.Calcular(
+                formaDePagamento, quantidadeVendidaMaiorQuePromocional, valorUnitario,
+                quantidadePromocionalMenorZero, valorPromocional);
 
             Assert.Equal(valorEsperado, valorCalculado);
         }

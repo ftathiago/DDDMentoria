@@ -2,59 +2,49 @@ namespace Dominio.Venda
 {
     public class CalculadoraPrecoVendaItem : ICalculadoraPrecoVendaItem
     {
-        public FormaDePagamento FormaDePagamento { get; set; }
-        public decimal QuantidadeVendida { get; set; }
-        public decimal ValorUnitario { get; set; }
-        public decimal QuantidadePromocional { get; set; }
-        public decimal ValorPromocional { get; set; }
-        public CalculadoraPrecoVendaItem()
+        public CalculadoraPrecoVendaItem() { }
+
+        public decimal Calcular(FormaDePagamento formaDePagamento, decimal quantidade, decimal valorUnitario,
+            decimal quantidadePromocional = 0, decimal valorPromocional = 0)
         {
-            FormaDePagamento = FormaDePagamento.None;
-            ValorPromocional = 0;
-            QuantidadeVendida = 0;
-            ValorUnitario = 0;
-            QuantidadePromocional = 0;
+            if (DeveUsarPrecoVendaNormal(formaDePagamento, quantidade, quantidadePromocional))
+                return CalculoPrecoNormal(quantidade, valorUnitario);
+            return CalcularPrecoPromocional(quantidade, valorPromocional);
         }
 
-        public decimal Calcular()
+        private bool DeveUsarPrecoVendaNormal(FormaDePagamento formaDePagamento,
+            decimal quantidade, decimal quantidadePromocional)
         {
-            if (DeveUsarPrecoVendaNormal())
-                return CalculoPrecoNormal();
-            return CalcularPrecoPromocional();
-        }
-
-        private bool DeveUsarPrecoVendaNormal()
-        {
-            var formaDePagamentoNormal = FormaDePagamentoDefiniCalculoNormal();
-            var vendaNormalPelaQuantidade = QuantidadeDefineCalculoNormal();
+            var formaDePagamentoNormal = FormaDePagamentoDefineCalculoNormal(formaDePagamento);
+            var vendaNormalPelaQuantidade = QuantidadeDefineCalculoNormal(quantidade, quantidadePromocional);
 
             return vendaNormalPelaQuantidade || formaDePagamentoNormal;
         }
 
-        private bool FormaDePagamentoDefiniCalculoNormal()
+        private bool FormaDePagamentoDefineCalculoNormal(FormaDePagamento formaDePagamento)
         {
-            if (FormaDePagamento == FormaDePagamento.Cheque)
+            if (formaDePagamento == FormaDePagamento.Cheque)
                 return true;
-            if (FormaDePagamento == FormaDePagamento.Credito)
+            if (formaDePagamento == FormaDePagamento.Credito)
                 return true;
             return false;
         }
 
-        private bool QuantidadeDefineCalculoNormal()
+        private bool QuantidadeDefineCalculoNormal(decimal quantidade, decimal quantidadePromocional)
         {
-            if (QuantidadePromocional <= 0)
+            if (quantidadePromocional <= 0)
                 return true;
-            return (QuantidadeVendida < QuantidadePromocional);
+            return (quantidade < quantidadePromocional);
         }
 
-        private decimal CalculoPrecoNormal()
+        private decimal CalculoPrecoNormal(decimal quantidade, decimal valorUnitario)
         {
-            return QuantidadeVendida * ValorUnitario;
+            return quantidade * valorUnitario;
         }
 
-        private decimal CalcularPrecoPromocional()
+        private decimal CalcularPrecoPromocional(decimal quantidade, decimal valorPromocional)
         {
-            return QuantidadeVendida * ValorPromocional;
+            return quantidade * valorPromocional;
         }
     }
 }

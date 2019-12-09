@@ -36,14 +36,7 @@ namespace Dominio.Venda
 
         public decimal TotalVenda()
         {
-            var totalVenda = VendaItem.Sum(p =>
-            {
-                calculadoraPrecoVenda.QuantidadeVendida = p.Quantidade;
-                calculadoraPrecoVenda.QuantidadePromocional = p.QuantidadePromocional;
-                calculadoraPrecoVenda.ValorPromocional = p.ValorUnitarioPromocional;
-                calculadoraPrecoVenda.ValorUnitario = p.ValorUnitario;
-                return calculadoraPrecoVenda.Calcular();
-            });
+            var totalVenda = VendaItem.Sum(p => p.ValorTotal(FormaDePagamento));
             return totalVenda;
         }
     }
