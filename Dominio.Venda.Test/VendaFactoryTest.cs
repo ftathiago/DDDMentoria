@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using Xunit;
 
 namespace Dominio.Venda.Test
@@ -14,6 +16,37 @@ namespace Dominio.Venda.Test
 
             Assert.NotNull(venda);
             Assert.IsAssignableFrom<Venda>(venda);
+        }
+
+        [Fact]
+        public void TestCriarVendaComItem()
+        {
+            var vendaDTO = new VendaDTO
+            {
+                Cliente = new Cliente("Cliente"),
+                FormaDePagamento = FormaDePagamento.Dinheiro,
+                Itens = new List<ProdutoVendido>{
+                    new ProdutoVendido{
+                        Descricao = "Produto1",
+                        QuantidadeComprada = 10,
+                        QuantidadePromocional = 10,
+                        ValorUnitario = 10,
+                        ValorUnitarioPromocional = 10
+                    },
+                    new ProdutoVendido{
+                        Descricao = "Produto2",
+                        QuantidadeComprada = 20,
+                        QuantidadePromocional = 20,
+                        ValorUnitario = 20,
+                        ValorUnitarioPromocional = 20
+                    }
+                }
+            };
+            IVendaFactory vendaFactory = new VendaFactory();
+
+            Venda venda = vendaFactory.Criar(vendaDTO);
+
+            Assert.Equal(2, venda.VendaItem.Count());
         }
     }
 }
