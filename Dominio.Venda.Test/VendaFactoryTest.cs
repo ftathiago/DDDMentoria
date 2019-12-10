@@ -1,5 +1,4 @@
 using Dominio.Venda.DTO;
-using Dominio.Venda;
 using System.Collections.Generic;
 using System.Linq;
 using Xunit;

@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using Dominio.Venda.DTO;
 using Xunit;
-using Dominio.Venda;
 
 namespace Dominio.Venda.Test
 {
