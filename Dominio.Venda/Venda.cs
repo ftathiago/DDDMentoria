@@ -8,23 +8,23 @@ namespace Dominio.Venda
     {
         public Cliente Cliente { get; private set; }
         public FormaDePagamento FormaDePagamento { get; private set; }
-        public IEnumerable<VendaItem> VendaItem { get => vendaItems; }
-        private readonly IList<VendaItem> vendaItems;
+        public IEnumerable<VendaItem> VendaItem { get => vendaItemLista; }
+        private readonly IList<VendaItem> vendaItemLista;
         protected Venda()
         {
-            vendaItems = new List<VendaItem>();
+            vendaItemLista = new List<VendaItem>();
             this.FormaDePagamento = FormaDePagamento.None;
         }
         public Venda(Cliente cliente, FormaDePagamento formaDePagamento)
         {
             Cliente = cliente;
-            vendaItems = new List<VendaItem>();
+            vendaItemLista = new List<VendaItem>();
             FormaDePagamento = formaDePagamento;
         }
 
         public void AdicionarVendaItem(VendaItem vendaItem)
         {
-            vendaItems.Add(vendaItem);
+            vendaItemLista.Add(vendaItem);
         }
 
         public virtual bool Validar()
