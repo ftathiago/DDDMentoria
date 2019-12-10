@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Dominio.Venda.DTO;
 using Xunit;
 using Dominio.Venda;
@@ -37,8 +38,14 @@ namespace Dominio.Venda.Test
         public void TestCriarVendaComFormaDePagamento(FormaDePagamento formaDePagamento)
         {
             var cliente = new Cliente("Cliente");
+            var vendaDTO = new VendaDTO()
+            {
+                Cliente = cliente,
+                FormaDePagamento = formaDePagamento,
+                Itens = new List<VendaItemDTO>()
+            };
 
-            Venda venda = new Venda(cliente, formaDePagamento);
+            Venda venda = new VendaFactory().Criar(vendaDTO);
             Cliente clienteRetornado = venda.Cliente;
 
             Assert.Equal(formaDePagamento, venda.FormaDePagamento);
@@ -48,9 +55,15 @@ namespace Dominio.Venda.Test
         [Fact]
         public void TestVendaEhValidaComUmProdutoAoMenos()
         {
-            Venda venda = VendaFactory(FormaDePagamento.Dinheiro);
-            var produto = VendaItemFactory("Produto1", 1, 1);
-            venda.AdicionarVendaItem(produto);
+            var vendaDTO = new VendaDTO
+            {
+                Cliente = new Cliente("Cliente"),
+                FormaDePagamento = FormaDePagamento.Dinheiro,
+                Itens = new List<VendaItemDTO>{
+                    VendaItemDTOFactory("Produto1", 1, 1)
+                }
+            };
+            Venda venda = new VendaFactory().Criar(vendaDTO);
 
             bool vendaEhValida = venda.Validar();
 
@@ -60,7 +73,13 @@ namespace Dominio.Venda.Test
         [Fact]
         public void TestVendaNaoEhValidaSemProdutos()
         {
-            Venda venda = VendaFactory();
+            VendaDTO vendaDTO = new VendaDTO
+            {
+                Cliente = new Cliente("Cliente"),
+                FormaDePagamento = FormaDePagamento.Dinheiro
+            };
+
+            Venda venda = new VendaFactory().Criar(vendaDTO);
 
             bool vendaEhValida = venda.Validar();
 
@@ -70,9 +89,15 @@ namespace Dominio.Venda.Test
         [Fact]
         public void TestVendaNaoEhValidaComTotalMenorIgualZero()
         {
-            Venda venda = VendaFactory(FormaDePagamento.Dinheiro);
-            var vendaItem = VendaItemFactory("Produto", 0, 1);
-            venda.AdicionarVendaItem(vendaItem);
+            VendaDTO vendaDTO = new VendaDTO
+            {
+                Cliente = new Cliente("Cliente"),
+                FormaDePagamento = FormaDePagamento.Dinheiro,
+                Itens = new List<VendaItemDTO>{
+                    VendaItemDTOFactory("Produto", 0, 1)
+                }
+            };
+            Venda venda = new VendaFactory().Criar(vendaDTO);
 
             bool vendaEhValida = venda.Validar();
             decimal totalVendido = venda.TotalVenda();
@@ -84,9 +109,15 @@ namespace Dominio.Venda.Test
         [Fact]
         public void TestVendaNaoEhValidaComFormaDePagamentoIndefinida()
         {
-            Venda venda = VendaFactory(FormaDePagamento.None);
-            var vendaItem = VendaItemFactory("Descricao", 1, 1);
-            venda.AdicionarVendaItem(vendaItem);
+            VendaDTO vendaDTO = new VendaDTO
+            {
+                Cliente = new Cliente("Cliente"),
+                FormaDePagamento = FormaDePagamento.None,
+                Itens = new List<VendaItemDTO>{
+                    VendaItemDTOFactory("Descricao", 1, 1)
+                }
+            };
+            Venda venda = new VendaFactory().Criar(vendaDTO);
 
             var vendaEhValida = venda.Validar();
 
@@ -98,9 +129,10 @@ namespace Dominio.Venda.Test
             return new Venda(new Cliente("Cliente"), formaDePagamento);
         }
 
-        private VendaItem VendaItemFactory(string Descricao, int QuantidadeComprada, int ValorUnitario, decimal quantidadePromocional = -1, decimal valorUnitarioPromocional = -1)
+        private VendaItemDTO VendaItemDTOFactory(string Descricao, int QuantidadeComprada, int ValorUnitario,
+            decimal quantidadePromocional = -1, decimal valorUnitarioPromocional = -1)
         {
-            var vendaItemDTO = new VendaItemDTO
+            return new VendaItemDTO
             {
                 Descricao = Descricao,
                 QuantidadeComprada = QuantidadeComprada,
@@ -108,7 +140,6 @@ namespace Dominio.Venda.Test
                 QuantidadePromocional = quantidadePromocional,
                 ValorUnitarioPromocional = valorUnitarioPromocional
             };
-            return new VendaItem(vendaItemDTO, new CalculadoraPrecoVendaItem());
         }
     }
 }
