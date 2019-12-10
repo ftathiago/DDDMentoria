@@ -9,7 +9,11 @@ namespace Dominio.Venda.Test
         public void TestCriarServicoSalvarVenda()
         {
             var venda = new Venda("Cliente", FormaDePagamento.Dinheiro);
-            ISalvarVendaService salvarVendaService = new SalvarVendaService(venda);
+            var mockVendaRepository = new Mock<IVendaRepository>();
+            mockVendaRepository.SetReturnsDefault<bool>(true);
+            IVendaRepository vendaRepository = mockVendaRepository.Object;
+
+            ISalvarVendaService salvarVendaService = new SalvarVendaService(venda, vendaRepository);
 
             Assert.NotNull(salvarVendaService);
         }
@@ -22,7 +26,10 @@ namespace Dominio.Venda.Test
                 .Setup(v => v.Validar())
                 .Returns(true);
             Venda venda = mock.Object;
-            ISalvarVendaService salvarVendaService = new SalvarVendaService(venda);
+            var mockVendaRepository = new Mock<IVendaRepository>();
+            mockVendaRepository.SetReturnsDefault<bool>(true);
+            IVendaRepository vendaRepository = mockVendaRepository.Object;
+            ISalvarVendaService salvarVendaService = new SalvarVendaService(venda, vendaRepository);
 
             bool executadoComSucesso = salvarVendaService.Executar();
 
@@ -37,7 +44,10 @@ namespace Dominio.Venda.Test
                 .Setup(v => v.Validar())
                 .Returns(false);
             Venda venda = mock.Object;
-            ISalvarVendaService salvarVendaService = new SalvarVendaService(venda);
+            var mockVendaRepository = new Mock<IVendaRepository>();
+            mockVendaRepository.SetReturnsDefault<bool>(true);
+            IVendaRepository vendaRepository = mockVendaRepository.Object;
+            ISalvarVendaService salvarVendaService = new SalvarVendaService(venda, vendaRepository);
 
             bool executadoComSucesso = salvarVendaService.Executar();
 
@@ -48,19 +58,16 @@ namespace Dominio.Venda.Test
         public void TestExecutaComSucessoQuandoRepositorioEstaOK()
         {
             var mockVenda = new Mock<Venda>();
-            mockVenda
-                .Setup(v => v.Validar())
-                .Returns(false);
+            mockVenda.SetReturnsDefault<bool>(true);
             Venda venda = mockVenda.Object;
             var mockVendaRepository = new Mock<IVendaRepository>();
-            mockVendaRepository
-                .Setup(vr => vr.Salvar(It.IsAny<Venda>()))
-                .Returns(true);
-            ISalvarVendaService salvarVendaService = new SalvarVendaService(venda);
+            mockVendaRepository.SetReturnsDefault<bool>(true);
+            IVendaRepository vendaRepository = mockVendaRepository.Object;
+            ISalvarVendaService salvarVendaService = new SalvarVendaService(venda, vendaRepository);
 
             bool executadoComSucesso = salvarVendaService.Executar();
 
-            Assert.False(executadoComSucesso);
+            Assert.True(executadoComSucesso);
         }
     }
 }
