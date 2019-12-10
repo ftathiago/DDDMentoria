@@ -10,7 +10,9 @@ namespace Dominio.Venda
 
         public bool Executar()
         {
-            return venda.Validar();
+            if (!venda.Validar())
+                return false;
+            return true;
         }
     }
 }
