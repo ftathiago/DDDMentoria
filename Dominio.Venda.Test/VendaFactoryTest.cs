@@ -8,7 +8,7 @@ namespace Dominio.Venda.Test
         public void TestCriarFabrica()
         {
             IVendaFactory vendaFactory = new VendaFactory();
-            vendaDTO = new VendaDTO();
+            var vendaDTO = new VendaDTO();
 
             Venda venda = vendaFactory.Criar(vendaDTO);
 
