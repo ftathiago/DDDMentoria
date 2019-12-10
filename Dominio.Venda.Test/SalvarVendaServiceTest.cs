@@ -8,7 +8,7 @@ namespace Dominio.Venda.Test
         [Fact]
         public void TestCriarServicoSalvarVenda()
         {
-            var venda = new Venda("Cliente", FormaDePagamento.Dinheiro);
+            var venda = new Mock<Venda>().Object;
             var vendaRepositoryMock = new Mock<IVendaRepository>();
             vendaRepositoryMock.SetReturnsDefault<bool>(true);
             IVendaRepository vendaRepository = vendaRepositoryMock.Object;

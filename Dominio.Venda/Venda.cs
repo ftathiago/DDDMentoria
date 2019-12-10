@@ -6,16 +6,15 @@ namespace Dominio.Venda
 {
     public class Venda
     {
-        public string Cliente;
+        public Cliente Cliente;
         public FormaDePagamento FormaDePagamento { get; private set; }
         private readonly ICollection<VendaItem> VendaItem;
 
         protected Venda()
         {
-            Cliente = string.Empty;
             this.FormaDePagamento = FormaDePagamento.None;
         }
-        public Venda(string cliente, FormaDePagamento formaDePagamento)
+        public Venda(Cliente cliente, FormaDePagamento formaDePagamento)
         {
             Cliente = cliente;
             VendaItem = new List<VendaItem>();
