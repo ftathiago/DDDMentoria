@@ -20,6 +20,8 @@ namespace Dominio.Venda
                 return false;
             }
 
+            MensagemErro = "Não foi possível salvar a venda";
+
             return vendaRepository.Salvar(venda);
         }
     }
