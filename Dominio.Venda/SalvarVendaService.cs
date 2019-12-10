@@ -20,9 +20,11 @@ namespace Dominio.Venda
                 return false;
             }
 
-            MensagemErro = "Não foi possível salvar a venda";
+            bool salvouVenda = vendaRepository.Salvar(venda);
+            if (!salvouVenda)
+                MensagemErro = "Não foi possível salvar a venda";
 
-            return vendaRepository.Salvar(venda);
+            return salvouVenda;
         }
     }
 }
