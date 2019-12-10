@@ -68,5 +68,22 @@ namespace Dominio.Venda.Test
 
             Assert.True(executadoComSucesso);
         }
+
+        [Fact]
+        public void TestExecutaComSucessoQuandoRepositorioNaoGrava()
+        {
+            var mockVenda = new Mock<Venda>();
+            mockVenda.SetReturnsDefault<bool>(true);
+            Venda venda = mockVenda.Object;
+
+            var vendaRepositoryMock = new Mock<IVendaRepository>();
+            vendaRepositoryMock.SetReturnsDefault<bool>(false);
+            IVendaRepository vendaRepository = vendaRepositoryMock.Object;
+
+            ISalvarVendaService salvarVendaService = new SalvarVendaService(venda, vendaRepository);
+            bool executadoComSucesso = salvarVendaService.Executar();
+
+            Assert.False(executadoComSucesso);
+        }
     }
 }
