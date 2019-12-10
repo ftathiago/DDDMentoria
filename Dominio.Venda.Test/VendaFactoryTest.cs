@@ -46,7 +46,7 @@ namespace Dominio.Venda.Test
 
             Venda venda = vendaFactory.Criar(vendaDTO);
 
-            Assert.Equal(2, venda.VendaItem.Count());
+            Assert.Equal(2, venda.Itens.Count());
         }
     }
 }
