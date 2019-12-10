@@ -105,5 +105,24 @@ namespace Dominio.Venda.Test
 
             Assert.Equal(mensagemDeRetornoEsperada, mensagemErro);
         }
+        [Fact]
+        public void TestServicoPossuiMensagemDeErroQuandoRepositorioNaoSalva()
+        {
+            var mensagemDeRetornoEsperada = "Não foi possível salvar a venda";
+
+            var vendaMock = new Mock<Venda>();
+            vendaMock.SetReturnsDefault<bool>(true);
+            Venda venda = vendaMock.Object;
+
+            var vendaRepositoryMock = new Mock<IVendaRepository>();
+            vendaRepositoryMock.SetReturnsDefault<bool>(false);
+            IVendaRepository vendaRepository = vendaRepositoryMock.Object;
+
+            ISalvarVendaService salvarVendaService = new SalvarVendaService(venda, vendaRepository);
+            salvarVendaService.Executar();
+            var mensagemErro = salvarVendaService.MensagemErro;
+
+            Assert.Equal(mensagemDeRetornoEsperada, mensagemErro);
+        }
     }
 }
