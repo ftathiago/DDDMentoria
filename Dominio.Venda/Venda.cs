@@ -9,6 +9,12 @@ namespace Dominio.Venda
         public string Cliente;
         public FormaDePagamento FormaDePagamento { get; private set; }
         private readonly ICollection<VendaItem> VendaItem;
+
+        protected Venda()
+        {
+            Cliente = string.Empty;
+            this.FormaDePagamento = FormaDePagamento.None;
+        }
         public Venda(string cliente, FormaDePagamento formaDePagamento)
         {
             Cliente = cliente;
@@ -21,7 +27,7 @@ namespace Dominio.Venda
             VendaItem.Add(vendaItem);
         }
 
-        public bool Validar()
+        public virtual bool Validar()
         {
             if (FormaDePagamento == FormaDePagamento.None)
                 return false;

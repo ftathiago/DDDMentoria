@@ -1,4 +1,5 @@
 using Xunit;
+using Moq;
 
 namespace Dominio.Venda.Test
 {
@@ -16,7 +17,12 @@ namespace Dominio.Venda.Test
         [Fact]
         public void TestExecutarServicoComSucesso()
         {
-            var venda = new Venda("Cliente", FormaDePagamento.Dinheiro);
+            var mock = new Mock<Venda>();
+            mock
+                .Setup(v => v.Validar())
+                .Returns(true);
+
+            Venda venda = mock.Object;
             ISalvarVendaService salvarVendaService = new SalvarVendaService(venda);
 
             bool executadoComSucesso = salvarVendaService.Executar();
