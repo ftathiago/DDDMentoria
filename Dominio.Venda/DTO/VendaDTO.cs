@@ -1,4 +1,3 @@
-
 using System.Collections.Generic;
 
 namespace Dominio.Venda.DTO
@@ -8,6 +7,6 @@ namespace Dominio.Venda.DTO
         public Cliente Cliente { get; set; }
         public FormaDePagamento FormaDePagamento { get; set; }
 
-        public List<ProdutoVendido> Itens { get; set; }
+        public List<VendaItemDTO> Itens { get; set; }
     }
 }

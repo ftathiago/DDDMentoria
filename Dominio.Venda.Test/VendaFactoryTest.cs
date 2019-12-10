@@ -1,4 +1,5 @@
 using Dominio.Venda.DTO;
+using Dominio.Venda;
 using System.Collections.Generic;
 using System.Linq;
 using Xunit;
@@ -26,15 +27,15 @@ namespace Dominio.Venda.Test
             {
                 Cliente = new Cliente("Cliente"),
                 FormaDePagamento = FormaDePagamento.Dinheiro,
-                Itens = new List<ProdutoVendido>{
-                    new ProdutoVendido{
+                Itens = new List<VendaItemDTO>{
+                    new VendaItemDTO{
                         Descricao = "Produto1",
                         QuantidadeComprada = 10,
                         QuantidadePromocional = 10,
                         ValorUnitario = 10,
                         ValorUnitarioPromocional = 10
                     },
-                    new ProdutoVendido{
+                    new VendaItemDTO {
                         Descricao = "Produto2",
                         QuantidadeComprada = 20,
                         QuantidadePromocional = 20,

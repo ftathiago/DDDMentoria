@@ -1,5 +1,5 @@
 using Dominio.Venda.DTO;
-namespace Dominio.Venda.Test
+namespace Dominio.Venda
 {
     public class VendaFactory : IVendaFactory
     {

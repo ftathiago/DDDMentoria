@@ -13,13 +13,13 @@ namespace Dominio.Venda
 
         private ICalculadoraPrecoVendaItem calculadoraPrecoVendaItem;
 
-        public VendaItem(ProdutoVendido produtoVendido, ICalculadoraPrecoVendaItem calculadoraPrecoVendaItem)
+        public VendaItem(VendaItemDTO vendaItemDTO, ICalculadoraPrecoVendaItem calculadoraPrecoVendaItem)
         {
-            Descricao = produtoVendido.Descricao;
-            ValorUnitario = produtoVendido.ValorUnitario;
-            ValorUnitarioPromocional = produtoVendido.ValorUnitarioPromocional;
-            Quantidade = produtoVendido.QuantidadeComprada;
-            QuantidadePromocional = produtoVendido.QuantidadePromocional;
+            Descricao = vendaItemDTO.Descricao;
+            ValorUnitario = vendaItemDTO.ValorUnitario;
+            ValorUnitarioPromocional = vendaItemDTO.ValorUnitarioPromocional;
+            Quantidade = vendaItemDTO.QuantidadeComprada;
+            QuantidadePromocional = vendaItemDTO.QuantidadePromocional;
             this.calculadoraPrecoVendaItem = calculadoraPrecoVendaItem;
         }
 

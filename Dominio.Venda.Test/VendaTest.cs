@@ -100,7 +100,7 @@ namespace Dominio.Venda.Test
 
         private VendaItem VendaItemFactory(string Descricao, int QuantidadeComprada, int ValorUnitario, decimal quantidadePromocional = -1, decimal valorUnitarioPromocional = -1)
         {
-            var produtoVendido = new ProdutoVendido
+            var vendaItemDTO = new VendaItemDTO
             {
                 Descricao = Descricao,
                 QuantidadeComprada = QuantidadeComprada,
@@ -108,7 +108,7 @@ namespace Dominio.Venda.Test
                 QuantidadePromocional = quantidadePromocional,
                 ValorUnitarioPromocional = valorUnitarioPromocional
             };
-            return new VendaItem(produtoVendido, new CalculadoraPrecoVendaItem());
+            return new VendaItem(vendaItemDTO, new CalculadoraPrecoVendaItem());
         }
     }
 }
