@@ -6,31 +6,32 @@ namespace Dominio.Venda
 {
     public class Venda
     {
-        public Cliente Cliente;
+        public Cliente Cliente { get; private set; }
         public FormaDePagamento FormaDePagamento { get; private set; }
-        private readonly ICollection<VendaItem> VendaItem;
-
+        public IEnumerable<VendaItem> VendaItem { get => vendaItems; }
+        private readonly IList<VendaItem> vendaItems;
         protected Venda()
         {
+            vendaItems = new List<VendaItem>();
             this.FormaDePagamento = FormaDePagamento.None;
         }
         public Venda(Cliente cliente, FormaDePagamento formaDePagamento)
         {
             Cliente = cliente;
-            VendaItem = new List<VendaItem>();
+            vendaItems = new List<VendaItem>();
             FormaDePagamento = formaDePagamento;
         }
 
         public void AdicionarVendaItem(VendaItem vendaItem)
         {
-            VendaItem.Add(vendaItem);
+            vendaItems.Add(vendaItem);
         }
 
         public virtual bool Validar()
         {
             if (FormaDePagamento == FormaDePagamento.None)
                 return false;
-            if (VendaItem.Count <= 0)
+            if (VendaItem.Count() <= 0)
                 return false;
             if (TotalVenda() <= 0)
                 return false;
