@@ -1,3 +1,4 @@
+using Dominio.Venda.DTO;
 namespace Dominio.Venda.Test
 {
     public class VendaFactory : IVendaFactory

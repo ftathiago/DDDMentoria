@@ -1,3 +1,4 @@
+using Dominio.Venda.DTO;
 using Xunit;
 using Dominio.Venda;
 

@@ -1,3 +1,4 @@
+using Dominio.Venda.DTO;
 using System.Collections.Generic;
 using System.Linq;
 using Xunit;

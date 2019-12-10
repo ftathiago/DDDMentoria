@@ -1,4 +1,4 @@
-namespace Dominio.Venda
+namespace Dominio.Venda.DTO
 {
     public class ProdutoVendido
     {

@@ -13,6 +13,7 @@ namespace Dominio.Venda
         protected Venda()
         {
             itensLista = new List<VendaItem>();
+            Cliente = new Cliente(string.Empty);
             this.FormaDePagamento = FormaDePagamento.None;
         }
         public Venda(Cliente cliente, FormaDePagamento formaDePagamento)
