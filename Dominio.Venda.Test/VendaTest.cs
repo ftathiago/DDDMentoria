@@ -35,12 +35,13 @@ namespace Dominio.Venda.Test
         [InlineData(FormaDePagamento.Cheque)]
         public void TestCriarVendaComFormaDePagamento(FormaDePagamento formaDePagamento)
         {
-            string cliente = "Cliente";
+            var cliente = new Cliente("Cliente");
 
-            Venda venda = new Venda(new Cliente("Cliente"), formaDePagamento);
+            Venda venda = new Venda(cliente, formaDePagamento);
+            Cliente clienteRetornado = venda.Cliente;
 
             Assert.Equal(formaDePagamento, venda.FormaDePagamento);
-            Assert.Equal("Cliente", cliente);
+            Assert.Equal(cliente, clienteRetornado);
         }
 
         [Fact]
