@@ -13,7 +13,7 @@ namespace Dominio.Venda.ValueObjects
 
         public bool Validar()
         {
-            return true;
+            return _valor > 0;
         }
 
         public static implicit operator ValorUnitario(decimal valor)
