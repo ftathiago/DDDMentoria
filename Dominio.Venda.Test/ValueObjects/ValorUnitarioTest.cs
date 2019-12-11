@@ -40,7 +40,16 @@ namespace Dominio.Venda.Test.ValueObjects
             bool estaValido = valorUnitario.Validar();
 
             Assert.False(estaValido);
+        }
 
+        [Fact]
+        public void TestAtribuicaoEsquerda()
+        {
+            ValorUnitario valorUnitario = new ValorUnitario(10M);
+
+            decimal valorCast = valorUnitario;
+
+            Assert.Equal(valorInicial, valorCast);
         }
     }
 }
