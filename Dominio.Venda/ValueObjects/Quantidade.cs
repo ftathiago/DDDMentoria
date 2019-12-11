@@ -15,5 +15,10 @@ namespace Dominio.Venda.ValueObjects
         {
             return new Quantidade(value);
         }
+
+        public bool Validar()
+        {
+            return _value > 0;
+        }
     }
 }

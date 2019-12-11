@@ -25,11 +25,32 @@ namespace Dominio.Venda.Test.ValueObjects
         [Fact]
         public void TestQuantidadeValida()
         {
-            Quantidade quantidade = new Quantidade(0.01M);
+            Quantidade quantidade = new Quantidade(0.001M);
 
             bool estaValido = quantidade.Validar();
 
             Assert.True(estaValido);
+        }
+
+        [Fact]
+        public void TestQuantidadeInvalida()
+        {
+            Quantidade quantidade = new Quantidade(0.000M);
+
+            bool estaValido = quantidade.Validar();
+
+            Assert.False(estaValido);
+        }
+
+        [Fact]
+        public void TestAtribuicaoEsquerda()
+        {
+            const decimal quantidadeInicial = 10M;
+            Quantidade quantidade = new Quantidade(quantidadeInicial);
+
+            decimal quantidadeCast = quantidade;
+
+            Assert.Equal(quantidadeInicial, quantidadeCast);
         }
     }
 }
