@@ -6,9 +6,15 @@ namespace Dominio.Venda.ValueObjects
     {
         public decimal Value => _value;
         private decimal _value;
+
         public Quantidade(decimal quantidade)
         {
             _value = quantidade;
+        }
+
+        public bool Validar()
+        {
+            return _value > 0;
         }
 
         public static implicit operator Quantidade(decimal value)
@@ -21,9 +27,5 @@ namespace Dominio.Venda.ValueObjects
             return quantidade.Value;
         }
 
-        public bool Validar()
-        {
-            return _value > 0;
-        }
     }
 }
