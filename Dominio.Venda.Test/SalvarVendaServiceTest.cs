@@ -1,3 +1,7 @@
+using Dominio.Venda.Repository;
+using Dominio.Venda.Entity;
+using Dominio.Venda.Services;
+using Dominio.Venda.Services.Impl;
 using Xunit;
 using Moq;
 
@@ -8,7 +12,7 @@ namespace Dominio.Venda.Test
         [Fact]
         public void TestCriarServicoSalvarVenda()
         {
-            var venda = new Mock<Venda>().Object;
+            var venda = new Mock<VendaEntity>().Object;
             var vendaRepositoryMock = new Mock<IVendaRepository>();
             vendaRepositoryMock.SetReturnsDefault<bool>(true);
             IVendaRepository vendaRepository = vendaRepositoryMock.Object;
@@ -21,9 +25,9 @@ namespace Dominio.Venda.Test
         [Fact]
         public void TestExecutarServicoComSucesso()
         {
-            var vendaMock = new Mock<Venda>();
+            var vendaMock = new Mock<VendaEntity>();
             vendaMock.SetReturnsDefault<bool>(true);
-            Venda venda = vendaMock.Object;
+            VendaEntity venda = vendaMock.Object;
 
             var vendaRepositoryMock = new Mock<IVendaRepository>();
             vendaRepositoryMock.SetReturnsDefault<bool>(true);
@@ -38,9 +42,9 @@ namespace Dominio.Venda.Test
         [Fact]
         public void TestExecutarServicoSemSucesso()
         {
-            var vendaMock = new Mock<Venda>();
+            var vendaMock = new Mock<VendaEntity>();
             vendaMock.SetReturnsDefault<bool>(false);
-            Venda venda = vendaMock.Object;
+            VendaEntity venda = vendaMock.Object;
 
             var vendaRepositoryMock = new Mock<IVendaRepository>();
             vendaRepositoryMock.SetReturnsDefault<bool>(true);
@@ -55,9 +59,9 @@ namespace Dominio.Venda.Test
         [Fact]
         public void TestExecutaComSucessoQuandoRepositorioEstaOK()
         {
-            var mockVenda = new Mock<Venda>();
+            var mockVenda = new Mock<VendaEntity>();
             mockVenda.SetReturnsDefault<bool>(true);
-            Venda venda = mockVenda.Object;
+            VendaEntity venda = mockVenda.Object;
 
             var vendaRepositoryMock = new Mock<IVendaRepository>();
             vendaRepositoryMock.SetReturnsDefault<bool>(true);
@@ -72,9 +76,9 @@ namespace Dominio.Venda.Test
         [Fact]
         public void TestExecutaComSucessoQuandoRepositorioNaoGrava()
         {
-            var mockVenda = new Mock<Venda>();
+            var mockVenda = new Mock<VendaEntity>();
             mockVenda.SetReturnsDefault<bool>(true);
-            Venda venda = mockVenda.Object;
+            VendaEntity venda = mockVenda.Object;
 
             var vendaRepositoryMock = new Mock<IVendaRepository>();
             vendaRepositoryMock.SetReturnsDefault<bool>(false);
@@ -91,9 +95,9 @@ namespace Dominio.Venda.Test
         {
             var mensagemDeRetornoEsperada = "A venda está invalida!";
 
-            var vendaMock = new Mock<Venda>();
+            var vendaMock = new Mock<VendaEntity>();
             vendaMock.SetReturnsDefault<bool>(false);
-            Venda venda = vendaMock.Object;
+            VendaEntity venda = vendaMock.Object;
 
             var vendaRepositoryMock = new Mock<IVendaRepository>();
             vendaRepositoryMock.SetReturnsDefault<bool>(true);
@@ -110,9 +114,9 @@ namespace Dominio.Venda.Test
         {
             var mensagemDeRetornoEsperada = "Não foi possível salvar a venda";
 
-            var vendaMock = new Mock<Venda>();
+            var vendaMock = new Mock<VendaEntity>();
             vendaMock.SetReturnsDefault<bool>(true);
-            Venda venda = vendaMock.Object;
+            VendaEntity venda = vendaMock.Object;
 
             var vendaRepositoryMock = new Mock<IVendaRepository>();
             vendaRepositoryMock.SetReturnsDefault<bool>(false);

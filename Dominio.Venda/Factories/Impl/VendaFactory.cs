@@ -1,9 +1,11 @@
 using Dominio.Venda.DTO;
+using Dominio.Venda.Entity;
+
 namespace Dominio.Venda
 {
     public class VendaFactory : IVendaFactory
     {
-        public Venda Criar(VendaDTO vendaDTO)
+        public VendaEntity Criar(VendaDTO vendaDTO)
         {
             var venda = CriarVenda(vendaDTO);
             AdicionarItens(venda, vendaDTO);
@@ -11,12 +13,12 @@ namespace Dominio.Venda
             return venda;
         }
 
-        private Venda CriarVenda(VendaDTO vendaDTO)
+        private VendaEntity CriarVenda(VendaDTO vendaDTO)
         {
-            return new Venda(vendaDTO.Cliente, vendaDTO.FormaDePagamento);
+            return new VendaEntity(vendaDTO.Cliente, vendaDTO.FormaDePagamento);
         }
 
-        private void AdicionarItens(Venda venda, VendaDTO vendaDTO)
+        private void AdicionarItens(VendaEntity venda, VendaDTO vendaDTO)
         {
             if (vendaDTO.Itens == null)
                 return;

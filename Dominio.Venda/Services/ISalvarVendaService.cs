@@ -1,4 +1,4 @@
-namespace Dominio.Venda
+namespace Dominio.Venda.Services
 {
     public interface ISalvarVendaService
     {

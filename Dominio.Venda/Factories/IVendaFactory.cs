@@ -1,9 +1,10 @@
 using Dominio.Venda.DTO;
+using Dominio.Venda.Entity;
 
 namespace Dominio.Venda
 {
     public interface IVendaFactory
     {
-        Venda Criar(VendaDTO vendaDTO);
+        VendaEntity Criar(VendaDTO vendaDTO);
     }
 }

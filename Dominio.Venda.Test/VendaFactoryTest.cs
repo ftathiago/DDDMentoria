@@ -1,4 +1,5 @@
 using Dominio.Venda.DTO;
+using Dominio.Venda.Entity;
 using System.Collections.Generic;
 using System.Linq;
 using Xunit;
@@ -13,10 +14,10 @@ namespace Dominio.Venda.Test
             IVendaFactory vendaFactory = new VendaFactory();
             var vendaDTO = new VendaDTO();
 
-            Venda venda = vendaFactory.Criar(vendaDTO);
+            VendaEntity venda = vendaFactory.Criar(vendaDTO);
 
             Assert.NotNull(venda);
-            Assert.IsAssignableFrom<Venda>(venda);
+            Assert.IsAssignableFrom<VendaEntity>(venda);
         }
 
         [Fact]
@@ -24,7 +25,7 @@ namespace Dominio.Venda.Test
         {
             var vendaDTO = new VendaDTO
             {
-                Cliente = new Cliente("Cliente"),
+                Cliente = new ClienteDTO("Cliente"),
                 FormaDePagamento = FormaDePagamento.Dinheiro,
                 Itens = new List<VendaItemDTO>{
                     new VendaItemDTO{
@@ -45,7 +46,7 @@ namespace Dominio.Venda.Test
             };
             IVendaFactory vendaFactory = new VendaFactory();
 
-            Venda venda = vendaFactory.Criar(vendaDTO);
+            VendaEntity venda = vendaFactory.Criar(vendaDTO);
 
             Assert.Equal(2, venda.Itens.Count());
         }

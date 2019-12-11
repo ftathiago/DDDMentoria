@@ -1,22 +1,23 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Dominio.Venda.DTO;
 
-namespace Dominio.Venda
+namespace Dominio.Venda.Entity
 {
-    public class Venda
+    public class VendaEntity
     {
-        public Cliente Cliente { get; private set; }
+        public ClienteDTO Cliente { get; private set; }
         public FormaDePagamento FormaDePagamento { get; private set; }
         public IEnumerable<VendaItem> Itens { get => itensLista; }
         private readonly IList<VendaItem> itensLista;
-        protected Venda()
+        protected VendaEntity()
         {
             itensLista = new List<VendaItem>();
-            Cliente = new Cliente(string.Empty);
+            Cliente = new ClienteDTO(string.Empty);
             this.FormaDePagamento = FormaDePagamento.None;
         }
-        public Venda(Cliente cliente, FormaDePagamento formaDePagamento)
+        public VendaEntity(ClienteDTO cliente, FormaDePagamento formaDePagamento)
         {
             Cliente = cliente;
             itensLista = new List<VendaItem>();

@@ -1,6 +1,6 @@
 using Dominio.Venda.DTO;
 
-namespace Dominio.Venda
+namespace Dominio.Venda.Entity
 {
     public class VendaItem
     {

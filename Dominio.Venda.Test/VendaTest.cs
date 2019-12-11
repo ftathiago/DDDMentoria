@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Dominio.Venda.DTO;
+using Dominio.Venda.Entity;
 using Xunit;
 
 namespace Dominio.Venda.Test
@@ -36,7 +37,7 @@ namespace Dominio.Venda.Test
         [InlineData(FormaDePagamento.Cheque)]
         public void TestCriarVendaComFormaDePagamento(FormaDePagamento formaDePagamento)
         {
-            var cliente = new Cliente("Cliente");
+            var cliente = new ClienteDTO("Cliente");
             var vendaDTO = new VendaDTO()
             {
                 Cliente = cliente,
@@ -44,8 +45,8 @@ namespace Dominio.Venda.Test
                 Itens = new List<VendaItemDTO>()
             };
 
-            Venda venda = new VendaFactory().Criar(vendaDTO);
-            Cliente clienteRetornado = venda.Cliente;
+            VendaEntity venda = new VendaFactory().Criar(vendaDTO);
+            ClienteDTO clienteRetornado = venda.Cliente;
 
             Assert.Equal(formaDePagamento, venda.FormaDePagamento);
             Assert.Equal(cliente, clienteRetornado);
@@ -56,13 +57,13 @@ namespace Dominio.Venda.Test
         {
             var vendaDTO = new VendaDTO
             {
-                Cliente = new Cliente("Cliente"),
+                Cliente = new ClienteDTO("Cliente"),
                 FormaDePagamento = FormaDePagamento.Dinheiro,
                 Itens = new List<VendaItemDTO>{
                     VendaItemDTOFactory("Produto1", 1, 1)
                 }
             };
-            Venda venda = new VendaFactory().Criar(vendaDTO);
+            VendaEntity venda = new VendaFactory().Criar(vendaDTO);
 
             bool vendaEhValida = venda.Validar();
 
@@ -74,11 +75,11 @@ namespace Dominio.Venda.Test
         {
             VendaDTO vendaDTO = new VendaDTO
             {
-                Cliente = new Cliente("Cliente"),
+                Cliente = new ClienteDTO("Cliente"),
                 FormaDePagamento = FormaDePagamento.Dinheiro
             };
 
-            Venda venda = new VendaFactory().Criar(vendaDTO);
+            VendaEntity venda = new VendaFactory().Criar(vendaDTO);
 
             bool vendaEhValida = venda.Validar();
 
@@ -90,13 +91,13 @@ namespace Dominio.Venda.Test
         {
             VendaDTO vendaDTO = new VendaDTO
             {
-                Cliente = new Cliente("Cliente"),
+                Cliente = new ClienteDTO("Cliente"),
                 FormaDePagamento = FormaDePagamento.Dinheiro,
                 Itens = new List<VendaItemDTO>{
                     VendaItemDTOFactory("Produto", 0, 1)
                 }
             };
-            Venda venda = new VendaFactory().Criar(vendaDTO);
+            VendaEntity venda = new VendaFactory().Criar(vendaDTO);
 
             bool vendaEhValida = venda.Validar();
             decimal totalVendido = venda.TotalVenda();
@@ -110,22 +111,22 @@ namespace Dominio.Venda.Test
         {
             VendaDTO vendaDTO = new VendaDTO
             {
-                Cliente = new Cliente("Cliente"),
+                Cliente = new ClienteDTO("Cliente"),
                 FormaDePagamento = FormaDePagamento.None,
                 Itens = new List<VendaItemDTO>{
                     VendaItemDTOFactory("Descricao", 1, 1)
                 }
             };
-            Venda venda = new VendaFactory().Criar(vendaDTO);
+            VendaEntity venda = new VendaFactory().Criar(vendaDTO);
 
             var vendaEhValida = venda.Validar();
 
             Assert.False(vendaEhValida);
         }
 
-        private Venda VendaFactory(FormaDePagamento formaDePagamento = FormaDePagamento.None)
+        private VendaEntity VendaFactory(FormaDePagamento formaDePagamento = FormaDePagamento.None)
         {
-            return new Venda(new Cliente("Cliente"), formaDePagamento);
+            return new VendaEntity(new ClienteDTO("Cliente"), formaDePagamento);
         }
 
         private VendaItemDTO VendaItemDTOFactory(string Descricao, int QuantidadeComprada, int ValorUnitario,

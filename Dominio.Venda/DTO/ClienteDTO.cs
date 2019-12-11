@@ -1,9 +1,9 @@
-namespace Dominio.Venda
+namespace Dominio.Venda.DTO
 {
-    public class Cliente
+    public class ClienteDTO
     {
         public string Descricao { get; set; }
-        public Cliente(string descricao)
+        public ClienteDTO(string descricao)
         {
             this.Descricao = descricao;
         }

@@ -1,11 +1,14 @@
-namespace Dominio.Venda
+using Dominio.Venda.Repository;
+using Dominio.Venda.Entity;
+
+namespace Dominio.Venda.Services.Impl
 {
     public class SalvarVendaService : ISalvarVendaService
     {
         public string MensagemErro { get; private set; }
-        private readonly Venda venda;
+        private readonly VendaEntity venda;
         private readonly IVendaRepository vendaRepository;
-        public SalvarVendaService(Venda venda, IVendaRepository vendaRepository)
+        public SalvarVendaService(VendaEntity venda, IVendaRepository vendaRepository)
         {
             this.venda = venda;
             this.vendaRepository = vendaRepository;
