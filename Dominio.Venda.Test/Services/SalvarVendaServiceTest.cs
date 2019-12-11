@@ -5,7 +5,7 @@ using Dominio.Venda.Services.Impl;
 using Xunit;
 using Moq;
 
-namespace Dominio.Venda.Test
+namespace Dominio.Venda.Test.Services
 {
     public class SalvarVendaServiceTest
     {
