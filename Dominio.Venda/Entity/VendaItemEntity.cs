@@ -1,12 +1,13 @@
 using Dominio.Venda.DTO;
+using Dominio.Venda.ValueObjects;
 
 namespace Dominio.Venda.Entity
 {
     public class VendaItemEntity
     {
         public string Descricao { get; private set; }
-        public decimal ValorUnitario { get; private set; }
-        public decimal ValorUnitarioPromocional { get; private set; }
+        public ValorUnitario ValorUnitario { get; private set; }
+        public ValorUnitario ValorUnitarioPromocional { get; private set; }
 
         public decimal Quantidade { get; private set; }
         public decimal QuantidadePromocional { get; private set; }
