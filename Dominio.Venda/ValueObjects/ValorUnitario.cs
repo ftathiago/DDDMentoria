@@ -20,5 +20,10 @@ namespace Dominio.Venda.ValueObjects
         {
             return new ValorUnitario(valor);
         }
+
+        public static implicit operator decimal(ValorUnitario valorUnitario)
+        {
+            return valorUnitario.Value;
+        }
     }
 }

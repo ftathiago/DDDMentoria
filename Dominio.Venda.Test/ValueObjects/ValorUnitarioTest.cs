@@ -45,7 +45,8 @@ namespace Dominio.Venda.Test.ValueObjects
         [Fact]
         public void TestAtribuicaoEsquerda()
         {
-            ValorUnitario valorUnitario = new ValorUnitario(10M);
+            const decimal valorInicial = 10M;
+            ValorUnitario valorUnitario = new ValorUnitario(valorInicial);
 
             decimal valorCast = valorUnitario;
 
