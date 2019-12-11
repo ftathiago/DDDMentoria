@@ -1,5 +1,5 @@
 using Dominio.Venda.DTO;
-using Dominio.Venda.Entity;
+using Dominio.Venda.Entities;
 using Xunit;
 using Moq;
 using Dominio.Venda.ValueObjects;

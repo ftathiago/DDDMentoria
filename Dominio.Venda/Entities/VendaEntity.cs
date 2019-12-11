@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Dominio.Venda.DTO;
 
-namespace Dominio.Venda.Entity
+namespace Dominio.Venda.Entities
 {
     public class VendaEntity
     {

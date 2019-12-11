@@ -1,5 +1,5 @@
 using Dominio.Venda.Repository;
-using Dominio.Venda.Entity;
+using Dominio.Venda.Entities;
 using Dominio.Venda.Services;
 using Dominio.Venda.Services.Impl;
 using Xunit;

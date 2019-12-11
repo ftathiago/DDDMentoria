@@ -1,4 +1,4 @@
-using Dominio.Venda.Entity;
+using Dominio.Venda.Entities;
 
 namespace Dominio.Venda.Repository
 {

@@ -1,7 +1,7 @@
 using Dominio.Venda.DTO;
 using Dominio.Venda.ValueObjects;
 
-namespace Dominio.Venda.Entity
+namespace Dominio.Venda.Entities
 {
     public class VendaItemEntity
     {
