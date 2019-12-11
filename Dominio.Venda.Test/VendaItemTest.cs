@@ -12,7 +12,7 @@ namespace Dominio.Venda.Test
         {
             VendaItemDTO vendaItemDTO = ProdutoVendidoFactory("Produto", 1, 10);
 
-            VendaItem vendaItem = new VendaItem(vendaItemDTO, new CalculadoraPrecoVendaItem());
+            VendaItemEntity vendaItem = new VendaItemEntity(vendaItemDTO, new CalculadoraPrecoVendaItem());
 
             Assert.NotNull(vendaItem);
         }
@@ -25,7 +25,7 @@ namespace Dominio.Venda.Test
                 descricao: "Produto",
                 quantidadeComprada: 1,
                 valorUnitario: valorEsperado);
-            VendaItem vendaItem = new VendaItem(vendaItemDTO, new CalculadoraPrecoVendaItem());
+            VendaItemEntity vendaItem = new VendaItemEntity(vendaItemDTO, new CalculadoraPrecoVendaItem());
 
             decimal valorExposto = vendaItem.ValorUnitario;
 
@@ -41,7 +41,7 @@ namespace Dominio.Venda.Test
                 quantidadeComprada: 1,
                 valorUnitario: 0,
                 valorUnitarioPromocional: valorEsperado);
-            VendaItem vendaItem = new VendaItem(vendaItemDTO, new CalculadoraPrecoVendaItem());
+            VendaItemEntity vendaItem = new VendaItemEntity(vendaItemDTO, new CalculadoraPrecoVendaItem());
 
             decimal valorEsposto = vendaItem.ValorUnitarioPromocional;
 
@@ -62,7 +62,7 @@ namespace Dominio.Venda.Test
                 quantidadeComprada: 1,
                 valorUnitario: 0,
                 valorUnitarioPromocional: valorEsperado);
-            VendaItem vendaItem = new VendaItem(vendaItemDTO, calculadora);
+            VendaItemEntity vendaItem = new VendaItemEntity(vendaItemDTO, calculadora);
 
             decimal valorEsposto = vendaItem.ValorTotal(FormaDePagamento.Dinheiro);
 

@@ -24,7 +24,7 @@ namespace Dominio.Venda
                 return;
             foreach (var item in vendaDTO.Itens)
             {
-                var vendaItem = new VendaItem(item, new CalculadoraPrecoVendaItem());
+                var vendaItem = new VendaItemEntity(item, new CalculadoraPrecoVendaItem());
                 venda.AdicionarVendaItem(vendaItem);
             }
         }

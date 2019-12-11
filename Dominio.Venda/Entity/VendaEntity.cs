@@ -9,22 +9,22 @@ namespace Dominio.Venda.Entity
     {
         public ClienteDTO Cliente { get; private set; }
         public FormaDePagamento FormaDePagamento { get; private set; }
-        public IEnumerable<VendaItem> Itens { get => itensLista; }
-        private readonly IList<VendaItem> itensLista;
+        public IEnumerable<VendaItemEntity> Itens { get => itensLista; }
+        private readonly IList<VendaItemEntity> itensLista;
         protected VendaEntity()
         {
-            itensLista = new List<VendaItem>();
+            itensLista = new List<VendaItemEntity>();
             Cliente = new ClienteDTO(string.Empty);
             this.FormaDePagamento = FormaDePagamento.None;
         }
         public VendaEntity(ClienteDTO cliente, FormaDePagamento formaDePagamento)
         {
             Cliente = cliente;
-            itensLista = new List<VendaItem>();
+            itensLista = new List<VendaItemEntity>();
             FormaDePagamento = formaDePagamento;
         }
 
-        public void AdicionarVendaItem(VendaItem vendaItem)
+        public void AdicionarVendaItem(VendaItemEntity vendaItem)
         {
             itensLista.Add(vendaItem);
         }

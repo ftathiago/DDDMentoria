@@ -2,7 +2,7 @@ using Dominio.Venda.DTO;
 
 namespace Dominio.Venda.Entity
 {
-    public class VendaItem
+    public class VendaItemEntity
     {
         public string Descricao { get; private set; }
         public decimal ValorUnitario { get; private set; }
@@ -13,7 +13,7 @@ namespace Dominio.Venda.Entity
 
         private ICalculadoraPrecoVendaItem calculadoraPrecoVendaItem;
 
-        public VendaItem(VendaItemDTO vendaItemDTO, ICalculadoraPrecoVendaItem calculadoraPrecoVendaItem)
+        public VendaItemEntity(VendaItemDTO vendaItemDTO, ICalculadoraPrecoVendaItem calculadoraPrecoVendaItem)
         {
             Descricao = vendaItemDTO.Descricao;
             ValorUnitario = vendaItemDTO.ValorUnitario;
