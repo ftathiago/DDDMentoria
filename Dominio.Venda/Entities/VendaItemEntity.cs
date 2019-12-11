@@ -1,4 +1,4 @@
-using Dominio.Venda.DTO;
+using Dominio.Venda.DTOs;
 using Dominio.Venda.ValueObjects;
 
 namespace Dominio.Venda.Entities

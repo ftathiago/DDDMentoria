@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Dominio.Venda.DTO;
+using Dominio.Venda.DTOs;
 
 namespace Dominio.Venda.Entities
 {

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Dominio.Venda.DTO
+namespace Dominio.Venda.DTOs
 {
     public class VendaDTO
     {
