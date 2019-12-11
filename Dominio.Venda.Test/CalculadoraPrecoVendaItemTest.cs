@@ -1,3 +1,4 @@
+using Dominio.Venda.ValueObjects;
 using Xunit;
 using System;
 
@@ -23,18 +24,18 @@ namespace Dominio.Venda.Test
         [InlineData(FormaDePagamento.Debito)]
         public void TestQuantidadeGaranteCalculoNormal(FormaDePagamento formaDePagamento)
         {
-            decimal quantidadeVendidaMenorQuePromocional = 5.5M;
-            decimal valorUnitario = 10;
-            decimal quantidadePromocionalMaiorQueComprado = 5.51M;
-            decimal valorPromocional = 20M;
-            decimal valorEsperado = 55M;
+            Quantidade quantidadeVendidaMenorQuePromocional = new Quantidade(5.5M);
+            ValorUnitario valorUnitario = new ValorUnitario(10);
+            Quantidade quantidadePromocionalMaiorQueComprado = new Quantidade(5.51M);
+            ValorUnitario valorPromocional = new ValorUnitario(20M);
+            ValorUnitario valorEsperado = new ValorUnitario(55M);
             var calculadoraPrecoVendaItem = new CalculadoraPrecoVendaItem();
 
             var valorCalculado = calculadoraPrecoVendaItem.Calcular(
                 formaDePagamento, quantidadeVendidaMenorQuePromocional, valorUnitario,
                 quantidadePromocionalMaiorQueComprado, valorPromocional);
 
-            Assert.Equal(valorEsperado, valorCalculado);
+            Assert.Equal(valorEsperado.Value, valorCalculado.Value);
         }
 
         [Theory]
@@ -46,17 +47,17 @@ namespace Dominio.Venda.Test
         public void TestFormaDePagamentoGaranteCalculoNormal(FormaDePagamento formaDePagamento,
             decimal valorEsperado)
         {
-            decimal quantidadeVendidaMaiorQuePromocional = 5.52M;
-            decimal valorUnitario = 10;
-            decimal quantidadePromocionalMenorQueComprado = 5.51M;
-            decimal valorPromocional = 20M;
+            Quantidade quantidadeVendidaMaiorQuePromocional = 5.52M;
+            ValorUnitario valorUnitario = 10;
+            Quantidade quantidadePromocionalMenorQueComprado = 5.51M;
+            ValorUnitario valorPromocional = 20M;
             var calculadoraPrecoVendaItem = new CalculadoraPrecoVendaItem();
 
             var valorCalculado = calculadoraPrecoVendaItem.Calcular(
                 formaDePagamento, quantidadeVendidaMaiorQuePromocional, valorUnitario,
                 quantidadePromocionalMenorQueComprado, valorPromocional);
 
-            Assert.Equal(valorEsperado, valorCalculado);
+            Assert.Equal(valorEsperado, valorCalculado.Value);
         }
 
         [Theory]
@@ -68,27 +69,27 @@ namespace Dominio.Venda.Test
         public void TestCalculaPrecoPromocional(FormaDePagamento formaDePagamento,
             decimal valorEsperado)
         {
-            decimal quantidadeVendidaMaiorQuePromocional = 5.52M;
-            decimal valorUnitario = 20;
-            decimal quantidadePromocionalMenorQueComprado = 5.51M;
-            decimal valorPromocional = 10;
+            Quantidade quantidadeVendidaMaiorQuePromocional = 5.52M;
+            ValorUnitario valorUnitario = 20;
+            Quantidade quantidadePromocionalMenorQueComprado = 5.51M;
+            ValorUnitario valorPromocional = 10;
             var calculadoraPrecoVendaItem = new CalculadoraPrecoVendaItem();
 
             var valorCalculado = calculadoraPrecoVendaItem.Calcular(
                 formaDePagamento, quantidadeVendidaMaiorQuePromocional, valorUnitario,
                 quantidadePromocionalMenorQueComprado, valorPromocional);
 
-            Assert.Equal(valorEsperado, valorCalculado);
+            Assert.Equal(valorEsperado, valorCalculado.Value);
         }
 
         [Fact]
         public void TestQuantidadePromocionalMenorZeroSempreCalculoNormal()
         {
-            decimal quantidadeVendidaMaiorQuePromocional = 5.52M;
-            decimal valorUnitario = 10.5M;
-            decimal quantidadePromocionalMenorZero = -0.01M;
-            decimal valorPromocional = -1;
-            decimal valorEsperado = 57.96M;
+            Quantidade quantidadeVendidaMaiorQuePromocional = 5.52M;
+            ValorUnitario valorUnitario = 10.5M;
+            Quantidade quantidadePromocionalMenorZero = -0.01M;
+            ValorUnitario valorPromocional = -1;
+            ValorUnitario valorEsperado = 57.96M;
             var formaDePagamento = FormaDePagamento.Dinheiro;
             var calculadoraPrecoVendaItem = new CalculadoraPrecoVendaItem();
 
@@ -96,7 +97,7 @@ namespace Dominio.Venda.Test
                 formaDePagamento, quantidadeVendidaMaiorQuePromocional, valorUnitario,
                 quantidadePromocionalMenorZero, valorPromocional);
 
-            Assert.Equal(valorEsperado, valorCalculado);
+            Assert.Equal(valorEsperado.Value, valorCalculado.Value);
         }
 
         [Fact]

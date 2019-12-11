@@ -7,8 +7,8 @@ namespace Dominio.Venda
     {
         public CalculadoraPrecoVendaItem() { }
 
-        public decimal Calcular(FormaDePagamento formaDePagamento, decimal quantidade, ValorUnitario valorUnitario,
-            decimal quantidadePromocional = 0, ValorUnitario? valorPromocional = null)
+        public ValorUnitario Calcular(FormaDePagamento formaDePagamento, Quantidade quantidade, ValorUnitario valorUnitario,
+            Quantidade? quantidadePromocional = null, ValorUnitario? valorPromocional = null)
         {
             if (DeveUsarPrecoVendaNormal(formaDePagamento, quantidade, quantidadePromocional))
                 return CalculoPrecoNormal(quantidade, valorUnitario);
@@ -16,7 +16,7 @@ namespace Dominio.Venda
         }
 
         private bool DeveUsarPrecoVendaNormal(FormaDePagamento formaDePagamento,
-            decimal quantidade, decimal quantidadePromocional)
+            Quantidade quantidade, Quantidade? quantidadePromocional)
         {
             if (!FormaDePagamentoEhValida(formaDePagamento))
                 throw new ArgumentException("Forma de pagamento inválida!");
@@ -45,19 +45,23 @@ namespace Dominio.Venda
             return false;
         }
 
-        private bool QuantidadeDefineCalculoNormal(decimal quantidade, decimal quantidadePromocional)
+        private bool QuantidadeDefineCalculoNormal(Quantidade quantidade, Quantidade? quantidadePromocional)
         {
-            if (quantidadePromocional <= 0)
+            if (quantidadePromocional == null)
                 return true;
-            return (quantidade < quantidadePromocional);
+
+            if (!quantidadePromocional.Validar())
+                return true;
+
+            return (quantidade.Value < quantidadePromocional.Value);
         }
 
-        private decimal CalculoPrecoNormal(decimal quantidade, decimal valorUnitario)
+        private ValorUnitario CalculoPrecoNormal(Quantidade quantidade, ValorUnitario valorUnitario)
         {
             return quantidade * valorUnitario;
         }
 
-        private decimal CalcularPrecoPromocional(decimal quantidade, ValorUnitario? valorPromocional)
+        private ValorUnitario CalcularPrecoPromocional(Quantidade quantidade, ValorUnitario? valorPromocional)
         {
             if (valorPromocional == null)
                 return 0;

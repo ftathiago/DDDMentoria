@@ -55,8 +55,8 @@ namespace Dominio.Venda.Test.Entities
         {
             decimal valorEsperado = 10.5M;
             var mock = new Mock<ICalculadoraPrecoVendaItem>();
-            mock.Setup(library => library.Calcular(It.IsAny<FormaDePagamento>(), It.IsAny<decimal>(), It.IsAny<ValorUnitario>(),
-                It.IsAny<decimal>(), It.IsAny<ValorUnitario>()))
+            mock.Setup(library => library.Calcular(It.IsAny<FormaDePagamento>(), It.IsAny<Quantidade>(), It.IsAny<ValorUnitario>(),
+                It.IsAny<Quantidade>(), It.IsAny<ValorUnitario>()))
                 .Returns(valorEsperado);
             ICalculadoraPrecoVendaItem calculadora = mock.Object;
             VendaItemDTO vendaItemDTO = ProdutoVendidoFactory(

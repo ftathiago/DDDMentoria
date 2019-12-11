@@ -9,8 +9,8 @@ namespace Dominio.Venda.Entities
         public ValorUnitario ValorUnitario { get; private set; }
         public ValorUnitario ValorUnitarioPromocional { get; private set; }
 
-        public decimal Quantidade { get; private set; }
-        public decimal QuantidadePromocional { get; private set; }
+        public Quantidade Quantidade { get; private set; }
+        public Quantidade QuantidadePromocional { get; private set; }
 
         private ICalculadoraPrecoVendaItem calculadoraPrecoVendaItem;
 

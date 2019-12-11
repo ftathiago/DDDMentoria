@@ -4,7 +4,7 @@ namespace Dominio.Venda
 {
     public interface ICalculadoraPrecoVendaItem
     {
-        decimal Calcular(FormaDePagamento formaDePagamento, decimal quantidade, ValorUnitario valorUnitario,
-            decimal quantidadePromocional = 0, ValorUnitario? valorPromocional = null);
+        ValorUnitario Calcular(FormaDePagamento formaDePagamento, Quantidade quantidade, ValorUnitario valorUnitario,
+            Quantidade? quantidadePromocional = null, ValorUnitario? valorPromocional = null);
     }
 }
