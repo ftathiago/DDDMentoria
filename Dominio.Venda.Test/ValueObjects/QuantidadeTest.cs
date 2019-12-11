@@ -12,5 +12,15 @@ namespace Dominio.Venda.Test.ValueObjects
 
             Assert.NotNull(quantidade);
         }
+
+        [Fact]
+        public void TestAtribuicaoDireita()
+        {
+            const decimal quantidadeEsperada = 10.001M;
+            Quantidade quantidade = quantidadeEsperada;
+
+            Assert.Equal(quantidadeEsperada, quantidade.Value);
+        }
+
     }
 }
