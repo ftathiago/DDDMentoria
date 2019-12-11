@@ -11,6 +11,11 @@ namespace Dominio.Venda.ValueObjects
             _valor = valor;
         }
 
+        public bool Validar()
+        {
+            return true;
+        }
+
         public static implicit operator ValorUnitario(decimal valor)
         {
             return new ValorUnitario(valor);
