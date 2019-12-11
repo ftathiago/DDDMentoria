@@ -16,6 +16,11 @@ namespace Dominio.Venda.ValueObjects
             return new Quantidade(value);
         }
 
+        public static implicit operator decimal(Quantidade quantidade)
+        {
+            return quantidade.Value;
+        }
+
         public bool Validar()
         {
             return _value > 0;
