@@ -8,12 +8,12 @@ namespace Dominio.Venda.ValueObjects
         private decimal _value;
         public Quantidade(decimal quantidade)
         {
-
+            _value = quantidade;
         }
 
-        public static implicit operator Quantidade(decimal v)
+        public static implicit operator Quantidade(decimal value)
         {
-            throw new NotImplementedException();
+            return new Quantidade(value);
         }
     }
 }
