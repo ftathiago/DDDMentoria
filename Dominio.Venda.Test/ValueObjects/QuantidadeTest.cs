@@ -1,3 +1,4 @@
+using Dominio.Venda.ValueObjects;
 using Xunit;
 
 namespace Dominio.Venda.Test.ValueObjects
