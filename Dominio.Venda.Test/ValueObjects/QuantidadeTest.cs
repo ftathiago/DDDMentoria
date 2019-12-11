@@ -22,5 +22,14 @@ namespace Dominio.Venda.Test.ValueObjects
             Assert.Equal(quantidadeEsperada, quantidade.Value);
         }
 
+        [Fact]
+        public void TestQuantidadeValida()
+        {
+            Quantidade quantidade = new Quantidade(0.01M);
+
+            bool estaValido = quantidade.Validar();
+
+            Assert.True(estaValido);
+        }
     }
 }
