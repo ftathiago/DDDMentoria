@@ -1,12 +1,14 @@
 using System;
+using Dominio.Venda.ValueObjects;
+
 namespace Dominio.Venda
 {
     public class CalculadoraPrecoVendaItem : ICalculadoraPrecoVendaItem
     {
         public CalculadoraPrecoVendaItem() { }
 
-        public decimal Calcular(FormaDePagamento formaDePagamento, decimal quantidade, decimal valorUnitario,
-            decimal quantidadePromocional = 0, decimal valorPromocional = 0)
+        public decimal Calcular(FormaDePagamento formaDePagamento, decimal quantidade, ValorUnitario valorUnitario,
+            decimal quantidadePromocional = 0, ValorUnitario? valorPromocional = null)
         {
             if (DeveUsarPrecoVendaNormal(formaDePagamento, quantidade, quantidadePromocional))
                 return CalculoPrecoNormal(quantidade, valorUnitario);
@@ -55,8 +57,10 @@ namespace Dominio.Venda
             return quantidade * valorUnitario;
         }
 
-        private decimal CalcularPrecoPromocional(decimal quantidade, decimal valorPromocional)
+        private decimal CalcularPrecoPromocional(decimal quantidade, ValorUnitario? valorPromocional)
         {
+            if (valorPromocional == null)
+                return 0;
             return quantidade * valorPromocional;
         }
     }

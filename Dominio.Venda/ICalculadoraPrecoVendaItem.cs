@@ -1,8 +1,10 @@
+using Dominio.Venda.ValueObjects;
+
 namespace Dominio.Venda
 {
     public interface ICalculadoraPrecoVendaItem
     {
-        decimal Calcular(FormaDePagamento formaDePagamento, decimal quantidade, decimal valorUnitario,
-            decimal quantidadePromocional = 0, decimal valorPromocional = 0);
+        decimal Calcular(FormaDePagamento formaDePagamento, decimal quantidade, ValorUnitario valorUnitario,
+            decimal quantidadePromocional = 0, ValorUnitario? valorPromocional = null);
     }
 }
