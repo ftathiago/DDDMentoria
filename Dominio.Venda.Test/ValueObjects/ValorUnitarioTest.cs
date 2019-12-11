@@ -21,5 +21,15 @@ namespace Dominio.Venda.Test.ValueObjects
 
             Assert.Equal(valorEsperado, valorUnitario.Value);
         }
+
+        [Fact]
+        public void TestValorUnitarioValido()
+        {
+            ValorUnitario valorUnitario = new ValorUnitario(0.01M);
+
+            bool estaValido = valorUnitario.Validar();
+
+            Assert.True(estaValido);
+        }
     }
 }
