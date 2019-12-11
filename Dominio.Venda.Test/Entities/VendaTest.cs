@@ -1,9 +1,10 @@
 using System.Collections.Generic;
 using Dominio.Venda.DTOs;
 using Dominio.Venda.Entities;
+using Dominio.Venda.Factories.Impl;
 using Xunit;
 
-namespace Dominio.Venda.Test
+namespace Dominio.Venda.Test.Entities
 {
     public class VendaTest
     {

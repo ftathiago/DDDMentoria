@@ -1,7 +1,7 @@
 using Dominio.Venda.DTOs;
 using Dominio.Venda.Entities;
 
-namespace Dominio.Venda
+namespace Dominio.Venda.Factories.Impl
 {
     public class VendaFactory : IVendaFactory
     {

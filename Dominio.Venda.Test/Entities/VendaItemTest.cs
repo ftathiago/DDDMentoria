@@ -1,10 +1,11 @@
 using Dominio.Venda.DTOs;
 using Dominio.Venda.Entities;
+using Dominio.Venda.ValueObjects;
 using Xunit;
 using Moq;
-using Dominio.Venda.ValueObjects;
 
-namespace Dominio.Venda.Test
+
+namespace Dominio.Venda.Test.Entities
 {
     public class VendaItemTest
     {
