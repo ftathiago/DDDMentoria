@@ -9,24 +9,24 @@ namespace Dominio.Venda.Entities
     {
         public ClienteDTO Cliente { get; private set; }
         public FormaDePagamento FormaDePagamento { get; private set; }
-        public IEnumerable<VendaItemEntity> Itens { get => itensLista; }
-        private readonly IList<VendaItemEntity> itensLista;
+        public IEnumerable<VendaItemEntity> Itens { get => _itensLista; }
+        private readonly IList<VendaItemEntity> _itensLista;
         protected VendaEntity()
         {
-            itensLista = new List<VendaItemEntity>();
+            _itensLista = new List<VendaItemEntity>();
             Cliente = new ClienteDTO(string.Empty);
             this.FormaDePagamento = FormaDePagamento.None;
         }
         public VendaEntity(ClienteDTO cliente, FormaDePagamento formaDePagamento)
         {
             Cliente = cliente;
-            itensLista = new List<VendaItemEntity>();
+            _itensLista = new List<VendaItemEntity>();
             FormaDePagamento = formaDePagamento;
         }
 
         public void AdicionarVendaItem(VendaItemEntity vendaItem)
         {
-            itensLista.Add(vendaItem);
+            _itensLista.Add(vendaItem);
         }
 
         public virtual bool Validar()

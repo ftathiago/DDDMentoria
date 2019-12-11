@@ -6,24 +6,24 @@ namespace Dominio.Venda.Services.Impl
     public class SalvarVendaService : ISalvarVendaService
     {
         public string MensagemErro { get; private set; }
-        private readonly VendaEntity venda;
-        private readonly IVendaRepository vendaRepository;
+        private readonly VendaEntity _venda;
+        private readonly IVendaRepository _vendaRepository;
         public SalvarVendaService(VendaEntity venda, IVendaRepository vendaRepository)
         {
-            this.venda = venda;
-            this.vendaRepository = vendaRepository;
+            this._venda = venda;
+            this._vendaRepository = vendaRepository;
             this.MensagemErro = string.Empty;
         }
 
         public bool Executar()
         {
-            if (!venda.Validar())
+            if (!_venda.Validar())
             {
                 MensagemErro = "A venda está invalida!";
                 return false;
             }
 
-            bool salvouVenda = vendaRepository.Salvar(venda);
+            bool salvouVenda = _vendaRepository.Salvar(_venda);
             if (!salvouVenda)
                 MensagemErro = "Não foi possível salvar a venda";
 
