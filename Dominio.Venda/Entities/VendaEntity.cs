@@ -17,8 +17,10 @@ namespace Dominio.Venda.Entities
             Cliente = new ClienteDTO(string.Empty);
             this.FormaDePagamento = FormaDePagamento.None;
         }
-        public VendaEntity(ClienteDTO cliente, FormaDePagamento formaDePagamento)
+        public VendaEntity(ClienteDTO? cliente, FormaDePagamento formaDePagamento)
         {
+            if (cliente == null)
+                throw new ArgumentException("O cliente para esta venda não foi informado!");
             Cliente = cliente;
             _itensLista = new List<VendaItemEntity>();
             FormaDePagamento = formaDePagamento;

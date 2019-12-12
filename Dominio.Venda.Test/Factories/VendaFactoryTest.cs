@@ -15,6 +15,7 @@ namespace Dominio.Venda.Test
         {
             IVendaFactory vendaFactory = new VendaFactory();
             var vendaDTO = new VendaDTO();
+            vendaDTO.Cliente = new ClienteDTO(string.Empty);
 
             VendaEntity venda = vendaFactory.Criar(vendaDTO);
 
