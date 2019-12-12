@@ -1,6 +1,6 @@
 using Dominio.Venda.ValueObjects;
 
-namespace Dominio.Venda
+namespace Dominio.Venda.Modules
 {
     public interface ICalculadoraPrecoVendaItem
     {

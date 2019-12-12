@@ -2,6 +2,7 @@ using Dominio.Venda.DTOs;
 using Dominio.Venda.Entities;
 using Dominio.Venda.Factories;
 using Dominio.Venda.Factories.Impl;
+using Dominio.Venda.Modules;
 using System.Collections.Generic;
 using System.Linq;
 using Xunit;

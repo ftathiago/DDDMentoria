@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Dominio.Venda.Modules;
 
 namespace Dominio.Venda.DTOs
 {

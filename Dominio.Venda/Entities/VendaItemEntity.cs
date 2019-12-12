@@ -1,5 +1,6 @@
 using Dominio.Venda.DTOs;
 using Dominio.Venda.ValueObjects;
+using Dominio.Venda.Modules;
 
 namespace Dominio.Venda.Entities
 {

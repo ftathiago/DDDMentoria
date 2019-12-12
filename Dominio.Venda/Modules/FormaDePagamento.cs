@@ -1,4 +1,4 @@
-namespace Dominio.Venda
+namespace Dominio.Venda.Modules
 {
     public enum FormaDePagamento
     {

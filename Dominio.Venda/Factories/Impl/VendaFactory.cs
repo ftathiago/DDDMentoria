@@ -1,5 +1,6 @@
 using Dominio.Venda.DTOs;
 using Dominio.Venda.Entities;
+using Dominio.Venda.Modules.Impl;
 
 namespace Dominio.Venda.Factories.Impl
 {

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Dominio.Venda.DTOs;
 using Dominio.Venda.Entities;
 using Dominio.Venda.Factories.Impl;
+using Dominio.Venda.Modules;
 using Xunit;
 
 namespace Dominio.Venda.Test.Entities

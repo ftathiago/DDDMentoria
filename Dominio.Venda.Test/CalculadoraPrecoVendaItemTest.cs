@@ -1,4 +1,6 @@
 using Dominio.Venda.ValueObjects;
+using Dominio.Venda.Modules;
+using Dominio.Venda.Modules.Impl;
 using Xunit;
 using System;
 

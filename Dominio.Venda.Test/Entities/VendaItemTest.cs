@@ -1,6 +1,8 @@
 using Dominio.Venda.DTOs;
 using Dominio.Venda.Entities;
 using Dominio.Venda.ValueObjects;
+using Dominio.Venda.Modules;
+using Dominio.Venda.Modules.Impl;
 using Xunit;
 using Moq;
 

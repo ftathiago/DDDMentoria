@@ -1,7 +1,8 @@
 using System;
 using Dominio.Venda.ValueObjects;
+using Dominio.Venda.Modules;
 
-namespace Dominio.Venda
+namespace Dominio.Venda.Modules.Impl
 {
     public class CalculadoraPrecoVendaItem : ICalculadoraPrecoVendaItem
     {
