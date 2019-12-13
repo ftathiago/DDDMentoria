@@ -1,9 +1,11 @@
+using Application.Venda.App;
+using Application.Venda.App.Impl;
 using System;
 using Xunit;
 
 namespace Application.Venda.Test.App
 {
-    public class VendaApplication
+    public class VendaApplicationTest
     {
         [Fact]
         public void EhPossivelCriarVendaApplication()
@@ -11,6 +13,12 @@ namespace Application.Venda.Test.App
             IVendaApplication vendaApplication = new VendaApplication();
 
             Assert.NotNull(vendaApplication);
+        }
+
+        [Fact]
+        public void DeveChamarServicoDeVenda()
+        {
+
         }
     }
 }
