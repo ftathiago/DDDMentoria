@@ -2,7 +2,7 @@ using CrossCutting.Models;
 using Dominio.Venda.Entities;
 using Dominio.Venda.Modules.Impl;
 
-namespace Dominio.Venda.Factories.Impl
+namespace Application.Venda.Factories.Impl
 {
     public class VendaFactory : IVendaFactory
     {

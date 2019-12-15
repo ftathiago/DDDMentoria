@@ -133,6 +133,8 @@ namespace Dominio.Venda.Test.Entities
         private VendaEntity VendaFactory(VendaDTO vendaDTO)
         {
             var venda = new VendaEntity(vendaDTO.Cliente, vendaDTO.FormaDePagamento);
+            if (vendaDTO.Itens == null)
+                return venda;
             foreach (var item in vendaDTO?.Itens)
             {
                 var vendaItem = new VendaItemEntity(item, new CalculadoraPrecoVendaItem());

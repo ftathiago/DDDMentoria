@@ -1,7 +1,7 @@
 using CrossCutting.Models;
 using Dominio.Venda.Entities;
 
-namespace Dominio.Venda.Factories
+namespace Application.Venda.Factories
 {
     public interface IVendaFactory
     {

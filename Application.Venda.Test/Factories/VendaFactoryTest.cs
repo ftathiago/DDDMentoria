@@ -1,7 +1,7 @@
 using CrossCutting.Models;
 using Dominio.Venda.Entities;
-using Dominio.Venda.Factories;
-using Dominio.Venda.Factories.Impl;
+using Application.Venda.Factories;
+using Application.Venda.Factories.Impl;
 using System.Collections.Generic;
 using System.Linq;
 using Xunit;
