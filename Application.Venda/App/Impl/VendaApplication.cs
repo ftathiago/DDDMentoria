@@ -6,7 +6,7 @@ namespace Application.Venda.App.Impl
     {
         public bool ProcessarVenda(VendaDTO vendaDTO)
         {
-            throw new System.NotImplementedException();
+            return true;
         }
     }
 }
