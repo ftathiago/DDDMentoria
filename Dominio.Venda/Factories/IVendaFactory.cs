@@ -1,4 +1,4 @@
-using Dominio.Venda.DTOs;
+using CrossCutting.Models;
 using Dominio.Venda.Entities;
 
 namespace Dominio.Venda.Factories

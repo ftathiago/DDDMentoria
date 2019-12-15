@@ -1,4 +1,5 @@
 using Dominio.Venda.ValueObjects;
+using CrossCutting.Models;
 
 namespace Dominio.Venda.Modules
 {

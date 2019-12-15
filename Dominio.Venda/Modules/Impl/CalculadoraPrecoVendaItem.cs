@@ -1,6 +1,6 @@
 using System;
 using Dominio.Venda.ValueObjects;
-using Dominio.Venda.Modules;
+using CrossCutting.Models;
 
 namespace Dominio.Venda.Modules.Impl
 {

@@ -1,4 +1,4 @@
-using Dominio.Venda.DTOs;
+using CrossCutting.Models;
 using Dominio.Venda.Entities;
 using Dominio.Venda.ValueObjects;
 using Dominio.Venda.Modules;

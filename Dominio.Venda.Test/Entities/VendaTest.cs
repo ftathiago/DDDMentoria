@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Dominio.Venda.DTOs;
+using CrossCutting.Models;
 using Dominio.Venda.Entities;
 using Dominio.Venda.Factories.Impl;
 using Dominio.Venda.Modules;

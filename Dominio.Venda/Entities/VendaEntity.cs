@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Dominio.Venda.DTOs;
+using CrossCutting.Models;
 using Dominio.Venda.Modules;
 
 namespace Dominio.Venda.Entities
