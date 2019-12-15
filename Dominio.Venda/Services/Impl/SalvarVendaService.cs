@@ -8,7 +8,7 @@ namespace Dominio.Venda.Services.Impl
         public string MensagemErro { get; private set; }
 
         private readonly IVendaRepository _vendaRepository;
-        public SalvarVendaService(VendaEntity venda, IVendaRepository vendaRepository)
+        public SalvarVendaService(IVendaRepository vendaRepository)
         {
             _vendaRepository = vendaRepository;
             this.MensagemErro = string.Empty;

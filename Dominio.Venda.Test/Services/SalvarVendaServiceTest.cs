@@ -17,7 +17,7 @@ namespace Dominio.Venda.Test.Services
             vendaRepositoryMock.SetReturnsDefault<bool>(true);
             IVendaRepository vendaRepository = vendaRepositoryMock.Object;
 
-            ISalvarVendaService salvarVendaService = new SalvarVendaService(venda, vendaRepository);
+            ISalvarVendaService salvarVendaService = new SalvarVendaService(vendaRepository);
 
             Assert.NotNull(salvarVendaService);
         }
@@ -33,8 +33,8 @@ namespace Dominio.Venda.Test.Services
             vendaRepositoryMock.SetReturnsDefault<bool>(true);
             IVendaRepository vendaRepository = vendaRepositoryMock.Object;
 
-            ISalvarVendaService salvarVendaService = new SalvarVendaService(venda, vendaRepository);
-            bool executadoComSucesso = salvarVendaService.Executar();
+            ISalvarVendaService salvarVendaService = new SalvarVendaService(vendaRepository);
+            bool executadoComSucesso = salvarVendaService.Executar(venda);
 
             Assert.True(executadoComSucesso);
         }
@@ -50,8 +50,8 @@ namespace Dominio.Venda.Test.Services
             vendaRepositoryMock.SetReturnsDefault<bool>(true);
             IVendaRepository vendaRepository = vendaRepositoryMock.Object;
 
-            ISalvarVendaService salvarVendaService = new SalvarVendaService(venda, vendaRepository);
-            bool executadoComSucesso = salvarVendaService.Executar();
+            ISalvarVendaService salvarVendaService = new SalvarVendaService(vendaRepository);
+            bool executadoComSucesso = salvarVendaService.Executar(venda);
 
             Assert.False(executadoComSucesso);
         }
@@ -67,8 +67,8 @@ namespace Dominio.Venda.Test.Services
             vendaRepositoryMock.SetReturnsDefault<bool>(true);
             IVendaRepository vendaRepository = vendaRepositoryMock.Object;
 
-            ISalvarVendaService salvarVendaService = new SalvarVendaService(venda, vendaRepository);
-            bool executadoComSucesso = salvarVendaService.Executar();
+            ISalvarVendaService salvarVendaService = new SalvarVendaService(vendaRepository);
+            bool executadoComSucesso = salvarVendaService.Executar(venda);
 
             Assert.True(executadoComSucesso);
         }
@@ -84,8 +84,8 @@ namespace Dominio.Venda.Test.Services
             vendaRepositoryMock.SetReturnsDefault<bool>(false);
             IVendaRepository vendaRepository = vendaRepositoryMock.Object;
 
-            ISalvarVendaService salvarVendaService = new SalvarVendaService(venda, vendaRepository);
-            bool executadoComSucesso = salvarVendaService.Executar();
+            ISalvarVendaService salvarVendaService = new SalvarVendaService(vendaRepository);
+            bool executadoComSucesso = salvarVendaService.Executar(venda);
 
             Assert.False(executadoComSucesso);
         }
@@ -103,8 +103,8 @@ namespace Dominio.Venda.Test.Services
             vendaRepositoryMock.SetReturnsDefault<bool>(true);
             IVendaRepository vendaRepository = vendaRepositoryMock.Object;
 
-            ISalvarVendaService salvarVendaService = new SalvarVendaService(venda, vendaRepository);
-            salvarVendaService.Executar();
+            ISalvarVendaService salvarVendaService = new SalvarVendaService(vendaRepository);
+            salvarVendaService.Executar(venda);
             var mensagemErro = salvarVendaService.MensagemErro;
 
             Assert.Equal(mensagemDeRetornoEsperada, mensagemErro);
@@ -122,8 +122,8 @@ namespace Dominio.Venda.Test.Services
             vendaRepositoryMock.SetReturnsDefault<bool>(false);
             IVendaRepository vendaRepository = vendaRepositoryMock.Object;
 
-            ISalvarVendaService salvarVendaService = new SalvarVendaService(venda, vendaRepository);
-            salvarVendaService.Executar();
+            ISalvarVendaService salvarVendaService = new SalvarVendaService(vendaRepository);
+            salvarVendaService.Executar(venda);
             var mensagemErro = salvarVendaService.MensagemErro;
 
             Assert.Equal(mensagemDeRetornoEsperada, mensagemErro);
