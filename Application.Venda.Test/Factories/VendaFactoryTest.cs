@@ -2,12 +2,11 @@ using CrossCutting.Models;
 using Dominio.Venda.Entities;
 using Dominio.Venda.Factories;
 using Dominio.Venda.Factories.Impl;
-using Dominio.Venda.Modules;
 using System.Collections.Generic;
 using System.Linq;
 using Xunit;
 
-namespace Dominio.Venda.Test
+namespace Application.Venda.Test
 {
     public class VendaFactoryTest
     {

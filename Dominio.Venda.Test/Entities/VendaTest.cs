@@ -1,8 +1,7 @@
 using System.Collections.Generic;
 using CrossCutting.Models;
 using Dominio.Venda.Entities;
-using Dominio.Venda.Factories.Impl;
-using Dominio.Venda.Modules;
+using Dominio.Venda.Modules.Impl;
 using Xunit;
 
 namespace Dominio.Venda.Test.Entities
@@ -47,7 +46,12 @@ namespace Dominio.Venda.Test.Entities
                 Itens = new List<VendaItemDTO>()
             };
 
-            VendaEntity venda = new VendaFactory().Criar(vendaDTO);
+            VendaEntity venda = new VendaEntity(vendaDTO.Cliente, vendaDTO.FormaDePagamento);
+            foreach (var item in vendaDTO.Itens)
+            {
+                var vendaItem = new VendaItemEntity(item, new CalculadoraPrecoVendaItem());
+            }
+
             ClienteDTO clienteRetornado = venda.Cliente;
 
             Assert.Equal(formaDePagamento, venda.FormaDePagamento);
@@ -65,7 +69,7 @@ namespace Dominio.Venda.Test.Entities
                     VendaItemDTOFactory("Produto1", 1, 1)
                 }
             };
-            VendaEntity venda = new VendaFactory().Criar(vendaDTO);
+            VendaEntity venda = VendaFactory(vendaDTO);
 
             bool vendaEhValida = venda.Validar();
 
@@ -81,7 +85,7 @@ namespace Dominio.Venda.Test.Entities
                 FormaDePagamento = FormaDePagamento.Dinheiro
             };
 
-            VendaEntity venda = new VendaFactory().Criar(vendaDTO);
+            VendaEntity venda = VendaFactory(vendaDTO);
 
             bool vendaEhValida = venda.Validar();
 
@@ -99,7 +103,7 @@ namespace Dominio.Venda.Test.Entities
                     VendaItemDTOFactory("Produto", 0, 1)
                 }
             };
-            VendaEntity venda = new VendaFactory().Criar(vendaDTO);
+            VendaEntity venda = VendaFactory(vendaDTO);
 
             bool vendaEhValida = venda.Validar();
             decimal totalVendido = venda.TotalVenda();
@@ -119,11 +123,22 @@ namespace Dominio.Venda.Test.Entities
                     VendaItemDTOFactory("Descricao", 1, 1)
                 }
             };
-            VendaEntity venda = new VendaFactory().Criar(vendaDTO);
+            VendaEntity venda = VendaFactory(vendaDTO);
 
             var vendaEhValida = venda.Validar();
 
             Assert.False(vendaEhValida);
+        }
+
+        private VendaEntity VendaFactory(VendaDTO vendaDTO)
+        {
+            var venda = new VendaEntity(vendaDTO.Cliente, vendaDTO.FormaDePagamento);
+            foreach (var item in vendaDTO?.Itens)
+            {
+                var vendaItem = new VendaItemEntity(item, new CalculadoraPrecoVendaItem());
+                venda.AdicionarVendaItem(vendaItem);
+            }
+            return venda;
         }
 
         private VendaEntity VendaFactory(FormaDePagamento formaDePagamento = FormaDePagamento.None)

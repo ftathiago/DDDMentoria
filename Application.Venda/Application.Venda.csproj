@@ -2,6 +2,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CrossCutting\CrossCutting.csproj" />
+    <ProjectReference Include="..\Dominio.Venda\Dominio.Venda.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

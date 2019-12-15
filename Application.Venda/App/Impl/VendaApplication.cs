@@ -6,6 +6,7 @@ namespace Application.Venda.App.Impl
     {
         public bool ProcessarVenda(VendaDTO vendaDTO)
         {
+
             return true;
         }
     }
