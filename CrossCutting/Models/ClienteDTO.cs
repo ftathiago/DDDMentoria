@@ -1,4 +1,4 @@
-namespace Dominio.Venda.DTOs
+namespace CrossCutting.Models
 {
     public class ClienteDTO
     {
