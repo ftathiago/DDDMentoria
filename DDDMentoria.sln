@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.Venda", "Applic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.Venda.Test", "Application.Venda.Test\Application.Venda.Test.csproj", "{0BBB92C3-8671-4545-A9DD-15F42D3D4E32}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrossCutting", "CrossCutting\CrossCutting.csproj", "{58F8D6BA-347A-4F71-98E5-462871A580B1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -72,5 +74,17 @@ Global
 		{0BBB92C3-8671-4545-A9DD-15F42D3D4E32}.Release|x64.Build.0 = Release|Any CPU
 		{0BBB92C3-8671-4545-A9DD-15F42D3D4E32}.Release|x86.ActiveCfg = Release|Any CPU
 		{0BBB92C3-8671-4545-A9DD-15F42D3D4E32}.Release|x86.Build.0 = Release|Any CPU
+		{58F8D6BA-347A-4F71-98E5-462871A580B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58F8D6BA-347A-4F71-98E5-462871A580B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58F8D6BA-347A-4F71-98E5-462871A580B1}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{58F8D6BA-347A-4F71-98E5-462871A580B1}.Debug|x64.Build.0 = Debug|Any CPU
+		{58F8D6BA-347A-4F71-98E5-462871A580B1}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{58F8D6BA-347A-4F71-98E5-462871A580B1}.Debug|x86.Build.0 = Debug|Any CPU
+		{58F8D6BA-347A-4F71-98E5-462871A580B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58F8D6BA-347A-4F71-98E5-462871A580B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58F8D6BA-347A-4F71-98E5-462871A580B1}.Release|x64.ActiveCfg = Release|Any CPU
+		{58F8D6BA-347A-4F71-98E5-462871A580B1}.Release|x64.Build.0 = Release|Any CPU
+		{58F8D6BA-347A-4F71-98E5-462871A580B1}.Release|x86.ActiveCfg = Release|Any CPU
+		{58F8D6BA-347A-4F71-98E5-462871A580B1}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
