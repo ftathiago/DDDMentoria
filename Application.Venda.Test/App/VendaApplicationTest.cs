@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using Xunit;
 using Moq;
 using Dominio.Venda.Entities;
+using System.Linq;
 
 namespace Application.Venda.Test.App
 {
@@ -39,16 +40,24 @@ namespace Application.Venda.Test.App
         [Fact]
         public void NaoProcessaQuandoServiceRetornaFalso()
         {
-            var salvarVendaService = new Mock<ISalvarVendaService>();
+            const string mensagemDeErro = "Mensagem de erro";
+            var salvarVendaService = new Mock<ISalvarVendaService>(MockBehavior.Strict);
             salvarVendaService
                 .Setup(s => s.Executar(It.IsAny<VendaEntity>()))
                 .Returns(false);
+            salvarVendaService
+                .SetupGet(s => s.MensagemErro)
+                .Returns(mensagemDeErro);
             var vendaDTO = PegarVendaDTO();
             IVendaApplication vendaApplication = new VendaApplication(new VendaFactory(), salvarVendaService.Object);
 
-            bool vendaEfetuuadaComSucesso = vendaApplication.ProcessarVenda(vendaDTO);
+            bool vendaEfetuadaComSucesso = vendaApplication.ProcessarVenda(vendaDTO);
+            int quantidadeMensagemErro = vendaApplication.MensagemErro().Count();
+            var msgErroGerada = vendaApplication.MensagemErro().First();
 
-            Assert.False(vendaEfetuuadaComSucesso);
+            Assert.False(vendaEfetuadaComSucesso);
+            Assert.True(quantidadeMensagemErro == 1);
+            Assert.Equal(mensagemDeErro, msgErroGerada.Mensagem);
         }
 
         private VendaDTO PegarVendaDTO()
