@@ -12,8 +12,6 @@ namespace Application.Venda.App.Impl
         private readonly ISalvarVendaService _salvarVendaService;
         private readonly List<MensagemErro> _mensagensErro;
 
-        public IEnumerable<MensagemErro> MensagensErro { get => _mensagensErro; }
-
         public VendaApplication(IVendaFactory vendaFactory, ISalvarVendaService salvarVendaService)
         {
             _vendaFactory = vendaFactory;
@@ -28,18 +26,25 @@ namespace Application.Venda.App.Impl
             var executouComSucesso = _salvarVendaService.Executar(venda);
             if (!executouComSucesso)
             {
-                var mensagemErro = new MensagemErro(_salvarVendaService.MensagemErro);
-                _mensagensErro.Add(mensagemErro);
+                foreach (var mensagemErro in _salvarVendaService.PegarMensagensErro())
+                {
+                    _mensagensErro.Add(mensagemErro);
+                }
             }
             return executouComSucesso;
         }
 
-        public IEnumerable<MensagemErro> MensagemErro()
+        public IEnumerable<MensagemErro> PegarMensagensErro()
         {
             foreach (var mensagem in _mensagensErro)
             {
                 yield return mensagem;
             }
+        }
+
+        public bool EhValido()
+        {
+            return _mensagensErro.Count == 0;
         }
     }
 }

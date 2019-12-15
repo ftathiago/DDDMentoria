@@ -1,11 +1,12 @@
+using System.Collections.Generic;
+using CrossCutting.Interfaces;
+using CrossCutting.Models;
 using Dominio.Venda.Entities;
 
 namespace Dominio.Venda.Services
 {
-    public interface ISalvarVendaService
+    public interface ISalvarVendaService : IValidavel
     {
-        string MensagemErro { get; }
-
         bool Executar(VendaEntity venda);
     }
 }

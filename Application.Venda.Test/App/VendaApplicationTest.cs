@@ -46,14 +46,14 @@ namespace Application.Venda.Test.App
                 .Setup(s => s.Executar(It.IsAny<VendaEntity>()))
                 .Returns(false);
             salvarVendaService
-                .SetupGet(s => s.MensagemErro)
-                .Returns(mensagemDeErro);
+                .Setup(s => s.PegarMensagensErro())
+                .Returns(new List<MensagemErro> { new MensagemErro(mensagemDeErro) });
             var vendaDTO = PegarVendaDTO();
             IVendaApplication vendaApplication = new VendaApplication(new VendaFactory(), salvarVendaService.Object);
 
             bool vendaEfetuadaComSucesso = vendaApplication.ProcessarVenda(vendaDTO);
-            int quantidadeMensagemErro = vendaApplication.MensagemErro().Count();
-            var msgErroGerada = vendaApplication.MensagemErro().First();
+            int quantidadeMensagemErro = vendaApplication.PegarMensagensErro().Count();
+            var msgErroGerada = vendaApplication.PegarMensagensErro().First();
 
             Assert.False(vendaEfetuadaComSucesso);
             Assert.True(quantidadeMensagemErro == 1);
