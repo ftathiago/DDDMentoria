@@ -25,6 +25,9 @@ namespace Application.Venda.Test.App
         public void DeveProcessarAVenda()
         {
             var salvarVendaService = new Mock<ISalvarVendaService>();
+            salvarVendaService
+                .Setup(s => s.Executar(It.IsAny<VendaEntity>()))
+                .Returns(true);
             IVendaApplication vendaApplication = new VendaApplication(new VendaFactory(), salvarVendaService.Object);
             var vendaDTO = PegarVendaDTO();
 
@@ -46,8 +49,6 @@ namespace Application.Venda.Test.App
             bool vendaEfetuuadaComSucesso = vendaApplication.ProcessarVenda(vendaDTO);
 
             Assert.False(vendaEfetuuadaComSucesso);
-
-
         }
 
         private VendaDTO PegarVendaDTO()

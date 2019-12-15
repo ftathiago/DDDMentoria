@@ -20,9 +20,8 @@ namespace Application.Venda.App.Impl
         {
             VendaEntity venda = _vendaFactory.Criar(vendaDTO);
 
-            _salvarVendaService.Executar(venda);
+            return _salvarVendaService.Executar(venda);
 
-            return true;
         }
     }
 }
