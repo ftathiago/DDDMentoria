@@ -6,6 +6,7 @@ using CrossCutting.Models;
 using System.Collections.Generic;
 using Xunit;
 using Moq;
+using Dominio.Venda.Entities;
 
 namespace Application.Venda.Test.App
 {
@@ -33,13 +34,20 @@ namespace Application.Venda.Test.App
         }
 
         [Fact]
-        public void DeveEnviarParaOService()
+        public void NaoProcessaQuandoServiceRetornaFalso()
         {
-            //Given
+            var salvarVendaService = new Mock<ISalvarVendaService>();
+            salvarVendaService
+                .Setup(s => s.Executar(It.IsAny<VendaEntity>()))
+                .Returns(false);
+            var vendaDTO = PegarVendaDTO();
+            IVendaApplication vendaApplication = new VendaApplication(new VendaFactory(), salvarVendaService.Object);
 
-            //When
+            bool vendaEfetuuadaComSucesso = vendaApplication.ProcessarVenda(vendaDTO);
 
-            //Then
+            Assert.False(vendaEfetuuadaComSucesso);
+
+
         }
 
         private VendaDTO PegarVendaDTO()
