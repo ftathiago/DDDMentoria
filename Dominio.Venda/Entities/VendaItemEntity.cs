@@ -18,6 +18,8 @@ namespace Dominio.Venda.Entities
 
         private readonly ICalculadoraPrecoVendaItem _calculadoraPrecoVendaItem;
 
+        protected VendaItemEntity() { }
+
         public VendaItemEntity(VendaItemDTO vendaItemDTO, ICalculadoraPrecoVendaItem calculadoraPrecoVendaItem)
         {
             Descricao = vendaItemDTO.Descricao;
@@ -28,7 +30,7 @@ namespace Dominio.Venda.Entities
             _calculadoraPrecoVendaItem = calculadoraPrecoVendaItem;
         }
 
-        public decimal ValorTotal(FormaDePagamento formaDePagamento)
+        public virtual decimal ValorTotal(FormaDePagamento formaDePagamento)
         {
             if (formaDePagamento == FormaDePagamento.None)
                 return 0;
@@ -36,17 +38,17 @@ namespace Dominio.Venda.Entities
                QuantidadePromocional, ValorUnitarioPromocional);
         }
 
-        public bool Validar()
+        public virtual bool Validar()
         {
             return Validate().Count() > 0;
         }
 
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        public virtual IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             return Validate();
         }
 
-        public IEnumerable<ValidationResult> Validate()
+        public virtual IEnumerable<ValidationResult> Validate()
         {
             var listaErros = new List<ValidationResult>();
 

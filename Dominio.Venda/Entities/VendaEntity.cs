@@ -59,6 +59,13 @@ namespace Dominio.Venda.Entities
                 listaErros.Add(new ValidationResult("A venda não contém itens"));
             if (TotalVenda() <= 0)
                 listaErros.Add(new ValidationResult("O valor total da venda é igual ou inferior a zero"));
+            foreach (var vendaItem in _itensLista)
+            {
+                var mensagensErroItem = vendaItem.Validate();
+                if (mensagensErroItem.Count() == 0)
+                    continue;
+                listaErros.AddRange(mensagensErroItem);
+            }
 
             return listaErros;
         }

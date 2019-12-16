@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using CrossCutting.Models;
 using Dominio.Venda.Entities;
 using Dominio.Venda.Modules.Impl;
+using Moq;
 using Xunit;
 
 namespace Dominio.Venda.Test.Entities
@@ -51,6 +52,7 @@ namespace Dominio.Venda.Test.Entities
             foreach (var item in vendaDTO.Itens)
             {
                 var vendaItem = new VendaItemEntity(item, new CalculadoraPrecoVendaItem());
+                venda.AdicionarVendaItem(vendaItem);
             }
 
             ClienteDTO clienteRetornado = venda.Cliente;
@@ -89,7 +91,6 @@ namespace Dominio.Venda.Test.Entities
             VendaEntity venda = VendaFactory(vendaDTO);
 
             bool vendaEhValida = venda.Validar();
-            IEnumerable<ValidationResult> vendaValidation = venda.Validate(null);
 
             Assert.False(vendaEhValida);
         }
@@ -132,6 +133,25 @@ namespace Dominio.Venda.Test.Entities
             Assert.False(vendaEhValida);
         }
 
+        [Fact]
+        public void TestCapturaErrosDeVendaItem()
+        {
+            var vendaItemErros = new List<ValidationResult> { new ValidationResult("Erro no Item de venda") };
+            var vendaItemMock = new Mock<VendaItemEntity>(MockBehavior.Strict);
+            vendaItemMock
+                .Setup(vi => vi.Validate())
+                .Returns(vendaItemErros);
+            vendaItemMock
+                .Setup(vi => vi.ValorTotal(It.IsAny<FormaDePagamento>()))
+                .Returns(10);
+            VendaEntity venda = new VendaEntity(new ClienteDTO("Cliente"), FormaDePagamento.Dinheiro);
+            venda.AdicionarVendaItem(vendaItemMock.Object);
+
+            var listaErrosEncontrados = venda.Validate();
+
+            Assert.Equal(vendaItemErros, listaErrosEncontrados);
+        }
+
         private VendaEntity VendaFactory(VendaDTO vendaDTO)
         {
             var venda = new VendaEntity(vendaDTO.Cliente, vendaDTO.FormaDePagamento);
@@ -143,11 +163,6 @@ namespace Dominio.Venda.Test.Entities
                 venda.AdicionarVendaItem(vendaItem);
             }
             return venda;
-        }
-
-        private VendaEntity VendaFactory(FormaDePagamento formaDePagamento = FormaDePagamento.None)
-        {
-            return new VendaEntity(new ClienteDTO("Cliente"), formaDePagamento);
         }
 
         private VendaItemDTO VendaItemDTOFactory(string Descricao, int QuantidadeComprada, int ValorUnitario,
