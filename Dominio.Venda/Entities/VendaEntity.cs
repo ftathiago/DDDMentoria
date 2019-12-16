@@ -7,7 +7,7 @@ using Dominio.Venda.Modules;
 
 namespace Dominio.Venda.Entities
 {
-    public class VendaEntity : IValidatableObject
+    public class VendaEntity : BaseEntity
     {
         public ClienteDTO Cliente { get; private set; }
         public FormaDePagamento FormaDePagamento { get; private set; }
@@ -39,17 +39,12 @@ namespace Dominio.Venda.Entities
             return totalVenda;
         }
 
-        public virtual bool Validar()
-        {
-            return Validate().Count() == 0;
-        }
-
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        public override IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             return Validate();
         }
 
-        public IEnumerable<ValidationResult> Validate()
+        public override IEnumerable<ValidationResult> Validate()
         {
             var listaErros = new List<ValidationResult>();
 

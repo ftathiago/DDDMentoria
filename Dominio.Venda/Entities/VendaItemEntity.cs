@@ -8,7 +8,7 @@ using Dominio.Venda.Modules.Impl;
 
 namespace Dominio.Venda.Entities
 {
-    public class VendaItemEntity : IValidatableObject
+    public class VendaItemEntity : BaseEntity
     {
         public string Descricao { get; private set; }
         public ValorUnitario ValorUnitario { get; private set; }
@@ -47,17 +47,12 @@ namespace Dominio.Venda.Entities
                QuantidadePromocional, ValorUnitarioPromocional);
         }
 
-        public virtual bool Validar()
-        {
-            return Validate().Count() > 0;
-        }
-
-        public virtual IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        public override IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             return Validate();
         }
 
-        public virtual IEnumerable<ValidationResult> Validate()
+        public override IEnumerable<ValidationResult> Validate()
         {
             var listaErros = new List<ValidationResult>();
 
