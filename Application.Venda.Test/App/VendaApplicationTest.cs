@@ -60,6 +60,30 @@ namespace Application.Venda.Test.App
             Assert.Equal(mensagemDeErro, msgErroGerada.Mensagem);
         }
 
+        [Fact]
+        public void DeveRetornarTodasAsMensagensDeErroDoService()
+        {
+            IEnumerable<MensagemErro> listaDeErros = new List<MensagemErro> {
+                new MensagemErro("Mensagem de erro 1"),
+                new MensagemErro("Mensagem de erro 2")
+            };
+            var salvarVendaService = new Mock<ISalvarVendaService>(MockBehavior.Strict);
+            salvarVendaService
+                .Setup(s => s.Executar(It.IsAny<VendaEntity>()))
+                .Returns(false);
+            salvarVendaService
+                .Setup(s => s.PegarMensagensErro())
+                .Returns(listaDeErros);
+            var vendaDTO = PegarVendaDTO();
+            IVendaApplication vendaApplication = new VendaApplication(new VendaFactory(), salvarVendaService.Object);
+
+            bool vendaEfetuadaComSucesso = vendaApplication.ProcessarVenda(vendaDTO);
+            var listaDeErrosEncontrados = vendaApplication.PegarMensagensErro();
+
+            Assert.False(vendaEfetuadaComSucesso);
+            Assert.Equal(listaDeErros, listaDeErrosEncontrados);
+        }
+
         private VendaDTO PegarVendaDTO()
         {
             return new VendaDTO()
