@@ -5,7 +5,7 @@ namespace Dominio.Venda.ValueObjects
     public class Quantidade
     {
         public decimal Value => _value;
-        private decimal _value;
+        private readonly decimal _value;
 
         public Quantidade(decimal quantidade)
         {
