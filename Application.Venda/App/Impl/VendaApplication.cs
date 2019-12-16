@@ -26,10 +26,7 @@ namespace Application.Venda.App.Impl
             var executouComSucesso = _salvarVendaService.Executar(venda);
             if (!executouComSucesso)
             {
-                foreach (var mensagemErro in _salvarVendaService.PegarMensagensErro())
-                {
-                    _mensagensErro.Add(mensagemErro);
-                }
+                CapturarErros();
             }
             return executouComSucesso;
         }
@@ -45,6 +42,15 @@ namespace Application.Venda.App.Impl
         public bool EhValido()
         {
             return _mensagensErro.Count == 0;
+        }
+
+        private void CapturarErros()
+        {
+            _mensagensErro.Clear();
+            foreach (var mensagemErro in _salvarVendaService.PegarMensagensErro())
+            {
+                _mensagensErro.Add(mensagemErro);
+            }
         }
     }
 }
