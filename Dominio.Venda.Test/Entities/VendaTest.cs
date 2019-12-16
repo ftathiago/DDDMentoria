@@ -157,7 +157,7 @@ namespace Dominio.Venda.Test.Entities
             var venda = new VendaEntity(vendaDTO.Cliente, vendaDTO.FormaDePagamento);
             if (vendaDTO.Itens == null)
                 return venda;
-            foreach (var item in vendaDTO?.Itens)
+            foreach (var item in vendaDTO.Itens)
             {
                 var vendaItem = new VendaItemEntity(item, new CalculadoraPrecoVendaItem());
                 venda.AdicionarVendaItem(vendaItem);

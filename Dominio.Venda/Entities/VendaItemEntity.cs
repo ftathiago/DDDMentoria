@@ -4,6 +4,7 @@ using Dominio.Venda.Modules;
 using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
 using System.Linq;
+using Dominio.Venda.Modules.Impl;
 
 namespace Dominio.Venda.Entities
 {
@@ -18,7 +19,15 @@ namespace Dominio.Venda.Entities
 
         private readonly ICalculadoraPrecoVendaItem _calculadoraPrecoVendaItem;
 
-        protected VendaItemEntity() { }
+        protected VendaItemEntity()
+        {
+            ValorUnitario = 0;
+            ValorUnitarioPromocional = 0;
+            Quantidade = 0;
+            QuantidadePromocional = 0;
+            Descricao = string.Empty;
+            _calculadoraPrecoVendaItem = new NullCalculadoraPrecoVendaItem();
+        }
 
         public VendaItemEntity(VendaItemDTO vendaItemDTO, ICalculadoraPrecoVendaItem calculadoraPrecoVendaItem)
         {
