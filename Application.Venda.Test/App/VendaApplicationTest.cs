@@ -40,24 +40,22 @@ namespace Application.Venda.Test.App
         [Fact]
         public void NaoProcessaQuandoServiceRetornaFalso()
         {
-            const string mensagemDeErro = "Mensagem de erro";
+            var mensagemDeErro = new List<MensagemErro> {
+                new MensagemErro("Mensagem de erro")
+            };
             var salvarVendaService = new Mock<ISalvarVendaService>(MockBehavior.Strict);
             salvarVendaService
                 .Setup(s => s.Executar(It.IsAny<VendaEntity>()))
                 .Returns(false);
             salvarVendaService
                 .Setup(s => s.PegarMensagensErro())
-                .Returns(new List<MensagemErro> { new MensagemErro(mensagemDeErro) });
+                .Returns(mensagemDeErro);
             var vendaDTO = PegarVendaDTO();
             IVendaApplication vendaApplication = new VendaApplication(new VendaFactory(), salvarVendaService.Object);
 
             bool vendaEfetuadaComSucesso = vendaApplication.ProcessarVenda(vendaDTO);
-            int quantidadeMensagemErro = vendaApplication.PegarMensagensErro().Count();
-            var msgErroGerada = vendaApplication.PegarMensagensErro().First();
 
             Assert.False(vendaEfetuadaComSucesso);
-            Assert.True(quantidadeMensagemErro == 1);
-            Assert.Equal(mensagemDeErro, msgErroGerada.Mensagem);
         }
 
         [Fact]
