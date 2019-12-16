@@ -1,12 +1,13 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using CrossCutting.Models;
 using Dominio.Venda.Modules;
 
 namespace Dominio.Venda.Entities
 {
-    public class VendaEntity
+    public class VendaEntity : IValidatableObject
     {
         public ClienteDTO Cliente { get; private set; }
         public FormaDePagamento FormaDePagamento { get; private set; }
@@ -32,21 +33,34 @@ namespace Dominio.Venda.Entities
             _itensLista.Add(vendaItem);
         }
 
-        public virtual bool Validar()
-        {
-            if (FormaDePagamento == FormaDePagamento.None)
-                return false;
-            if (Itens.Count() <= 0)
-                return false;
-            if (TotalVenda() <= 0)
-                return false;
-            return true;
-        }
-
         public decimal TotalVenda()
         {
             var totalVenda = Itens.Sum(p => p.ValorTotal(FormaDePagamento));
             return totalVenda;
+        }
+
+        public virtual bool Validar()
+        {
+            return Validate().Count() == 0;
+        }
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            return Validate();
+        }
+
+        public IEnumerable<ValidationResult> Validate()
+        {
+            var listaErros = new List<ValidationResult>();
+
+            if (FormaDePagamento == FormaDePagamento.None)
+                listaErros.Add(new ValidationResult("Forma de pagamento não informada"));
+            if (Itens.Count() == 0)
+                listaErros.Add(new ValidationResult("A venda não contém itens"));
+            if (TotalVenda() <= 0)
+                listaErros.Add(new ValidationResult("O valor total da venda é igual ou inferior a zero"));
+
+            return listaErros;
         }
     }
 }

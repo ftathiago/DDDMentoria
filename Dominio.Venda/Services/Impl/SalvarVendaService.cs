@@ -19,6 +19,7 @@ namespace Dominio.Venda.Services.Impl
 
         public bool Executar(VendaEntity venda)
         {
+
             if (!venda.Validar())
             {
                 _mensagensErro.Add(new MensagemErro("A venda está invalida!"));
@@ -39,10 +40,7 @@ namespace Dominio.Venda.Services.Impl
 
         public IEnumerable<MensagemErro> PegarMensagensErro()
         {
-            foreach (var mensagemErro in _mensagensErro)
-            {
-                yield return mensagemErro;
-            }
+            return _mensagensErro;
         }
     }
 }

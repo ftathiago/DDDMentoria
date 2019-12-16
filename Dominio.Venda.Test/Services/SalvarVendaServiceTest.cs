@@ -4,6 +4,7 @@ using Dominio.Venda.Services;
 using Dominio.Venda.Services.Impl;
 using Xunit;
 using Moq;
+using System.Linq;
 
 namespace Dominio.Venda.Test.Services
 {
@@ -105,9 +106,9 @@ namespace Dominio.Venda.Test.Services
 
             ISalvarVendaService salvarVendaService = new SalvarVendaService(vendaRepository);
             salvarVendaService.Executar(venda);
-            var mensagemErro = salvarVendaService.MensagemErro;
+            var mensagemErro = salvarVendaService.PegarMensagensErro().First();
 
-            Assert.Equal(mensagemDeRetornoEsperada, mensagemErro);
+            Assert.Equal(mensagemDeRetornoEsperada, mensagemErro.Mensagem);
         }
         [Fact]
         public void TestServicoPossuiMensagemDeErroQuandoRepositorioNaoSalva()
@@ -124,9 +125,9 @@ namespace Dominio.Venda.Test.Services
 
             ISalvarVendaService salvarVendaService = new SalvarVendaService(vendaRepository);
             salvarVendaService.Executar(venda);
-            var mensagemErro = salvarVendaService.MensagemErro;
+            var mensagemErro = salvarVendaService.PegarMensagensErro().First();
 
-            Assert.Equal(mensagemDeRetornoEsperada, mensagemErro);
+            Assert.Equal(mensagemDeRetornoEsperada, mensagemErro.Mensagem);
         }
     }
 }

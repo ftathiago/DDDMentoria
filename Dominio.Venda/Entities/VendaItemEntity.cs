@@ -27,6 +27,8 @@ namespace Dominio.Venda.Entities
 
         public decimal ValorTotal(FormaDePagamento formaDePagamento)
         {
+            if (formaDePagamento == FormaDePagamento.None)
+                return 0;
             return calculadoraPrecoVendaItem.Calcular(formaDePagamento, Quantidade, ValorUnitario,
                QuantidadePromocional, ValorUnitarioPromocional);
         }

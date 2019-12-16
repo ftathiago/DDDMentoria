@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using CrossCutting.Models;
 using Dominio.Venda.Entities;
 using Dominio.Venda.Modules.Impl;
@@ -88,6 +89,7 @@ namespace Dominio.Venda.Test.Entities
             VendaEntity venda = VendaFactory(vendaDTO);
 
             bool vendaEhValida = venda.Validar();
+            IEnumerable<ValidationResult> vendaValidation = venda.Validate(null);
 
             Assert.False(vendaEhValida);
         }
