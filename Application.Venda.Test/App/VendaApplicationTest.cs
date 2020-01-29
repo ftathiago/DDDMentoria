@@ -22,7 +22,7 @@ namespace Application.Venda.Test.App
         {
             var salvarVendaService = new Mock<ISalvarVendaService>();
             IMapper mapper = PegarMapper();
-            IVendaApplication vendaApplication = new VendaApplication(new VendaFactory(mapper), salvarVendaService.Object);
+            IVendaApplication vendaApplication = new VendaApplication(new VendaEntityFactory(mapper), salvarVendaService.Object);
 
             Assert.NotNull(vendaApplication);
         }
@@ -35,7 +35,7 @@ namespace Application.Venda.Test.App
                 .Setup(s => s.Executar(It.IsAny<VendaEntity>()))
                 .Returns(true);
             IMapper mapper = PegarMapper();
-            IVendaApplication vendaApplication = new VendaApplication(new VendaFactory(mapper), salvarVendaService.Object);
+            IVendaApplication vendaApplication = new VendaApplication(new VendaEntityFactory(mapper), salvarVendaService.Object);
             var vendaDTO = PegarVendaDTO();
 
             bool vendaEfetuadaComSucesso = vendaApplication.ProcessarVenda(vendaDTO);
@@ -58,7 +58,7 @@ namespace Application.Venda.Test.App
                 .Returns(mensagemDeErro);
             var vendaDTO = PegarVendaDTO();
             IMapper mapper = PegarMapper();
-            IVendaApplication vendaApplication = new VendaApplication(new VendaFactory(mapper), salvarVendaService.Object);
+            IVendaApplication vendaApplication = new VendaApplication(new VendaEntityFactory(mapper), salvarVendaService.Object);
 
             bool vendaEfetuadaComSucesso = vendaApplication.ProcessarVenda(vendaDTO);
 
@@ -81,7 +81,7 @@ namespace Application.Venda.Test.App
                 .Returns(listaDeErros);
             var vendaDTO = PegarVendaDTO();
             IMapper mapper = PegarMapper();
-            IVendaApplication vendaApplication = new VendaApplication(new VendaFactory(mapper), salvarVendaService.Object);
+            IVendaApplication vendaApplication = new VendaApplication(new VendaEntityFactory(mapper), salvarVendaService.Object);
 
             bool vendaEfetuadaComSucesso = vendaApplication.ProcessarVenda(vendaDTO);
             var listaDeErrosEncontrados = vendaApplication.PegarMensagensErro();

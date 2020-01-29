@@ -9,11 +9,11 @@ namespace Application.Venda.App.Impl
 {
     public class VendaApplication : IVendaApplication
     {
-        private readonly IVendaFactory _vendaFactory;
+        private readonly IVendaEntityFactory _vendaFactory;
         private readonly ISalvarVendaService _salvarVendaService;
         private readonly List<MensagemErro> _mensagensErro;
 
-        public VendaApplication(IVendaFactory vendaFactory, ISalvarVendaService salvarVendaService)
+        public VendaApplication(IVendaEntityFactory vendaFactory, ISalvarVendaService salvarVendaService)
         {
             _vendaFactory = vendaFactory;
             _salvarVendaService = salvarVendaService;

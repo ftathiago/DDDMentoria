@@ -3,7 +3,7 @@ using Application.Venda.Models;
 
 namespace Application.Venda.Factories
 {
-    public interface IVendaFactory
+    public interface IVendaEntityFactory
     {
         VendaEntity Criar(VendaModel vendaDTO);
     }

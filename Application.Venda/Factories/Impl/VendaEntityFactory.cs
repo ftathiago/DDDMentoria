@@ -7,10 +7,10 @@ using AutoMapper;
 
 namespace Application.Venda.Factories.Impl
 {
-    public class VendaFactory : IVendaFactory
+    public class VendaEntityFactory : IVendaEntityFactory
     {
         private readonly IMapper _mapper;
-        public VendaFactory(IMapper mapper)
+        public VendaEntityFactory(IMapper mapper)
         {
             _mapper = mapper;
         }

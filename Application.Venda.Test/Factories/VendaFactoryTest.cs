@@ -11,18 +11,18 @@ using Xunit;
 
 namespace Application.Venda.Test
 {
-    public class VendaFactoryTest
+    public class VendaEntityFactoryTest
     {
         private const int DINHEIRO = 1;
         [Fact]
         public void TestCriarFabrica()
         {
             IMapper mapper = PegarMapper();
-            IVendaFactory vendaFactory = new VendaFactory(mapper);
+            IVendaEntityFactory vendaEntityFactory = new VendaEntityFactory(mapper);
             var vendaModel = new VendaModel();
             vendaModel.Cliente = new ClienteModel(string.Empty);
 
-            VendaEntity venda = vendaFactory.Criar(vendaModel);
+            VendaEntity venda = vendaEntityFactory.Criar(vendaModel);
 
             Assert.NotNull(venda);
             Assert.IsAssignableFrom<VendaEntity>(venda);
@@ -53,9 +53,9 @@ namespace Application.Venda.Test
                 }
             };
             IMapper mapper = PegarMapper();
-            IVendaFactory vendaFactory = new VendaFactory(mapper);
+            IVendaEntityFactory vendaEntityFactory = new VendaEntityFactory(mapper);
 
-            VendaEntity venda = vendaFactory.Criar(vendaModel);
+            VendaEntity venda = vendaEntityFactory.Criar(vendaModel);
 
             Assert.Equal(2, venda.Itens.Count());
         }
