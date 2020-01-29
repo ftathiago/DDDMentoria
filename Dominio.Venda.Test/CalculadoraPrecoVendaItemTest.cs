@@ -1,6 +1,7 @@
 using Dominio.Venda.ValueObjects;
 using CrossCutting.Models;
 using Dominio.Venda.Modules.Impl;
+using Dominio.Venda.DTO;
 using Xunit;
 using System;
 

@@ -1,4 +1,4 @@
-namespace CrossCutting.Models
+namespace Dominio.Venda.DTO
 {
     public enum FormaDePagamento
     {
