@@ -1,13 +1,22 @@
-using CrossCutting.Models;
+using Application.Venda.Modules;
+using Application.Venda.Models;
 using Dominio.Venda.Entities;
+using Dominio.Venda.DTO;
 using Dominio.Venda.Modules.Impl;
+using AutoMapper;
 
 namespace Application.Venda.Factories.Impl
 {
     public class VendaFactory : IVendaFactory
     {
-        public VendaEntity Criar(VendaDTO vendaDTO)
+        private readonly IMapper _mapper;
+        public VendaFactory(IMapper mapper)
         {
+            _mapper = mapper;
+        }
+        public VendaEntity Criar(VendaModel vendaModel)
+        {
+            VendaDTO vendaDTO = _mapper.Map<VendaModel, VendaDTO>(vendaModel);
             var venda = CriarVenda(vendaDTO);
             AdicionarItens(venda, vendaDTO);
 

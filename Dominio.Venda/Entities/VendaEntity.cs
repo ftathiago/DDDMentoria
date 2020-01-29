@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using Dominio.Venda.DTO;
 using CrossCutting.Models;
-using Dominio.Venda.Modules;
 
 namespace Dominio.Venda.Entities
 {

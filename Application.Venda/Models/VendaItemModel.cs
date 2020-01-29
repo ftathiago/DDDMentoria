@@ -1,13 +1,13 @@
-namespace CrossCutting.Models
+namespace Application.Venda.Models
 {
-    public class VendaItemDTO
+    public class VendaItemModel
     {
         public string Descricao { get; set; }
         public decimal QuantidadeComprada { get; set; }
         public decimal ValorUnitario { get; set; }
         public decimal QuantidadePromocional { get; set; }
         public decimal ValorUnitarioPromocional { get; set; }
-        public VendaItemDTO()
+        public VendaItemModel()
         {
             Descricao = string.Empty;
         }

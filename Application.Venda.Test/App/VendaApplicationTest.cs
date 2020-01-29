@@ -1,13 +1,15 @@
 using Application.Venda.App;
 using Application.Venda.App.Impl;
 using Application.Venda.Factories.Impl;
+using Application.Venda.Models;
+using Application.Venda.Modules;
 using Dominio.Venda.Services;
 using CrossCutting.Models;
 using System.Collections.Generic;
 using Xunit;
 using Moq;
 using Dominio.Venda.Entities;
-using System.Linq;
+using AutoMapper;
 
 namespace Application.Venda.Test.App
 {
@@ -17,7 +19,8 @@ namespace Application.Venda.Test.App
         public void EhPossivelCriarVendaApplication()
         {
             var salvarVendaService = new Mock<ISalvarVendaService>();
-            IVendaApplication vendaApplication = new VendaApplication(new VendaFactory(), salvarVendaService.Object);
+            IMapper mapper = PegarMapper();
+            IVendaApplication vendaApplication = new VendaApplication(new VendaFactory(mapper), salvarVendaService.Object);
 
             Assert.NotNull(vendaApplication);
         }
@@ -29,7 +32,8 @@ namespace Application.Venda.Test.App
             salvarVendaService
                 .Setup(s => s.Executar(It.IsAny<VendaEntity>()))
                 .Returns(true);
-            IVendaApplication vendaApplication = new VendaApplication(new VendaFactory(), salvarVendaService.Object);
+            IMapper mapper = PegarMapper();
+            IVendaApplication vendaApplication = new VendaApplication(new VendaFactory(mapper), salvarVendaService.Object);
             var vendaDTO = PegarVendaDTO();
 
             bool vendaEfetuadaComSucesso = vendaApplication.ProcessarVenda(vendaDTO);
@@ -51,7 +55,8 @@ namespace Application.Venda.Test.App
                 .Setup(s => s.PegarMensagensErro())
                 .Returns(mensagemDeErro);
             var vendaDTO = PegarVendaDTO();
-            IVendaApplication vendaApplication = new VendaApplication(new VendaFactory(), salvarVendaService.Object);
+            IMapper mapper = PegarMapper();
+            IVendaApplication vendaApplication = new VendaApplication(new VendaFactory(mapper), salvarVendaService.Object);
 
             bool vendaEfetuadaComSucesso = vendaApplication.ProcessarVenda(vendaDTO);
 
@@ -73,7 +78,8 @@ namespace Application.Venda.Test.App
                 .Setup(s => s.PegarMensagensErro())
                 .Returns(listaDeErros);
             var vendaDTO = PegarVendaDTO();
-            IVendaApplication vendaApplication = new VendaApplication(new VendaFactory(), salvarVendaService.Object);
+            IMapper mapper = PegarMapper();
+            IVendaApplication vendaApplication = new VendaApplication(new VendaFactory(mapper), salvarVendaService.Object);
 
             bool vendaEfetuadaComSucesso = vendaApplication.ProcessarVenda(vendaDTO);
             var listaDeErrosEncontrados = vendaApplication.PegarMensagensErro();
@@ -82,14 +88,14 @@ namespace Application.Venda.Test.App
             Assert.Equal(listaDeErros, listaDeErrosEncontrados);
         }
 
-        private VendaDTO PegarVendaDTO()
+        private VendaModel PegarVendaDTO()
         {
-            return new VendaDTO()
+            return new VendaModel()
             {
-                Cliente = new ClienteDTO("Cliente"),
+                Cliente = new ClienteModel("Cliente"),
                 FormaDePagamento = FormaDePagamento.Dinheiro,
-                Itens = new List<VendaItemDTO>{
-                    new VendaItemDTO{
+                Itens = new List<VendaItemModel>{
+                    new VendaItemModel{
                         Descricao = "Produto",
                         QuantidadeComprada = 10,
                         QuantidadePromocional = 20,
@@ -98,6 +104,11 @@ namespace Application.Venda.Test.App
                     }
                 }
             };
+        }
+
+        private IMapper PegarMapper()
+        {
+            return AutoMapperConfig.PegarMapper();
         }
     }
 }

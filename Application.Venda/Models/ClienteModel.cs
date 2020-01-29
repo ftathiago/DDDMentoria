@@ -1,9 +1,9 @@
-namespace CrossCutting.Models
+namespace Application.Venda.Models
 {
-    public class ClienteDTO
+    public class ClienteModel
     {
         public string Descricao { get; set; }
-        public ClienteDTO(string descricao)
+        public ClienteModel(string descricao)
         {
             this.Descricao = descricao;
         }

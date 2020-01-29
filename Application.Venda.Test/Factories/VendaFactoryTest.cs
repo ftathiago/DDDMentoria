@@ -2,8 +2,11 @@ using CrossCutting.Models;
 using Dominio.Venda.Entities;
 using Application.Venda.Factories;
 using Application.Venda.Factories.Impl;
+using Application.Venda.Models;
+using Application.Venda.Modules;
 using System.Collections.Generic;
 using System.Linq;
+using AutoMapper;
 using Xunit;
 
 namespace Application.Venda.Test
@@ -13,11 +16,12 @@ namespace Application.Venda.Test
         [Fact]
         public void TestCriarFabrica()
         {
-            IVendaFactory vendaFactory = new VendaFactory();
-            var vendaDTO = new VendaDTO();
-            vendaDTO.Cliente = new ClienteDTO(string.Empty);
+            IMapper mapper = PegarMapper();
+            IVendaFactory vendaFactory = new VendaFactory(mapper);
+            var vendaModel = new VendaModel();
+            vendaModel.Cliente = new ClienteModel(string.Empty);
 
-            VendaEntity venda = vendaFactory.Criar(vendaDTO);
+            VendaEntity venda = vendaFactory.Criar(vendaModel);
 
             Assert.NotNull(venda);
             Assert.IsAssignableFrom<VendaEntity>(venda);
@@ -26,19 +30,19 @@ namespace Application.Venda.Test
         [Fact]
         public void TestCriarVendaComItem()
         {
-            var vendaDTO = new VendaDTO
+            var vendaModel = new VendaModel
             {
-                Cliente = new ClienteDTO("Cliente"),
+                Cliente = new ClienteModel("Cliente"),
                 FormaDePagamento = FormaDePagamento.Dinheiro,
-                Itens = new List<VendaItemDTO>{
-                    new VendaItemDTO{
+                Itens = new List<VendaItemModel>{
+                    new VendaItemModel{
                         Descricao = "Produto1",
                         QuantidadeComprada = 10,
                         QuantidadePromocional = 10,
                         ValorUnitario = 10,
                         ValorUnitarioPromocional = 10
                     },
-                    new VendaItemDTO {
+                    new VendaItemModel {
                         Descricao = "Produto2",
                         QuantidadeComprada = 20,
                         QuantidadePromocional = 20,
@@ -47,11 +51,17 @@ namespace Application.Venda.Test
                     }
                 }
             };
-            IVendaFactory vendaFactory = new VendaFactory();
+            IMapper mapper = PegarMapper();
+            IVendaFactory vendaFactory = new VendaFactory(mapper);
 
-            VendaEntity venda = vendaFactory.Criar(vendaDTO);
+            VendaEntity venda = vendaFactory.Criar(vendaModel);
 
             Assert.Equal(2, venda.Itens.Count());
+        }
+
+        public IMapper PegarMapper()
+        {
+            return AutoMapperConfig.PegarMapper();
         }
     }
 }

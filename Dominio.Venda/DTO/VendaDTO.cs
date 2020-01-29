@@ -1,6 +1,7 @@
 using System.Collections.Generic;
+using CrossCutting.Models;
 
-namespace CrossCutting.Models
+namespace Dominio.Venda.DTO
 {
     public class VendaDTO
     {

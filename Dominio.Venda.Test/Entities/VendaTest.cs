@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using CrossCutting.Models;
 using Dominio.Venda.Entities;
 using Dominio.Venda.Modules.Impl;
+using Dominio.Venda.DTO;
 using Moq;
 using Xunit;
 

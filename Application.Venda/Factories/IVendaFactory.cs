@@ -1,10 +1,10 @@
-using CrossCutting.Models;
 using Dominio.Venda.Entities;
+using Application.Venda.Models;
 
 namespace Application.Venda.Factories
 {
     public interface IVendaFactory
     {
-        VendaEntity Criar(VendaDTO vendaDTO);
+        VendaEntity Criar(VendaModel vendaDTO);
     }
 }

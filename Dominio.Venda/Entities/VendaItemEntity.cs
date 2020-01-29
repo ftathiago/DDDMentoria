@@ -1,10 +1,10 @@
-using CrossCutting.Models;
+using Dominio.Venda.DTO;
 using Dominio.Venda.ValueObjects;
 using Dominio.Venda.Modules;
+using Dominio.Venda.Modules.Impl;
 using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
-using System.Linq;
-using Dominio.Venda.Modules.Impl;
+using CrossCutting.Models;
 
 namespace Dominio.Venda.Entities
 {

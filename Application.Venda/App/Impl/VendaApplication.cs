@@ -2,6 +2,7 @@ using CrossCutting.Models;
 using Dominio.Venda.Entities;
 using Dominio.Venda.Services;
 using Application.Venda.Factories;
+using Application.Venda.Models;
 using System.Collections.Generic;
 
 namespace Application.Venda.App.Impl
@@ -19,9 +20,9 @@ namespace Application.Venda.App.Impl
             _mensagensErro = new List<MensagemErro>();
         }
 
-        public bool ProcessarVenda(VendaDTO vendaDTO)
+        public bool ProcessarVenda(VendaModel vendaModel)
         {
-            VendaEntity venda = _vendaFactory.Criar(vendaDTO);
+            VendaEntity venda = _vendaFactory.Criar(vendaModel);
 
             var executouComSucesso = _salvarVendaService.Executar(venda);
             if (!executouComSucesso)
