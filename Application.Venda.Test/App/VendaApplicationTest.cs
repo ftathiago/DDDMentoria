@@ -15,6 +15,8 @@ namespace Application.Venda.Test.App
 {
     public class VendaApplicationTest
     {
+
+        private const int DINHEIRO = 1;
         [Fact]
         public void EhPossivelCriarVendaApplication()
         {
@@ -93,7 +95,7 @@ namespace Application.Venda.Test.App
             return new VendaModel()
             {
                 Cliente = new ClienteModel("Cliente"),
-                FormaDePagamento = FormaDePagamento.Dinheiro,
+                FormaDePagamento = DINHEIRO,
                 Itens = new List<VendaItemModel>{
                     new VendaItemModel{
                         Descricao = "Produto",

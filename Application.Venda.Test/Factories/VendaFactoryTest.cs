@@ -13,6 +13,7 @@ namespace Application.Venda.Test
 {
     public class VendaFactoryTest
     {
+        private const int DINHEIRO = 1;
         [Fact]
         public void TestCriarFabrica()
         {
@@ -33,7 +34,7 @@ namespace Application.Venda.Test
             var vendaModel = new VendaModel
             {
                 Cliente = new ClienteModel("Cliente"),
-                FormaDePagamento = FormaDePagamento.Dinheiro,
+                FormaDePagamento = DINHEIRO,
                 Itens = new List<VendaItemModel>{
                     new VendaItemModel{
                         Descricao = "Produto1",
