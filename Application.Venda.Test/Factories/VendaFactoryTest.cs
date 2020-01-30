@@ -1,5 +1,5 @@
-using CrossCutting.Models;
 using Dominio.Venda.Entities;
+using Dominio.Venda.DTO;
 using Application.Venda.Factories;
 using Application.Venda.Factories.Impl;
 using Application.Venda.Models;
@@ -26,6 +26,19 @@ namespace Application.Venda.Test
 
             Assert.NotNull(venda);
             Assert.IsAssignableFrom<VendaEntity>(venda);
+        }
+
+        [Fact]
+        public void TestConversaoFormaPagamento()
+        {
+            IVendaEntityFactory vendaEntityFactory = PegarVendaEntityFactory();
+            var vendaModel = new VendaModel();
+            vendaModel.Cliente = new ClienteModel(string.Empty);
+            vendaModel.FormaDePagamento = DINHEIRO;
+
+            VendaEntity venda = vendaEntityFactory.Criar(vendaModel);
+
+            Assert.Equal(FormaDePagamento.Dinheiro, venda.FormaDePagamento);
         }
 
         [Fact]
@@ -60,7 +73,12 @@ namespace Application.Venda.Test
             Assert.Equal(2, venda.Itens.Count());
         }
 
-        public IMapper PegarMapper()
+        private IVendaEntityFactory PegarVendaEntityFactory()
+        {
+            IMapper mapper = PegarMapper();
+            return new VendaEntityFactory(mapper);
+        }
+        private IMapper PegarMapper()
         {
             return AutoMapperConfig.PegarMapper();
         }
