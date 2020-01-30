@@ -42,6 +42,18 @@ namespace Application.Venda.Test
         }
 
         [Fact]
+        public void TestConversaoFormaPagamentoInvalida()
+        {
+            IVendaEntityFactory vendaEntityFactory = PegarVendaEntityFactory();
+            var vendaModel = new VendaModel();
+            vendaModel.Cliente = new ClienteModel(string.Empty);
+            vendaModel.FormaDePagamento = 20;
+
+            VendaEntity venda = vendaEntityFactory.Criar(vendaModel);
+
+            Assert.Equal(FormaDePagamento.None, venda.FormaDePagamento);
+        }
+        [Fact]
         public void TestCriarVendaComItem()
         {
             var vendaModel = new VendaModel

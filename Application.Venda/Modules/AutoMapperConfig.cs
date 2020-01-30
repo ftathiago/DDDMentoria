@@ -10,7 +10,11 @@ namespace Application.Venda.Modules
         {
             var config = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<VendaModel, VendaDTO>();
+                cfg.CreateMap<VendaModel, VendaDTO>()
+                    .ForMember(destination => destination.FormaDePagamento,
+                        opt =>
+                            opt.MapFrom(source => FormaDePagamento.GetName(typeof(FormaDePagamento), source.FormaDePagamento))
+                        );
                 cfg.CreateMap<VendaItemModel, VendaItemDTO>();
                 cfg.CreateMap<ClienteModel, ClienteDTO>();
             });
