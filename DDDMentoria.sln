@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dominio.Venda", "Dominio.Venda\Dominio.Venda.csproj", "{85DDF702-616F-4B07-B6CF-DD86507C05C4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Venda.Dominio", "Venda.Dominio\Venda.Dominio.csproj", "{85DDF702-616F-4B07-B6CF-DD86507C05C4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dominio.Venda.Test", "Dominio.Venda.Test\Dominio.Venda.Test.csproj", "{D8AF9D58-A461-4B49-9566-51797A593D52}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Venda.Dominio.Test", "Venda.Dominio.Test\Venda.Dominio.Test.csproj", "{D8AF9D58-A461-4B49-9566-51797A593D52}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.Venda", "Application.Venda\Application.Venda.csproj", "{25C0364F-7625-4275-8C55-1D3A6FE6B351}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Venda.Application", "Venda.Application\Venda.Application.csproj", "{25C0364F-7625-4275-8C55-1D3A6FE6B351}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.Venda.Test", "Application.Venda.Test\Application.Venda.Test.csproj", "{0BBB92C3-8671-4545-A9DD-15F42D3D4E32}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Venda.Application.Test", "Venda.Application.Test\Venda.Application.Test.csproj", "{0BBB92C3-8671-4545-A9DD-15F42D3D4E32}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrossCutting", "CrossCutting\CrossCutting.csproj", "{58F8D6BA-347A-4F71-98E5-462871A580B1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Venda.Crosscutting", "Venda.Crosscutting\Venda.Crosscutting.csproj", "{58F8D6BA-347A-4F71-98E5-462871A580B1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
