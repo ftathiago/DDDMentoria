@@ -2,10 +2,10 @@ namespace Venda.Dominio.DTO
 {
     public class ClienteDTO
     {
-        public string Descricao { get; set; }
-        public ClienteDTO(string descricao)
+        public int ID { get; set; }
+        public ClienteDTO(int id)
         {
-            this.Descricao = descricao;
+            this.ID = id;
         }
     }
 }

@@ -20,7 +20,7 @@ namespace Venda.Application.Test
             IMapper mapper = PegarMapper();
             IVendaEntityFactory vendaEntityFactory = new VendaEntityFactory(mapper);
             var vendaModel = new VendaModel();
-            vendaModel.Cliente = new ClienteModel(string.Empty);
+            vendaModel.Cliente = new ClienteModel(int.MinValue, string.Empty);
 
             VendaEntity venda = vendaEntityFactory.Criar(vendaModel);
 
@@ -33,7 +33,7 @@ namespace Venda.Application.Test
         {
             IVendaEntityFactory vendaEntityFactory = PegarVendaEntityFactory();
             var vendaModel = new VendaModel();
-            vendaModel.Cliente = new ClienteModel(string.Empty);
+            vendaModel.Cliente = new ClienteModel(int.MinValue, string.Empty);
             vendaModel.FormaDePagamento = DINHEIRO;
 
             VendaEntity venda = vendaEntityFactory.Criar(vendaModel);
@@ -46,7 +46,7 @@ namespace Venda.Application.Test
         {
             IVendaEntityFactory vendaEntityFactory = PegarVendaEntityFactory();
             var vendaModel = new VendaModel();
-            vendaModel.Cliente = new ClienteModel(string.Empty);
+            vendaModel.Cliente = new ClienteModel(int.MinValue, string.Empty);
             vendaModel.FormaDePagamento = 20;
 
             Assert.Throws<AutoMapperMappingException>(() =>
@@ -58,7 +58,7 @@ namespace Venda.Application.Test
         {
             var vendaModel = new VendaModel
             {
-                Cliente = new ClienteModel("Cliente"),
+                Cliente = new ClienteModel(int.MinValue, "Cliente"),
                 FormaDePagamento = DINHEIRO,
                 Itens = new List<VendaItemModel>{
                     new VendaItemModel{

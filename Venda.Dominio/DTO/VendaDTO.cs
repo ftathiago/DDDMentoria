@@ -6,7 +6,7 @@ namespace Venda.Dominio.DTO
     {
         public VendaDTO()
         {
-            Cliente = new ClienteDTO(string.Empty);
+            Cliente = new ClienteDTO(int.MinValue);
             Itens = new List<VendaItemDTO>();
         }
         public ClienteDTO Cliente { get; set; }

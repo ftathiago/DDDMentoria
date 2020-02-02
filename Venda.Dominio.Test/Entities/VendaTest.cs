@@ -40,7 +40,7 @@ namespace Venda.Dominio.Test.Entities
         [InlineData(FormaDePagamento.Cheque)]
         public void TestCriarVendaComFormaDePagamento(FormaDePagamento formaDePagamento)
         {
-            var cliente = new ClienteDTO("Cliente");
+            var cliente = new ClienteDTO(int.MinValue);
             var vendaDTO = new VendaDTO()
             {
                 Cliente = cliente,
@@ -66,7 +66,7 @@ namespace Venda.Dominio.Test.Entities
         {
             var vendaDTO = new VendaDTO
             {
-                Cliente = new ClienteDTO("Cliente"),
+                Cliente = new ClienteDTO(int.MinValue),
                 FormaDePagamento = FormaDePagamento.Dinheiro,
                 Itens = new List<VendaItemDTO>{
                     VendaItemDTOFactory("Produto1", 1, 1)
@@ -84,7 +84,7 @@ namespace Venda.Dominio.Test.Entities
         {
             VendaDTO vendaDTO = new VendaDTO
             {
-                Cliente = new ClienteDTO("Cliente"),
+                Cliente = new ClienteDTO(int.MinValue),
                 FormaDePagamento = FormaDePagamento.Dinheiro
             };
 
@@ -100,7 +100,7 @@ namespace Venda.Dominio.Test.Entities
         {
             VendaDTO vendaDTO = new VendaDTO
             {
-                Cliente = new ClienteDTO("Cliente"),
+                Cliente = new ClienteDTO(int.MinValue),
                 FormaDePagamento = FormaDePagamento.Dinheiro,
                 Itens = new List<VendaItemDTO>{
                     VendaItemDTOFactory("Produto", 0, 1)
@@ -120,7 +120,7 @@ namespace Venda.Dominio.Test.Entities
         {
             VendaDTO vendaDTO = new VendaDTO
             {
-                Cliente = new ClienteDTO("Cliente"),
+                Cliente = new ClienteDTO(int.MinValue),
                 FormaDePagamento = FormaDePagamento.None,
                 Itens = new List<VendaItemDTO>{
                     VendaItemDTOFactory("Descricao", 1, 1)
@@ -144,7 +144,7 @@ namespace Venda.Dominio.Test.Entities
             vendaItemMock
                 .Setup(vi => vi.ValorTotal(It.IsAny<FormaDePagamento>()))
                 .Returns(10);
-            VendaEntity venda = new VendaEntity(new ClienteDTO("Cliente"), FormaDePagamento.Dinheiro);
+            VendaEntity venda = new VendaEntity(new ClienteDTO(int.MinValue), FormaDePagamento.Dinheiro);
             venda.AdicionarVendaItem(vendaItemMock.Object);
 
             var listaErrosEncontrados = venda.Validate();

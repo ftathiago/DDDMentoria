@@ -4,11 +4,11 @@ using Venda.Application.Factories.Impl;
 using Venda.Application.Models;
 using Venda.Application.Modules;
 using Venda.Dominio.Services;
+using Venda.Dominio.Entities;
 using Venda.Crosscutting.Models;
 using System.Collections.Generic;
 using Xunit;
 using Moq;
-using Venda.Dominio.Entities;
 using AutoMapper;
 
 namespace Venda.Application.Test.App
@@ -94,7 +94,7 @@ namespace Venda.Application.Test.App
         {
             return new VendaModel()
             {
-                Cliente = new ClienteModel("Cliente"),
+                Cliente = new ClienteModel(int.MinValue, "Cliente"),
                 FormaDePagamento = DINHEIRO,
                 Itens = new List<VendaItemModel>{
                     new VendaItemModel{

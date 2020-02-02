@@ -15,7 +15,7 @@ namespace Venda.Dominio.Entities
         protected VendaEntity()
         {
             _itensLista = new List<VendaItemEntity>();
-            Cliente = new ClienteDTO(string.Empty);
+            Cliente = new ClienteDTO(int.MinValue);
             this.FormaDePagamento = FormaDePagamento.None;
         }
         public VendaEntity(ClienteDTO? cliente, FormaDePagamento formaDePagamento)
