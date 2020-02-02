@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using Venda.Dominio.DTO;
-using Venda.Crosscutting.Models;
 
 namespace Venda.Dominio.Entities
 {

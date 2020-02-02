@@ -4,7 +4,6 @@ using Venda.Dominio.Modules;
 using Venda.Dominio.Modules.Impl;
 using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
-using Venda.Crosscutting.Models;
 
 namespace Venda.Dominio.Entities
 {
