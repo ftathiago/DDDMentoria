@@ -1,6 +1,5 @@
 using Venda.Dominio.Repository;
 using Venda.Dominio.Entities;
-using System.Collections.Generic;
 using Venda.Crosscutting.Models;
 
 namespace Venda.Dominio.Services.Impl

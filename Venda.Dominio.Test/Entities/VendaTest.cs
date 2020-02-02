@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using Venda.Crosscutting.Models;
 using Venda.Dominio.Entities;
 using Venda.Dominio.Modules.Impl;
 using Venda.Dominio.DTO;

@@ -1,5 +1,3 @@
-using System;
-
 namespace Venda.Dominio.ValueObjects
 {
     public class ValorUnitario

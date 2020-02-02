@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Venda.Crosscutting.Models;
 
 namespace Venda.Dominio.DTO
 {

@@ -1,4 +1,3 @@
-using Venda.Crosscutting.Models;
 using Venda.Dominio.ValueObjects;
 using Venda.Dominio.DTO;
 

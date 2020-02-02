@@ -2,10 +2,10 @@ namespace Venda.Application.Models
 {
     public class ClienteModel
     {
-        public string Descricao { get; set; }
-        public ClienteModel(string descricao)
+        public string Nome { get; set; }
+        public ClienteModel(string nome)
         {
-            this.Descricao = descricao;
+            this.Nome = nome;
         }
     }
 }

@@ -1,4 +1,3 @@
-using Venda.Application.Modules;
 using Venda.Application.Models;
 using Venda.Dominio.Entities;
 using Venda.Dominio.DTO;

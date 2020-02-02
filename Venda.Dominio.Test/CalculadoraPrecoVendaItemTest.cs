@@ -1,5 +1,4 @@
 using Venda.Dominio.ValueObjects;
-using Venda.Crosscutting.Models;
 using Venda.Dominio.Modules.Impl;
 using Venda.Dominio.DTO;
 using Xunit;

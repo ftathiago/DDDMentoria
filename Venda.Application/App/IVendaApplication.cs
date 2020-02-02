@@ -1,4 +1,3 @@
-
 using Venda.Application.Models;
 
 namespace Venda.Application.App
