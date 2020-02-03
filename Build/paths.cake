@@ -35,22 +35,22 @@ public class BuildPaths
         var rootDir = (DirectoryPath)context.Directory("../");
         var artifacts = rootDir.Combine(".artifacts");
         var testResults = artifacts.Combine("Test-Results");
-        var integrationTestsDir = rootDir.Combine(context.Directory("Venda.Application.Test"));
-        var unitTestsDir = rootDir.Combine(context.Directory("Venda.Dominio.Test"));
-        var mainProjectDir = rootDir.Combine(context.Directory("Venda.Application"));
+        var applicationTestDir = rootDir.Combine(context.Directory("Venda.Application.Test"));
+        var dominioTestDir = rootDir.Combine(context.Directory("Venda.Dominio.Test"));
+        // var mainProjectDir = rootDir.Combine(context.Directory("Venda.Application"));
 
         var testDirs = new []{
-                                unitTestsDir,
-                                integrationTestsDir
+                                dominioTestDir,
+                                applicationTestDir
                             };
         var toClean = new[] {
                                  testResults,
-                                 integrationTestsDir.Combine("bin"),
-                                 integrationTestsDir.Combine("obj"),
-                                 unitTestsDir.Combine("bin"),
-                                 unitTestsDir.Combine("obj"),
-                                 mainProjectDir.Combine("bin"),
-                                 mainProjectDir.Combine("obj"),
+                                 applicationTestDir.Combine("bin"),
+                                 applicationTestDir.Combine("obj"),
+                                 dominioTestDir.Combine("bin"),
+                                 dominioTestDir.Combine("obj"),
+                                //  mainProjectDir.Combine("bin"),
+                                //  mainProjectDir.Combine("obj"),
                             };
         return new BuildDirectories(rootDir,
                                     artifacts,

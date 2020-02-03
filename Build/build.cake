@@ -51,13 +51,14 @@ Task("Run-Tests")
 {
     var success = true;
     var openCoverSettings = new OpenCoverSettings
-    {
-        OldStyle = true,
-        Register="user",
-        MergeByHash=true,
-        MergeOutput = true
-    }
-    .WithFilter("+[Venda*]* -[*.Test*]*");
+        {
+            OldStyle = true,
+            Register="user",
+            MergeByHash=true,
+            MergeOutput = true,
+            SkipAutoProps= true       
+        }
+        .WithFilter("+[Venda*]* -[*.Test*]*");
  
     if(parameters.UseDotNetVsTest){
 
