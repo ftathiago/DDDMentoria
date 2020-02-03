@@ -148,6 +148,7 @@ _TeamCity*
 # Visual Studio code coverage results
 *.coverage
 *.coveragexml
+.artifacts
 
 # NCrunch
 _NCrunch_*
@@ -315,8 +316,8 @@ __pycache__/
 *.pyc
 
 # Cake - Uncomment if you are using it
-# tools/**
-# !tools/packages.config
+Build/tools/**
+!Build/tools/packages.config
 
 # Tabs Studio
 *.tss
@@ -358,3 +359,5 @@ MigrationBackup/
 .ionide/
 coverage*.info
 coverage.opencover.xml
+
+sonar.txt
