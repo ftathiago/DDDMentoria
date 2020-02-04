@@ -318,6 +318,8 @@ __pycache__/
 # Cake - Uncomment if you are using it
 Build/tools/**
 !Build/tools/packages.config
+Build/.sonarqube
+Build/.sonarqube/**
 
 # Tabs Studio
 *.tss
@@ -359,5 +361,6 @@ MigrationBackup/
 .ionide/
 coverage*.info
 coverage.opencover.xml
+
 
 sonar.txt
