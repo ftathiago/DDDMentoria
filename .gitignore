@@ -318,6 +318,8 @@ __pycache__/
 # Cake - Uncomment if you are using it
 Build/tools/**
 !Build/tools/packages.config
+tools/**
+!tools/packages.config
 **/.sonarqube
 **/.sonarqube/**
 
